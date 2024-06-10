@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TicTacToe.Models
+namespace TicTacToe.DataAccess.Models
 {
     public class Game
     {

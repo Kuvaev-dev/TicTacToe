@@ -75,7 +75,7 @@ namespace TicTacToe.Repositories
                 command.Parameters.AddWithValue("@Username", user.Username);
                 command.Parameters.AddWithValue("@Password", user.Password);
                 command.Parameters.AddWithValue("@IsDeleted", user.IsDeleted);
-                command.Parameters.AddWithValue("@LastLogin", (object)user.LastLogin ?? DBNull.Value);
+                command.Parameters.AddWithValue("@LastLogin", user.LastLogin ?? (object)DBNull.Value);
 
                 command.ExecuteNonQuery();
             }
@@ -91,7 +91,7 @@ namespace TicTacToe.Repositories
                 command.Parameters.AddWithValue("@Username", user.Username);
                 command.Parameters.AddWithValue("@Password", user.Password);
                 command.Parameters.AddWithValue("@IsDeleted", user.IsDeleted);
-                command.Parameters.AddWithValue("@LastLogin", (object)user.LastLogin ?? DBNull.Value);
+                command.Parameters.AddWithValue("@LastLogin", user.LastLogin ?? (object)DBNull.Value);
 
                 command.ExecuteNonQuery();
             }
