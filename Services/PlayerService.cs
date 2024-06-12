@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using TicTacToe.Models;
 using TicTacToe.Repositories;
 
@@ -139,6 +141,17 @@ namespace TicTacToe.Services
             player.LastLogin = DateTime.Now;
             _playerRepository.UpdatePlayer(player);
             return player;
+        }
+
+        public List<Player> GetTopPlayers(int count)
+        {
+            // Получаем список всех игроков
+            var allPlayers = _playerRepository.GetTopPlayers(count);
+
+            // Сортируем игроков по количеству побед в убывающем порядке и выбираем первые count игроков
+            var topPlayers = allPlayers.OrderByDescending(player => player.Wins).Take(count).ToList();
+
+            return topPlayers;
         }
     }
 }

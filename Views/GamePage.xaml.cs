@@ -103,5 +103,10 @@ namespace TicTacToe.Views
         {
             _mainViewModel.NavigateTo(new ProfilePage(_mainViewModel));
         }
+
+        private void RatingButton_Click(object sender, RoutedEventArgs e)
+        {
+            _mainViewModel.NavigateTo(new RatingPage(_mainViewModel));
+        }
     }
 }
