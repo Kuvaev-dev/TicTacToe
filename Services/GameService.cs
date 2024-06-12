@@ -1,74 +1,125 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TicTacToe.Models;
+using TicTacToe.Bots;
 using TicTacToe.Repositories;
 
 namespace TicTacToe.Services
 {
     public class GameService
     {
-        private readonly GameRepository _gameRepository;
-        private readonly RatingRepository _ratingRepository;
+        private readonly IGameRepository _gameRepository;
+        private readonly IPlayerRepository _playerRepository;
+        private char[,] _board;
+        private char _currentPlayer;
+        private IBot _bot;
 
-        public GameService(GameRepository gameRepository, RatingRepository ratingRepository)
+        public GameService(IGameRepository gameRepository, IPlayerRepository playerRepository)
         {
             _gameRepository = gameRepository;
-            _ratingRepository = ratingRepository;
+            _playerRepository = playerRepository;
+            _board = new char[3, 3];
+            _currentPlayer = 'X'; // 'X' for player, 'O' for bot
         }
 
-        public void RecordGame(int player1Id, int player2Id, int? winnerId)
+        public void StartNewGame(string botLevel)
         {
-            var game = new Game
-            {
-                Player1Id = player1Id,
-                Player2Id = player2Id,
-                WinnerId = winnerId,
-                Date = DateTime.Now
-            };
-            _gameRepository.Add(game);
-            UpdateRatings(player1Id, player2Id, winnerId);
-        }
+            _board = new char[3, 3];
+            _currentPlayer = new Random().Next(0, 2) == 0 ? 'X' : 'O';
 
-        private void UpdateRatings(int player1Id, int player2Id, int? winnerId)
-        {
-            var player1Rating = _ratingRepository.GetById(player1Id) ?? new Rating { PlayerId = player1Id };
-            var player2Rating = _ratingRepository.GetById(player2Id) ?? new Rating { PlayerId = player2Id };
-            player1Rating.TotalGames++;
-            player2Rating.TotalGames++;
-            if (winnerId == player1Id)
+            switch (botLevel)
             {
-                player1Rating.Wins++;
-                player2Rating.Losses++;
+                case "НОВИЧОК":
+                    _bot = new SimpleBot();
+                    break;
+                case "ЗАЩИТА":
+                    _bot = new DefensiveBot();
+                    break;
+                case "НАПАДЕНИЕ":
+                    _bot = new OffensiveBot();
+                    break;
+                case "ГУРУ":
+                    _bot = new GuruBot();
+                    break;
+                case "ИИ":
+                    _bot = new AIBot();
+                    break;
+                default:
+                    _bot = new SimpleBot();
+                    break;
             }
-            else if (winnerId == player2Id)
-            {
-                player2Rating.Wins++;
-                player1Rating.Losses++;
-            }
-            else
-            {
-                player1Rating.Draws++;
-                player2Rating.Draws++;
-            }
-            _ratingRepository.Update(player1Rating);
-            _ratingRepository.Update(player2Rating);
         }
 
-        public IEnumerable<Rating> GetTopRatings()
+        public char GetCurrentPlayer() => _currentPlayer;
+
+        public bool MakeMove(int row, int col)
         {
-            var ratings = _ratingRepository.GetAll();
-            return ratings.OrderByDescending(r => r.Wins)
-            .ThenByDescending(r => r.Draws)
-            .ThenBy(r => r.Losses)
-            .Take(5);
+            if (_board[row, col] == '\0')
+            {
+                _board[row, col] = _currentPlayer;
+                if (CheckWinner())
+                {
+                    UpdateGameStats(_currentPlayer == 'X' ? "Player" : "Bot");
+                    return true;
+                }
+                _currentPlayer = _currentPlayer == 'X' ? 'O' : 'X';
+
+                if (_currentPlayer == 'O')
+                {
+                    var move = _bot.GetNextMove(_board);
+                    _board[move.row, move.col] = 'O';
+                    if (CheckWinner())
+                    {
+                        UpdateGameStats(_currentPlayer == 'X' ? "Player" : "Bot");
+                        return true;
+                    }
+                    _currentPlayer = 'X';
+                }
+            }
+            return false;
         }
 
-        public Rating GetCurrentRating(int playerId)
+        public (int row, int col) GetHint()
         {
-            return _ratingRepository.GetById(playerId);
+            return _bot.GetNextMove(_board);
         }
+
+        public bool CheckWinner()
+        {
+            // Check rows, columns and diagonals
+            for (int i = 0; i < 3; i++)
+            {
+                if (_board[i, 0] != '\0' && _board[i, 0] == _board[i, 1] && _board[i, 1] == _board[i, 2])
+                    return true;
+                if (_board[0, i] != '\0' && _board[0, i] == _board[1, i] && _board[1, i] == _board[2, i])
+                    return true;
+            }
+
+            if (_board[0, 0] != '\0' && _board[0, 0] == _board[1, 1] && _board[1, 1] == _board[2, 2])
+                return true;
+            if (_board[0, 2] != '\0' && _board[0, 2] == _board[1, 1] && _board[1, 1] == _board[2, 0])
+                return true;
+
+            return false;
+        }
+
+        private void UpdateGameStats(string winner)
+        {
+            // Update player and bot statistics in the database
+            if (winner == "Player")
+            {
+                var player = _playerRepository.GetPlayerById(1); // Example player ID
+                player.Wins++;
+                player.GamesPlayed++;
+                _playerRepository.UpdatePlayer(player);
+            }
+            else if (winner == "Bot")
+            {
+                var botPlayer = _playerRepository.GetPlayerById(2); // Example bot player ID
+                botPlayer.Wins++;
+                botPlayer.GamesPlayed++;
+                _playerRepository.UpdatePlayer(botPlayer);
+            }
+        }
+
+        public char[,] GetBoard() => _board;
     }
 }
