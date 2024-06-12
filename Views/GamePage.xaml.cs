@@ -1,20 +1,21 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using System.Windows.Navigation;
 using TicTacToe.Repositories;
 using TicTacToe.Services;
 
 namespace TicTacToe.Views
 {
     /// <summary>
-    /// Логика взаимодействия для GameWindow.xaml
+    /// Логика взаимодействия для GamePage.xaml
     /// </summary>
-    public partial class GameWindow : Window
+    public partial class GamePage : Page
     {
         private readonly GameService _gameService;
         private readonly PlayerService _playerService;
 
-        public GameWindow()
+        public GamePage()
         {
             InitializeComponent();
             var connectionString = "your_connection_string_here";
@@ -83,10 +84,17 @@ namespace TicTacToe.Views
 
         private void UpdateScores()
         {
-            //var player = _playerService.GetPlayerById(1); // Example player ID
-            //PlayerScoreTextBlock.Text = player.Wins.ToString();
-            //var botPlayer = _playerService.GetPlayerById(2); // Example bot player ID
-            //ComputerScoreTextBlock.Text = botPlayer.Wins.ToString();
+            var playerId = MainWindow.GetLoggedInPlayerId();
+            var player = _playerService.GetPlayerById(playerId);
+            PlayerScoreTextBlock.Text = player.Wins.ToString();
+
+            var botPlayer = _playerService.GetPlayerById(2); // Example bot player ID
+            ComputerScoreTextBlock.Text = botPlayer.Wins.ToString();
+        }
+
+        private void GoToProfileButton_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new ProfilePage());
         }
     }
 }
