@@ -37,27 +37,15 @@ namespace TicTacToe.Services
             _board = new char[3, 3];
             _currentPlayer = new Random().Next(0, 2) == 0 ? 'X' : 'O';
 
-            switch (botLevel)
+            _bot = botLevel switch
             {
-                case "НОВИЧОК":
-                    _bot = new SimpleBot();
-                    break;
-                case "ЗАЩИТА":
-                    _bot = new DefensiveBot();
-                    break;
-                case "НАПАДЕНИЕ":
-                    _bot = new OffensiveBot();
-                    break;
-                case "ГУРУ":
-                    _bot = new GuruBot();
-                    break;
-                case "ИИ":
-                    _bot = new AIBot();
-                    break;
-                default:
-                    _bot = new SimpleBot();
-                    break;
-            }
+                "НОВИЧОК" => new SimpleBot(),
+                "ЗАЩИТА" => new DefensiveBot(),
+                "НАПАДЕНИЕ" => new OffensiveBot(),
+                "ГУРУ" => new GuruBot(),
+                "ИИ" => new AIBot(),
+                _ => new SimpleBot(),
+            };
         }
 
         /// <summary>
