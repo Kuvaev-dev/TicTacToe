@@ -14,29 +14,49 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
-            <Button Name="StartGameButton" Content="НАЧАТЬ ИГРУ" Click="StartGameButton_Click" Margin="10"/>
-            <TextBlock Text="Текущий игрок: " VerticalAlignment="Center" Margin="10"/>
-            <TextBlock Name="CurrentPlayerTextBlock" VerticalAlignment="Center"/>
-            <StackPanel Orientation="Vertical" Margin="10">
+        <StackPanel Orientation="Horizontal" 
+                    HorizontalAlignment="Center" 
+                    Margin="10">
+            <Button Name="StartGameButton" 
+                    Content="НАЧАТЬ ИГРУ" 
+                    Click="StartGameButton_Click" 
+                    Margin="10"/>
+            <TextBlock Text="Текущий игрок: " 
+                       VerticalAlignment="Center" 
+                       Margin="10"/>
+            <TextBlock Name="CurrentPlayerTextBlock" 
+                       VerticalAlignment="Center"/>
+            <StackPanel Orientation="Vertical" 
+                        Margin="10">
                 <TextBlock Text="Игрок"/>
-                <TextBlock Name="PlayerScoreTextBlock" Text="0"/>
+                <TextBlock Name="PlayerScoreTextBlock" 
+                           Text="0"/>
             </StackPanel>
-            <StackPanel Orientation="Vertical" Margin="10">
+            <StackPanel Orientation="Vertical" 
+                        Margin="10">
                 <TextBlock Text="Компьютер"/>
-                <TextBlock Name="ComputerScoreTextBlock" Text="0"/>
+                <TextBlock Name="ComputerScoreTextBlock" 
+                           Text="0"/>
             </StackPanel>
-            <ComboBox Name="BotLevelComboBox" Width="120" Margin="10">
+            <ComboBox Name="BotLevelComboBox" 
+                      Width="120" 
+                      Margin="10">
                 <ComboBoxItem Content="НОВИЧОК"/>
                 <ComboBoxItem Content="ЗАЩИТА"/>
                 <ComboBoxItem Content="НАПАДЕНИЕ"/>
                 <ComboBoxItem Content="ГУРУ"/>
                 <ComboBoxItem Content="ИИ"/>
             </ComboBox>
-            <CheckBox Name="HintCheckBox" Content="Подсказка" Margin="10"/>
+            <CheckBox Name="HintCheckBox" 
+                      Content="Подсказка" 
+                      Margin="10"/>
         </StackPanel>
 
-        <UniformGrid Grid.Row="1" Rows="3" Columns="3" Name="GameBoard" Margin="10">
+        <UniformGrid Grid.Row="1" 
+                     Rows="3" 
+                     Columns="3" 
+                     Name="GameBoard" 
+                     Margin="10">
             <Button Name="Cell00" Click="Cell_Click" FontSize="32"/>
             <Button Name="Cell01" Click="Cell_Click" FontSize="32"/>
             <Button Name="Cell02" Click="Cell_Click" FontSize="32"/>
@@ -48,6 +68,9 @@
             <Button Name="Cell22" Click="Cell_Click" FontSize="32"/>
         </UniformGrid>
 
-        <Button Content="Profile" Click="GoToProfileButton_Click" Margin="10" Grid.Row="2"/>
+        <Button Content="Profile" 
+                Click="GoToProfileButton_Click" 
+                Margin="10" 
+                Grid.Row="2"/>
     </Grid>
 </Page>

@@ -14,16 +14,31 @@
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <StackPanel Orientation="Horizontal" Grid.Row="0">
+        <StackPanel Orientation="Horizontal" 
+                    Grid.Row="0">
             <Label Content="Username"/>
-            <TextBox Name="NewUsernameTextBox" Margin="10" Width="115"/>
+            <TextBox Name="NewUsernameTextBox" 
+                     Margin="10" 
+                     Width="115"/>
         </StackPanel>
-        <StackPanel Orientation="Horizontal" Grid.Row="1">
+        <StackPanel Orientation="Horizontal" 
+                    Grid.Row="1">
             <Label Content="Password"/>
-            <PasswordBox Name="NewPasswordBox" Margin="10" Width="115"/>
+            <PasswordBox Name="NewPasswordBox" 
+                         Margin="10" 
+                         Width="115"/>
         </StackPanel>
-        <Button Grid.Row="2" Content="Update Profile" Click="UpdateProfileButton_Click" Margin="10"/>
-        <Button Grid.Row="3" Content="Delete Account" Click="DeleteAccountButton_Click" Margin="10"/>
-        <Button Grid.Row="4" Content="Logout" Click="LogoutButton_Click" Margin="10"/>
+        <Button Grid.Row="2" 
+                Content="Update Profile" 
+                Click="UpdateProfileButton_Click" 
+                Margin="10"/>
+        <Button Grid.Row="3" 
+                Content="Delete Account" 
+                Click="DeleteAccountButton_Click" 
+                Margin="10"/>
+        <Button Grid.Row="4" 
+                Content="Logout"
+                Click="LogoutButton_Click" 
+                Margin="10"/>
     </Grid>
 </Page>
