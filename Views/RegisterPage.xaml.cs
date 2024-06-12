@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Navigation;
 using TicTacToe.Repositories;
 using TicTacToe.Services;
 
@@ -13,15 +12,24 @@ namespace TicTacToe.Views
     public partial class RegisterPage : Page
     {
         private readonly PlayerService _playerService;
+        private readonly MainViewModel _mainViewModel;
 
-        public RegisterPage()
+        /// <summary>
+        /// Создает новый экземпляр страницы регистрации.
+        /// </summary>
+        /// <param name="mainViewModel">Модель представления главного окна.</param>
+        public RegisterPage(MainViewModel mainViewModel)
         {
             InitializeComponent();
-            var connectionString = "your_connection_string_here";
+            var connectionString = "ваша_строка_подключения_здесь";
             var playerRepository = new PlayerRepository(connectionString);
             _playerService = new PlayerService(playerRepository);
+            _mainViewModel = mainViewModel;
         }
 
+        /// <summary>
+        /// Обрабатывает нажатие кнопки регистрации.
+        /// </summary>
         private void RegisterButton_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -29,18 +37,21 @@ namespace TicTacToe.Views
                 var username = UsernameTextBox.Text;
                 var password = PasswordBox.Password;
                 _playerService.RegisterPlayer(username, password);
-                MessageBox.Show("Registration successful!");
-                NavigationService.Navigate(new LoginPage());
+                MessageBox.Show("Регистрация успешна!");
+                _mainViewModel.NavigateTo(new LoginPage(_mainViewModel));
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error: {ex.Message}");
+                MessageBox.Show($"Ошибка: {ex.Message}");
             }
         }
 
+        /// <summary>
+        /// Обрабатывает нажатие кнопки перехода к странице входа.
+        /// </summary>
         private void GoToLoginButton_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new LoginPage());
+            _mainViewModel.NavigateTo(new LoginPage(_mainViewModel));
         }
     }
 }

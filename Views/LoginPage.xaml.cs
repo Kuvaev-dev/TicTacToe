@@ -13,13 +13,23 @@ namespace TicTacToe.Views
     public partial class LoginPage : Page
     {
         private readonly PlayerService _playerService;
+        private readonly MainViewModel _mainViewModel;
 
-        public LoginPage()
+        /// <summary>
+        /// Создает новый экземпляр GamePage.
+        /// </summary>
+        /// <param name="mainViewModel">Главная ViewModel.</param>
+        public LoginPage(MainViewModel mainViewModel)
         {
             InitializeComponent();
             var connectionString = "your_connection_string_here";
             var playerRepository = new PlayerRepository(connectionString);
             _playerService = new PlayerService(playerRepository);
+            _mainViewModel = mainViewModel;
+        }
+
+        public LoginPage()
+        {
         }
 
         private void LoginButton_Click(object sender, RoutedEventArgs e)
@@ -30,7 +40,7 @@ namespace TicTacToe.Views
                 var password = PasswordBox.Password;
                 var player = _playerService.Login(username, password);
                 MainWindow.SetLoggedInPlayerId(player.Id); // Установка текущего залогиненного пользователя
-                NavigationService.Navigate(new GamePage());
+                _mainViewModel.NavigateTo(new GamePage(_mainViewModel));
             }
             catch (Exception ex)
             {
@@ -40,7 +50,7 @@ namespace TicTacToe.Views
 
         private void GoToRegisterButton_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new RegisterPage());
+            _mainViewModel.NavigateTo(new RegisterPage(_mainViewModel));
         }
     }
 }

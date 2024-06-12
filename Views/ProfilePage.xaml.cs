@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Navigation;
 using TicTacToe.Repositories;
 using TicTacToe.Services;
 
@@ -13,15 +12,24 @@ namespace TicTacToe.Views
     public partial class ProfilePage : Page
     {
         private readonly PlayerService _playerService;
+        private readonly MainViewModel _mainViewModel;
 
-        public ProfilePage()
+        /// <summary>
+        /// Создает новый экземпляр страницы профиля.
+        /// </summary>
+        /// <param name="mainViewModel">Модель представления главного окна.</param>
+        public ProfilePage(MainViewModel mainViewModel)
         {
             InitializeComponent();
-            var connectionString = "your_connection_string_here";
+            var connectionString = "ваша_строка_подключения_здесь";
             var playerRepository = new PlayerRepository(connectionString);
             _playerService = new PlayerService(playerRepository);
+            _mainViewModel = mainViewModel;
         }
 
+        /// <summary>
+        /// Обрабатывает нажатие кнопки обновления профиля.
+        /// </summary>
         private void UpdateProfileButton_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -30,34 +38,40 @@ namespace TicTacToe.Views
                 var newUsername = NewUsernameTextBox.Text;
                 var newPassword = NewPasswordBox.Password;
                 _playerService.UpdateProfile(playerId, newUsername, newPassword);
-                MessageBox.Show("Profile updated successfully!");
+                MessageBox.Show("Профиль успешно обновлен!");
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error: {ex.Message}");
+                MessageBox.Show($"Ошибка: {ex.Message}");
             }
         }
 
+        /// <summary>
+        /// Обрабатывает нажатие кнопки удаления аккаунта.
+        /// </summary>
         private void DeleteAccountButton_Click(object sender, RoutedEventArgs e)
         {
             try
             {
                 var playerId = MainWindow.GetLoggedInPlayerId();
                 _playerService.LogicalDeletePlayer(playerId);
-                MessageBox.Show("Account deleted successfully!");
+                MessageBox.Show("Аккаунт успешно удален!");
                 MainWindow.SetLoggedInPlayerId(0);
-                NavigationService.Navigate(new LoginPage());
+                _mainViewModel.NavigateTo(new LoginPage(_mainViewModel));
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error: {ex.Message}");
+                MessageBox.Show($"Ошибка: {ex.Message}");
             }
         }
 
+        /// <summary>
+        /// Обрабатывает нажатие кнопки выхода из аккаунта.
+        /// </summary>
         private void LogoutButton_Click(object sender, RoutedEventArgs e)
         {
             MainWindow.SetLoggedInPlayerId(0);
-            NavigationService.Navigate(new LoginPage());
+            _mainViewModel.NavigateTo(new LoginPage(_mainViewModel));
         }
     }
 }

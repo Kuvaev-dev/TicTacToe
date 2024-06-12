@@ -14,8 +14,13 @@ namespace TicTacToe.Views
     {
         private readonly GameService _gameService;
         private readonly PlayerService _playerService;
+        private readonly MainViewModel _mainViewModel;
 
-        public GamePage()
+        /// <summary>
+        /// Создает новый экземпляр GamePage.
+        /// </summary>
+        /// <param name="mainViewModel">Главная ViewModel.</param>
+        public GamePage(MainViewModel mainViewModel)
         {
             InitializeComponent();
             var connectionString = "your_connection_string_here";
@@ -23,6 +28,7 @@ namespace TicTacToe.Views
             var gameRepository = new GameRepository(connectionString);
             _gameService = new GameService(gameRepository, playerRepository);
             _playerService = new PlayerService(playerRepository);
+            _mainViewModel = mainViewModel;
         }
 
         private void StartGameButton_Click(object sender, RoutedEventArgs e)
@@ -84,17 +90,17 @@ namespace TicTacToe.Views
 
         private void UpdateScores()
         {
-            var playerId = MainWindow.GetLoggedInPlayerId();
-            var player = _playerService.GetPlayerById(playerId);
-            PlayerScoreTextBlock.Text = player.Wins.ToString();
+            //var playerId = MainWindow.GetLoggedInPlayerId();
+            //var player = _playerService.GetPlayerById(playerId);
+            //PlayerScoreTextBlock.Text = player.Wins.ToString();
 
-            var botPlayer = _playerService.GetPlayerById(2); // Example bot player ID
-            ComputerScoreTextBlock.Text = botPlayer.Wins.ToString();
+            //var botPlayer = _playerService.GetPlayerById(2); // Example bot player ID
+            //ComputerScoreTextBlock.Text = botPlayer.Wins.ToString();
         }
 
         private void GoToProfileButton_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new ProfilePage());
+            _mainViewModel.NavigateTo(new ProfilePage(_mainViewModel));
         }
     }
 }

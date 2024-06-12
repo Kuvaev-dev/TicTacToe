@@ -5,6 +5,9 @@ using TicTacToe.Models;
 
 namespace TicTacToe.Repositories
 {
+    /// <summary>
+    /// Класс, отвечающий за доступ к данным об игроках в базе данных.
+    /// </summary>
     public class PlayerRepository : IPlayerRepository
     {
         private readonly string _connectionString;
@@ -14,6 +17,10 @@ namespace TicTacToe.Repositories
             _connectionString = connectionString;
         }
 
+        /// <summary>
+        /// Добавляет нового игрока в базу данных.
+        /// </summary>
+        /// <param name="player">Информация о добавляемом игроке.</param>
         public void AddPlayer(Player player)
         {
             using (var connection = new SqlConnection(_connectionString))
@@ -32,6 +39,10 @@ namespace TicTacToe.Repositories
             }
         }
 
+        /// <summary>
+        /// Обновляет информацию об игроке в базе данных.
+        /// </summary>
+        /// <param name="player">Информация об обновляемом игроке.</param>
         public void UpdatePlayer(Player player)
         {
             using (var connection = new SqlConnection(_connectionString))
@@ -51,6 +62,10 @@ namespace TicTacToe.Repositories
             }
         }
 
+        /// <summary>
+        /// Логически удаляет игрока из базы данных по его идентификатору.
+        /// </summary>
+        /// <param name="playerId">Идентификатор игрока.</param>
         public void DeletePlayer(int playerId)
         {
             using (var connection = new SqlConnection(_connectionString))
@@ -62,6 +77,11 @@ namespace TicTacToe.Repositories
             }
         }
 
+        /// <summary>
+        /// Получает информацию об игроке по его идентификатору.
+        /// </summary>
+        /// <param name="playerId">Идентификатор игрока.</param>
+        /// <returns>Объект Player, представляющий найденного игрока.</returns>
         public Player GetPlayerById(int playerId)
         {
             using (var connection = new SqlConnection(_connectionString))
@@ -91,6 +111,11 @@ namespace TicTacToe.Repositories
             return null;
         }
 
+        /// <summary>
+        /// Получает информацию об игроке по его имени пользователя.
+        /// </summary>
+        /// <param name="username">Имя пользователя игрока.</param>
+        /// <returns>Объект Player, представляющий найденного игрока.</returns>
         public Player GetPlayerByUsername(string username)
         {
             using (var connection = new SqlConnection(_connectionString))
@@ -120,6 +145,11 @@ namespace TicTacToe.Repositories
             return null;
         }
 
+        /// <summary>
+        /// Получает список лучших игроков по количеству побед.
+        /// </summary>
+        /// <param name="count">Количество игроков, которые нужно получить.</param>
+        /// <returns>Список объектов Player, представляющих лучших игроков.</returns>
         public IEnumerable<Player> GetTopPlayers(int count)
         {
             var players = new List<Player>();

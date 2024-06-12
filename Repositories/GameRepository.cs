@@ -5,15 +5,26 @@ using TicTacToe.Models;
 
 namespace TicTacToe.Repositories
 {
+    /// <summary>
+    /// Репозиторий для работы с данными об играх в базе данных.
+    /// </summary>
     public class GameRepository : IGameRepository
     {
         private readonly string _connectionString;
 
+        /// <summary>
+        /// Инициализирует новый экземпляр класса GameRepository с указанным строковым подключением к базе данных.
+        /// </summary>
+        /// <param name="connectionString">Строковое подключение к базе данных.</param>
         public GameRepository(string connectionString)
         {
             _connectionString = connectionString;
         }
 
+        /// <summary>
+        /// Добавляет новую игру в базу данных.
+        /// </summary>
+        /// <param name="game">Информация о добавляемой игре.</param>
         public void AddGame(Game game)
         {
             using (var connection = new SqlConnection(_connectionString))
@@ -28,6 +39,11 @@ namespace TicTacToe.Repositories
             }
         }
 
+        /// <summary>
+        /// Получает список игр, сыгранных игроком с указанным идентификатором.
+        /// </summary>
+        /// <param name="playerId">Идентификатор игрока.</param>
+        /// <returns>Список объектов Game, представляющих игры игрока.</returns>
         public IEnumerable<Game> GetGamesByPlayer(int playerId)
         {
             var games = new List<Game>();

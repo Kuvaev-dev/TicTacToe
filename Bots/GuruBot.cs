@@ -1,28 +1,36 @@
 ﻿namespace TicTacToe.Bots
 {
+    /// <summary>
+    /// Представляет бота-гуру, использующего комбинированную стратегию атаки и защиты.
+    /// </summary>
     public class GuruBot : IBot
     {
+        /// <summary>
+        /// Получает следующий ход для бота.
+        /// </summary>
+        /// <param name="board">Текущее состояние игрового поля.</param>
+        /// <returns>Кортеж, содержащий номер строки и столбца следующего хода.</returns>
         public (int row, int col) GetNextMove(char[,] board)
         {
-            // Advanced strategy combining both offensive and defensive strategies
+            // Создаем экземпляры ботов для защиты и атаки
             var defensiveBot = new DefensiveBot();
             var offensiveBot = new OffensiveBot();
 
-            // First try to win
+            // Сначала пытаемся выиграть
             var move = offensiveBot.GetNextMove(board);
             if (move != (-1, -1))
             {
                 return move;
             }
 
-            // Then try to block
+            // Затем пытаемся заблокировать противника
             move = defensiveBot.GetNextMove(board);
             if (move != (-1, -1))
             {
                 return move;
             }
 
-            // If neither, make a random move
+            // Если ни то, ни другое, делаем случайный ход
             return new SimpleBot().GetNextMove(board);
         }
     }
