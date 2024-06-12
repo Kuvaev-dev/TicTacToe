@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using System.Windows;
 using System.Windows.Controls;
 using TicTacToe.Repositories;
@@ -21,7 +22,7 @@ namespace TicTacToe.Views
         public ProfilePage(MainViewModel mainViewModel)
         {
             InitializeComponent();
-            var connectionString = "ваша_строка_подключения_здесь";
+            var connectionString = ConfigurationManager.ConnectionStrings["MyConnectionString"].ConnectionString;
             var playerRepository = new PlayerRepository(connectionString);
             _playerService = new PlayerService(playerRepository);
             _mainViewModel = mainViewModel;

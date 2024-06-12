@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Configuration;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Navigation;
@@ -23,7 +24,7 @@ namespace TicTacToe.Views
         public GamePage(MainViewModel mainViewModel)
         {
             InitializeComponent();
-            var connectionString = "your_connection_string_here";
+            var connectionString = ConfigurationManager.ConnectionStrings["MyConnectionString"].ConnectionString;
             var playerRepository = new PlayerRepository(connectionString);
             var gameRepository = new GameRepository(connectionString);
             _gameService = new GameService(gameRepository, playerRepository);

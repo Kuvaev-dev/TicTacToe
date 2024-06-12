@@ -19,4 +19,10 @@
     <Folder Include="Docs\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Config.config">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+  </ItemGroup>
+
 </Project>

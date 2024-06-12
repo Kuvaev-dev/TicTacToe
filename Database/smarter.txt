@@ -1,0 +1,5 @@
+https://www.smarterasp.net/
+Login: tictactoedb
+Email: newim56362@cnurbano.com
+Password: Qwerty_009_008
+Connection String: Data Source=SQL8006.site4now.net;Initial Catalog=db_aa9dde_tictactoe;User Id=db_aa9dde_tictactoe_admin;Password=Qwerty_009_008

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using System.Windows;
 using System.Windows.Controls;
 using TicTacToe.Repositories;
@@ -13,7 +14,7 @@ namespace TicTacToe.Views
         public RatingPage(MainViewModel mainViewModel)
         {
             InitializeComponent();
-            var connectionString = "your_connection_string_here";
+            var connectionString = ConfigurationManager.ConnectionStrings["MyConnectionString"].ConnectionString;
             var playerRepository = new PlayerRepository(connectionString);
             _playerService = new PlayerService(playerRepository);
             Loaded += RatingPage_Loaded;
