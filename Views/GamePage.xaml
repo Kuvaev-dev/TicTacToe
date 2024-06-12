@@ -67,10 +67,13 @@
             <Button Name="Cell21" Click="Cell_Click" FontSize="32"/>
             <Button Name="Cell22" Click="Cell_Click" FontSize="32"/>
         </UniformGrid>
-
-        <Button Content="Profile" 
+        <StackPanel Orientation="Horizontal" Grid.Row="2" Width="Auto">
+            <Button Content="Profile" 
                 Click="GoToProfileButton_Click" 
-                Margin="10" 
-                Grid.Row="2"/>
+                Margin="10"/>
+            <Button Content="Рейтинг" 
+                Click="RatingButton_Click"
+                Margin="10"/>
+        </StackPanel>
     </Grid>
 </Page>
