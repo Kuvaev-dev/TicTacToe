@@ -2,9 +2,9 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
-using System.Windows.Navigation;
 using TicTacToe.Repositories;
 using TicTacToe.Services;
+using TicTacToe.ViewModels;
 
 namespace TicTacToe.Views
 {

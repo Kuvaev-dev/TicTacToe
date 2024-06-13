@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace TicTacToe
+namespace TicTacToe.ViewModels.Base
 {
     public class ViewModelBase : INotifyPropertyChanged
     {

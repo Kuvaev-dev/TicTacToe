@@ -1,7 +1,8 @@
 ﻿using System.Windows.Controls;
+using TicTacToe.ViewModels.Base;
 using TicTacToe.Views;
 
-namespace TicTacToe
+namespace TicTacToe.ViewModels
 {
     /// <summary>
     /// ViewModel, управляющая главным окном приложения.
