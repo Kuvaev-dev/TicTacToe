@@ -29,10 +29,6 @@ namespace TicTacToe.Views
             _mainViewModel = mainViewModel;
         }
 
-        public LoginPage()
-        {
-        }
-
         private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
             try
