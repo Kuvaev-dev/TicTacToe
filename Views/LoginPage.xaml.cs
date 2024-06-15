@@ -34,7 +34,7 @@ namespace TicTacToe.Views
             try
             {
                 var username = UsernameTextBox.Text;
-                var password = PasswordBox.Password;
+                var password = PasswordB.Password;
                 var player = _playerService.Login(username, password);
                 MainWindow.SetLoggedInPlayerId(player.Id); // Установка текущего залогиненного пользователя
                 _mainViewModel.NavigateTo(new GamePage(_mainViewModel));

@@ -3,42 +3,110 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:TicTacToe.Views"
+      xmlns:customControls="clr-namespace:TicTacToe.Views.CustomControls"
       mc:Ignorable="d"
-      Title="ProfilePage">
+      Title="ProfilePage"
+      Background="{StaticResource ButtonBackgroundBrush}">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
-        <StackPanel Orientation="Horizontal" 
-                    Grid.Row="0">
-            <Label Content="Username"/>
-            <TextBox Name="NewUsernameTextBox" 
-                     Margin="10" 
-                     Width="115"/>
-        </StackPanel>
-        <StackPanel Orientation="Horizontal" 
-                    Grid.Row="1">
-            <Label Content="Password"/>
-            <PasswordBox Name="NewPasswordBox" 
-                         Margin="10" 
-                         Width="115"/>
-        </StackPanel>
-        <Button Grid.Row="2" 
-                Content="Update Profile" 
-                Click="UpdateProfileButton_Click" 
-                Margin="10"/>
-        <Button Grid.Row="3" 
-                Content="Delete Account" 
-                Click="DeleteAccountButton_Click" 
-                Margin="10"/>
-        <Button Grid.Row="4" 
-                Content="Logout"
-                Click="LogoutButton_Click" 
-                Margin="10"/>
+        <Image Source="/TicTacToe;component/Resources/GameName.png"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"
+               Width="150"
+               Grid.Row="0"/>
+        <TextBlock Text="{StaticResource StringProfile}"
+                   Grid.Row="1"
+                   FontSize="14"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   Foreground="{StaticResource ForegroundBrush}"/>
+        <Grid Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="{StaticResource StringWins}"
+                       Grid.Row="0"
+                       Grid.Column="0"
+                       Foreground="{StaticResource ForegroundBrush}"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"/>
+            <TextBlock Text="0"
+                       Grid.Row="1"
+                       Grid.Column="0"
+                       Foreground="{StaticResource ForegroundBrush}"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"/>
+            <TextBlock Text="{StaticResource StringLosses}"
+                       Grid.Row="0"
+                       Grid.Column="1"
+                       Foreground="{StaticResource ForegroundBrush}"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"/>
+            <TextBlock Text="0"
+                       Grid.Row="1"
+                       Grid.Column="1"
+                       Foreground="{StaticResource ForegroundBrush}"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"/>
+            <TextBlock Text="{StaticResource StringDraws}"
+                       Grid.Row="0"
+                       Grid.Column="2"
+                       Foreground="{StaticResource ForegroundBrush}"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"/>
+            <TextBlock Text="0"
+                       Grid.Row="1"
+                       Grid.Column="2"
+                       Foreground="{StaticResource ForegroundBrush}"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"/>
+        </Grid>
+        <customControls:CustomInput 
+            Grid.Row="3"
+            x:Name="NewUsernameTextBox" 
+            Margin="10"
+            Width="200"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Right"/>
+        <customControls:CustomPasswordBox 
+            Grid.Row="4"
+            x:Name="NewPasswordBox" 
+            Margin="10"
+            Width="200"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Right"/>
+        <customControls:CustomButton 
+            Grid.Row="5" 
+            Content="{StaticResource StringUpdateProfile}" 
+            Click="UpdateProfileButton_Click" 
+            Margin="10"
+            Width="200"/>
+        <customControls:CustomButton  
+            Grid.Row="6" 
+            Content="{StaticResource StringDeleteAccount}" 
+            Click="DeleteAccountButton_Click" 
+            Margin="10"
+            Width="200"/>
+        <customControls:CustomButton  
+            Grid.Row="7" 
+            Content="{StaticResource StringLogout}"
+            Click="LogoutButton_Click" 
+            Margin="10"
+            Width="200"/>
     </Grid>
 </Page>

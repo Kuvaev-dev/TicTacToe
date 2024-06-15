@@ -3,77 +3,108 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:TicTacToe.Views"
+      xmlns:customControls="clr-namespace:TicTacToe.Views.CustomControls"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      Title="GamePage">
+      d:DesignHeight="550" d:DesignWidth="800"
+      Title="Крестики-нолики"
+      Background="{StaticResource ButtonBackgroundBrush}">
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-
+        <Image Source="/TicTacToe;component/Resources/GameName.png"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"
+               Width="150"
+               Grid.Row="0"
+               Margin="10"/>
         <StackPanel Orientation="Horizontal" 
                     HorizontalAlignment="Center" 
-                    Margin="10">
-            <Button Name="StartGameButton" 
-                    Content="НАЧАТЬ ИГРУ" 
+                    Margin="10"
+                    Grid.Row="1">
+            <customControls:CustomButton 
+                    x:Name="StartGameButton" 
+                    Content="{StaticResource StringStartGame}" 
                     Click="StartGameButton_Click" 
-                    Margin="10"/>
-            <TextBlock Text="Текущий игрок: " 
+                    Margin="10"
+                    Width="150"
+                    Height="30"/>
+            <TextBlock Text="{StaticResource StringCurrentPlayer}" 
                        VerticalAlignment="Center" 
-                       Margin="10"/>
+                       Margin="10"
+                       Foreground="{StaticResource ForegroundBrush}"/>
             <TextBlock Name="CurrentPlayerTextBlock" 
                        VerticalAlignment="Center"/>
             <StackPanel Orientation="Vertical" 
                         Margin="10">
-                <TextBlock Text="Игрок"/>
+                <TextBlock Text="{StaticResource StringPlayer}"
+                           Foreground="{StaticResource ForegroundBrush}"/>
                 <TextBlock Name="PlayerScoreTextBlock" 
-                           Text="0"/>
+                           Text="0"
+                           Foreground="{StaticResource ForegroundBrush}"/>
             </StackPanel>
             <StackPanel Orientation="Vertical" 
                         Margin="10">
-                <TextBlock Text="Компьютер"/>
+                <TextBlock Text="{StaticResource StringComputer}"
+                           Foreground="{StaticResource ForegroundBrush}"/>
                 <TextBlock Name="ComputerScoreTextBlock" 
-                           Text="0"/>
+                           Text="0"
+                           Foreground="{StaticResource ForegroundBrush}"/>
             </StackPanel>
-            <ComboBox Name="BotLevelComboBox" 
-                      Width="120" 
+            <customControls:CustomComboBox x:Name="BotLevelComboBox" 
+                      Width="150"
+                      Height="30"
                       Margin="10">
-                <ComboBoxItem Content="НОВИЧОК"/>
-                <ComboBoxItem Content="ЗАЩИТА"/>
-                <ComboBoxItem Content="НАПАДЕНИЕ"/>
-                <ComboBoxItem Content="ГУРУ"/>
-                <ComboBoxItem Content="ИИ"/>
-            </ComboBox>
-            <CheckBox Name="HintCheckBox" 
-                      Content="Подсказка" 
-                      Margin="10"/>
+                <ComboBoxItem Content="{StaticResource StringBeginner}"/>
+                <ComboBoxItem Content="{StaticResource StringDefense}"/>
+                <ComboBoxItem Content="{StaticResource StringOffense}"/>
+                <ComboBoxItem Content="{StaticResource StringGuru}"/>
+                <ComboBoxItem Content="{StaticResource StringAI}"/>
+            </customControls:CustomComboBox>
+            <customControls:CustomCheckBox 
+                x:Name="HintCheckBox" 
+                Content="{StaticResource StringHint}" 
+                Margin="10"
+                Height="30"
+                Foreground="{StaticResource ForegroundBrush}"/>
         </StackPanel>
-
-        <UniformGrid Grid.Row="1" 
+        <UniformGrid Grid.Row="2" 
                      Rows="3" 
                      Columns="3" 
                      Name="GameBoard" 
-                     Margin="10">
-            <Button Name="Cell00" Click="Cell_Click" FontSize="32"/>
-            <Button Name="Cell01" Click="Cell_Click" FontSize="32"/>
-            <Button Name="Cell02" Click="Cell_Click" FontSize="32"/>
-            <Button Name="Cell10" Click="Cell_Click" FontSize="32"/>
-            <Button Name="Cell11" Click="Cell_Click" FontSize="32"/>
-            <Button Name="Cell12" Click="Cell_Click" FontSize="32"/>
-            <Button Name="Cell20" Click="Cell_Click" FontSize="32"/>
-            <Button Name="Cell21" Click="Cell_Click" FontSize="32"/>
-            <Button Name="Cell22" Click="Cell_Click" FontSize="32"/>
+                     Margin="10"
+                     Width="350"
+                     Height="350"
+                     >
+            <Button Name="Cell00" Click="Cell_Click" FontSize="32" Background="{StaticResource ForegroundBrush}"/>
+            <Button Name="Cell01" Click="Cell_Click" FontSize="32" Background="{StaticResource ForegroundBrush}"/>
+            <Button Name="Cell02" Click="Cell_Click" FontSize="32" Background="{StaticResource ForegroundBrush}"/>
+            <Button Name="Cell10" Click="Cell_Click" FontSize="32" Background="{StaticResource ForegroundBrush}"/>
+            <Button Name="Cell11" Click="Cell_Click" FontSize="32" Background="{StaticResource ForegroundBrush}"/>
+            <Button Name="Cell12" Click="Cell_Click" FontSize="32" Background="{StaticResource ForegroundBrush}"/>
+            <Button Name="Cell20" Click="Cell_Click" FontSize="32" Background="{StaticResource ForegroundBrush}"/>
+            <Button Name="Cell21" Click="Cell_Click" FontSize="32" Background="{StaticResource ForegroundBrush}"/>
+            <Button Name="Cell22" Click="Cell_Click" FontSize="32" Background="{StaticResource ForegroundBrush}"/>
         </UniformGrid>
-        <StackPanel Orientation="Horizontal" Grid.Row="2" Width="Auto">
-            <Button Content="Profile" 
+        <StackPanel Orientation="Horizontal" 
+                    Grid.Row="3" 
+                    Width="Auto"
+                    HorizontalAlignment="Center">
+            <customControls:CustomButton 
+                Content="{StaticResource StringProfile}" 
                 Click="GoToProfileButton_Click" 
-                Margin="10"/>
-            <Button Content="Рейтинг" 
+                Margin="10"
+                Width="150"
+                Height="30"/>
+            <customControls:CustomButton 
+                Content="{StaticResource StringRating}" 
                 Click="RatingButton_Click"
-                Margin="10"/>
+                Margin="10"
+                Width="150"
+                Height="30"/>
         </StackPanel>
     </Grid>
 </Page>

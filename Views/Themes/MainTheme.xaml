@@ -1,0 +1,23 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <!-- Определение цветов -->
+    <Color x:Key="PrimaryColor1">#614385</Color>
+    <Color x:Key="PrimaryColor2">#516395</Color>
+    <Color x:Key="HoverColor">White</Color>
+    <Color x:Key="HoverTextColor">#614385</Color>
+    <Color x:Key="BorderColor">White</Color>
+    <Color x:Key="ForegroundColor">White</Color>
+    <Color x:Key="ErrorColor">Red</Color>
+    <Color x:Key="AlternatingRowColor">#66AAAAAA</Color>
+
+    <!-- Определение кистей -->
+    <LinearGradientBrush x:Key="ButtonBackgroundBrush" StartPoint="0,0" EndPoint="1,1">
+        <GradientStop Color="{StaticResource PrimaryColor1}" Offset="0"/>
+        <GradientStop Color="{StaticResource PrimaryColor2}" Offset="1"/>
+    </LinearGradientBrush>
+
+    <SolidColorBrush x:Key="HoverBrush" Color="{StaticResource HoverColor}"/>
+    <SolidColorBrush x:Key="HoverTextBrush" Color="{StaticResource HoverTextColor}"/>
+    <SolidColorBrush x:Key="BorderBrush" Color="{StaticResource BorderColor}"/>
+    <SolidColorBrush x:Key="ForegroundBrush" Color="{StaticResource ForegroundColor}"/>
+</ResourceDictionary>

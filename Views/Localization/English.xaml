@@ -1,0 +1,35 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+    <system:String x:Key="StringStartGame">START GAME</system:String>
+    <system:String x:Key="StringCurrentPlayer">Current player:</system:String>
+    <system:String x:Key="StringPlayer">Player</system:String>
+    
+    <system:String x:Key="StringComputer">Computer</system:String>
+    <system:String x:Key="StringBeginner">Beginner</system:String>
+    <system:String x:Key="StringDefense">Defense</system:String>
+    <system:String x:Key="StringOffense">Offense</system:String>
+    <system:String x:Key="StringGuru">Guru</system:String>
+    <system:String x:Key="StringAI">AI</system:String>
+
+    <system:String x:Key="StringHint">Clue</system:String>
+    <system:String x:Key="StringProfile">PROFILE</system:String>
+    <system:String x:Key="StringRating">RATING</system:String>
+
+    <system:String x:Key="StringAuth">LOGIN</system:String>
+    <system:String x:Key="StringSignIn">SIGN IN</system:String>
+    <system:String x:Key="StringSignUp">SIGN UP</system:String>
+    
+    <system:String x:Key="StringUpdateProfile">UPDATE PROFILE</system:String>
+    <system:String x:Key="StringDeleteAccount">DELETE ACCOUNT</system:String>
+    <system:String x:Key="StringLogout">LOGOUT</system:String>
+    
+    <system:String x:Key="StringUsername">Username</system:String>
+    <system:String x:Key="StringWins">Wins</system:String>
+    <system:String x:Key="StringLosses">Losses</system:String>
+    <system:String x:Key="StringDraws">Draws</system:String>
+
+    <system:String x:Key="StringRegister">REGISTRATION</system:String>
+    <system:String x:Key="StringContinue">CONTINUE</system:String>
+    <system:String x:Key="StringEnter">SIGN IN</system:String>
+</ResourceDictionary>

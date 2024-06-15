@@ -1,0 +1,35 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+    <system:String x:Key="StringStartGame">ПОЧАТИ ГРУ</system:String>
+    <system:String x:Key="StringCurrentPlayer">Поточний гравець:</system:String>
+    <system:String x:Key="StringPlayer">Гравець</system:String>
+
+    <system:String x:Key="StringComputer">Комп'ютер</system:String>
+    <system:String x:Key="StringBeginner">Новачок</system:String>
+    <system:String x:Key="StringDefense">Захист</system:String>
+    <system:String x:Key="StringOffense">Напад</system:String>
+    <system:String x:Key="StringGuru">Гуру</system:String>
+    <system:String x:Key="StringAI">ШІ</system:String>
+
+    <system:String x:Key="StringHint">Підказка</system:String>
+    <system:String x:Key="StringProfile">ПРОФІЛЬ</system:String>
+    <system:String x:Key="StringRating">РЕЙТИНГ</system:String>
+
+    <system:String x:Key="StringAuth">АВТОРИЗАЦІЯ</system:String>
+    <system:String x:Key="StringSignIn">УВІЙТИ</system:String>
+    <system:String x:Key="StringSignUp">РЕЄСТРАЦІЯ</system:String>
+
+    <system:String x:Key="StringUpdateProfile">ОНОВИТИ ПРОФІЛЬ</system:String>
+    <system:String x:Key="StringDeleteAccount">ВИДАЛИТИ АКАУНТ</system:String>
+    <system:String x:Key="StringLogout">ВИЙТИ</system:String>
+
+    <system:String x:Key="StringUsername">Ім'я користувача</system:String>
+    <system:String x:Key="StringWins">Перемоги</system:String>
+    <system:String x:Key="StringLosses">Поразки</system:String>
+    <system:String x:Key="StringDraws">Нічиї</system:String>
+
+    <system:String x:Key="StringRegister">РЕЄСТРАЦІЯ</system:String>
+    <system:String x:Key="StringContinue">ПРОДОВЖИТИ</system:String>
+    <system:String x:Key="StringEnter">УВІЙТИ</system:String>
+</ResourceDictionary>

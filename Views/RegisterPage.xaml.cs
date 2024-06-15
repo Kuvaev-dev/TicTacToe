@@ -37,7 +37,7 @@ namespace TicTacToe.Views
             try
             {
                 var username = UsernameTextBox.Text;
-                var password = PasswordBox.Password;
+                var password = PasswordB.Password;
                 _playerService.RegisterPlayer(username, password);
                 MessageBox.Show("Регистрация успешна!");
                 _mainViewModel.NavigateTo(new LoginPage(_mainViewModel));

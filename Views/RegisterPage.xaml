@@ -3,37 +3,60 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:TicTacToe.Views"
+      xmlns:customControls="clr-namespace:TicTacToe.Views.CustomControls"
       mc:Ignorable="d"
-      Title="RegisterPage">
+      Title="RegisterPage"
+      Background="{StaticResource ButtonBackgroundBrush}">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
-        <StackPanel Orientation="Horizontal" 
-                    Grid.Row="0">
-            <Label Content="Username"/>
-            <TextBox Name="UsernameTextBox" 
-                     Margin="10" 
-                     Width="115"/>
-        </StackPanel>
-        <StackPanel Orientation="Horizontal" 
-                    Grid.Row="1">
-            <Label Content="Password"/>
-            <PasswordBox Name="PasswordBox" 
-                         Margin="10" 
-                         Width="115"/>
-        </StackPanel>
-        <Button Grid.Row="2" 
-                Content="Register" 
-                Click="RegisterButton_Click" 
-                Margin="10"/>
-        <Button Grid.Row="3" 
-                Content="Go to Login"
-                Click="GoToLoginButton_Click" 
-                Margin="10"/>
+        <Image Source="/TicTacToe;component/Resources/GameName.png"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"
+               Width="150"/>
+        <TextBlock Text="{StaticResource StringSignUp}"
+                   Grid.Row="1"
+                   FontSize="14"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   Foreground="{StaticResource ForegroundBrush}"/>
+        <customControls:CustomInput 
+            Grid.Row="2"
+            x:Name="UsernameTextBox" 
+            Margin="10"
+            Width="200"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Right"/>
+        <customControls:CustomPasswordBox 
+            Grid.Row="3"
+            x:Name="PasswordB" 
+            Margin="10" 
+            Width="200"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Right"/>
+        <customControls:CustomButton 
+            Grid.Row="4" 
+            Content="{StaticResource StringContinue}" 
+            Click="RegisterButton_Click" 
+            Margin="10"
+            Width="150"
+            Height="30"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"/>
+        <customControls:CustomButton
+            Grid.Row="5" 
+            Content="{StaticResource StringSignIn}" 
+            Click="GoToLoginButton_Click" 
+            Margin="10"
+            Width="150"
+            Height="30"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"/>
     </Grid>
 </Page>

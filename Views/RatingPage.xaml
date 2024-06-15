@@ -3,18 +3,27 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:TicTacToe.Views"
-      mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      Title="RatingPage">
-
+      mc:Ignorable="d"
+      Title="Рейтинг">
     <Grid>
-        <DataGrid x:Name="RatingDataGrid" AutoGenerateColumns="False">
+        <DataGrid x:Name="RatingDataGrid" 
+                  AutoGenerateColumns="False" 
+                  HorizontalAlignment="Left" 
+                  VerticalAlignment="Top"
+                  RowBackground="Transparent"
+                  AlternatingRowBackground="#66AAAAAA"
+                  Foreground="{StaticResource HoverTextBrush}"
+                  Background="{StaticResource ButtonBackgroundBrush}">
+            <DataGrid.CellStyle>
+                <Style TargetType="DataGridCell">
+                    <Setter Property="Background" Value="Transparent"/>
+                </Style>
+            </DataGrid.CellStyle>
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Username" Binding="{Binding Username}"/>
-                <DataGridTextColumn Header="Wins" Binding="{Binding Wins}"/>
-                <DataGridTextColumn Header="Losses" Binding="{Binding Losses}"/>
-                <DataGridTextColumn Header="Draws" Binding="{Binding Draws}"/>
+                <DataGridTextColumn Header="{StaticResource StringUsername}" Binding="{Binding Username}"/>
+                <DataGridTextColumn Header="{StaticResource StringWins}" Binding="{Binding Wins}"/>
+                <DataGridTextColumn Header="{StaticResource StringLosses}" Binding="{Binding Losses}"/>
+                <DataGridTextColumn Header="{StaticResource StringDraws}" Binding="{Binding Draws}"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>
