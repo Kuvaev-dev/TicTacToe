@@ -4,26 +4,47 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       mc:Ignorable="d"
-      Title="Рейтинг">
+      Title="Рейтинг"
+      Background="{StaticResource ButtonBackgroundBrush}">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Image Source="/TicTacToe;component/Resources/GameName.png"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"
+               Width="150"
+               Grid.Row="0"
+               Margin="10"/>
+        <TextBlock Text="{StaticResource StringRating}"
+                   Grid.Row="1"
+                   FontSize="14"
+                   Margin="10"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   Foreground="{StaticResource ForegroundBrush}"/>
         <DataGrid x:Name="RatingDataGrid" 
                   AutoGenerateColumns="False" 
-                  HorizontalAlignment="Left" 
-                  VerticalAlignment="Top"
-                  RowBackground="Transparent"
-                  AlternatingRowBackground="#66AAAAAA"
+                  HorizontalAlignment="Stretch" 
+                  VerticalAlignment="Stretch"
+                  RowBackground="{StaticResource ForegroundBrush}"
+                  AlternatingRowBackground="{StaticResource AlternatingRowBrush}"
                   Foreground="{StaticResource HoverTextBrush}"
-                  Background="{StaticResource ButtonBackgroundBrush}">
+                  Background="{StaticResource ButtonBackgroundBrush}"
+                  Margin="10"
+                  Grid.Row="2">
             <DataGrid.CellStyle>
                 <Style TargetType="DataGridCell">
                     <Setter Property="Background" Value="Transparent"/>
                 </Style>
             </DataGrid.CellStyle>
             <DataGrid.Columns>
-                <DataGridTextColumn Header="{StaticResource StringUsername}" Binding="{Binding Username}"/>
-                <DataGridTextColumn Header="{StaticResource StringWins}" Binding="{Binding Wins}"/>
-                <DataGridTextColumn Header="{StaticResource StringLosses}" Binding="{Binding Losses}"/>
-                <DataGridTextColumn Header="{StaticResource StringDraws}" Binding="{Binding Draws}"/>
+                <DataGridTextColumn Header="{DynamicResource StringUsername}" Binding="{Binding Username}"/>
+                <DataGridTextColumn Header="{DynamicResource StringWins}" Binding="{Binding Wins}"/>
+                <DataGridTextColumn Header="{DynamicResource StringLosses}" Binding="{Binding Losses}"/>
+                <DataGridTextColumn Header="{DynamicResource StringDraws}" Binding="{Binding Draws}"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

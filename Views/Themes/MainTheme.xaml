@@ -20,4 +20,5 @@
     <SolidColorBrush x:Key="HoverTextBrush" Color="{StaticResource HoverTextColor}"/>
     <SolidColorBrush x:Key="BorderBrush" Color="{StaticResource BorderColor}"/>
     <SolidColorBrush x:Key="ForegroundBrush" Color="{StaticResource ForegroundColor}"/>
+    <SolidColorBrush x:Key="AlternatingRowBrush" Color="{StaticResource AlternatingRowColor}"/>
 </ResourceDictionary>

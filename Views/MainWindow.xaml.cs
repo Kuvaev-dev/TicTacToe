@@ -1,6 +1,8 @@
 ﻿using System.Windows;
+using System.Windows.Navigation;
+using TicTacToe.ViewModels;
 
-namespace TicTacToe
+namespace TicTacToe.Views
 {
     /// <summary>
     /// Логика взаимодействия для MainWindow.xaml
@@ -15,6 +17,7 @@ namespace TicTacToe
         public MainWindow()
         {
             InitializeComponent();
+            DataContext = new MainViewModel();
         }
 
         /// <summary>

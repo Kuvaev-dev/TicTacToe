@@ -32,14 +32,14 @@
             Margin="10"
             Width="200"
             VerticalAlignment="Center"
-            HorizontalAlignment="Right"/>
+            HorizontalAlignment="Center"/>
         <customControls:CustomPasswordBox 
             Grid.Row="3"
             x:Name="PasswordB" 
             Margin="10" 
             Width="200"
             VerticalAlignment="Center"
-            HorizontalAlignment="Right"/>
+            HorizontalAlignment="Center"/>
         <customControls:CustomButton 
             Grid.Row="4" 
             Content="{StaticResource StringSignIn}" 
