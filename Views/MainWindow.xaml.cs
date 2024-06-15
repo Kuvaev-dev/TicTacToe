@@ -1,5 +1,4 @@
 ﻿using System.Windows;
-using System.Windows.Navigation;
 using TicTacToe.ViewModels;
 
 namespace TicTacToe.Views
@@ -17,7 +16,6 @@ namespace TicTacToe.Views
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = new MainViewModel();
         }
 
         /// <summary>

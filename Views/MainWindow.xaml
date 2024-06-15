@@ -8,6 +8,6 @@
         MinHeight="450" 
         MinWidth="800"
         WindowStartupLocation="CenterScreen"
-        DataContext="{Binding RelativeSource={RelativeSource Self}}">
+        DataContext="{Binding Main, Source={StaticResource Locator}}">
     <Frame Content="{Binding CurrentPage}"/>
 </Window>
