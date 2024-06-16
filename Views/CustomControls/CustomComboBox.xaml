@@ -13,40 +13,50 @@
              BorderBrush="White"
              BorderThickness="2">
     <ComboBox.Background>
-            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                <GradientStop Color="#614385" Offset="0"/>
-                <GradientStop Color="#516395" Offset="1"/>
-            </LinearGradientBrush>
-        </ComboBox.Background>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+            <GradientStop Color="#614385" Offset="0"/>
+            <GradientStop Color="#516395" Offset="1"/>
+        </LinearGradientBrush>
+    </ComboBox.Background>
     <ComboBox.Template>
         <ControlTemplate TargetType="ComboBox">
-            <Grid>
-                <ToggleButton Name="ToggleButton" 
-                                  Background="{TemplateBinding Background}"
-                                  BorderBrush="{TemplateBinding BorderBrush}"
-                                  BorderThickness="{TemplateBinding BorderThickness}"
-                                  Foreground="{TemplateBinding Foreground}">
-                    <ToggleButton.Content>
-                        <ContentPresenter />
-                    </ToggleButton.Content>
-                </ToggleButton>
-                <Popup Name="Popup"
+            <Border Background="{TemplateBinding Background}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}"
+                    CornerRadius="10">
+                <Grid>
+                    <ToggleButton Name="ToggleButton" 
+                                  Background="Transparent"
+                                  BorderBrush="Transparent"
+                                  BorderThickness="0"
+                                  Foreground="{TemplateBinding Foreground}"
+                                  ClickMode="Press"
+                                  Focusable="False"
+                                  IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}">
+                        <ToggleButton.Content>
+                            <ContentPresenter Content="{TemplateBinding SelectionBoxItem}"
+                                              ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
+                                              ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}" />
+                        </ToggleButton.Content>
+                    </ToggleButton>
+                    <Popup Name="Popup"
                            Placement="Bottom"
                            IsOpen="{TemplateBinding IsDropDownOpen}"
                            AllowsTransparency="True"
                            Focusable="False"
                            PopupAnimation="Slide">
-                    <Border Name="DropDownBorder" 
+                        <Border Name="DropDownBorder" 
                                 Background="{TemplateBinding Background}" 
                                 BorderBrush="{TemplateBinding BorderBrush}" 
                                 BorderThickness="{TemplateBinding BorderThickness}" 
                                 CornerRadius="0 0 10 10">
-                        <ScrollViewer Margin="4,6,4,6">
-                            <StackPanel IsItemsHost="True" />
-                        </ScrollViewer>
-                    </Border>
-                </Popup>
-            </Grid>
+                            <ScrollViewer Margin="4,6,4,6">
+                                <ItemsPresenter />
+                            </ScrollViewer>
+                        </Border>
+                    </Popup>
+                </Grid>
+            </Border>
         </ControlTemplate>
     </ComboBox.Template>
 </ComboBox>

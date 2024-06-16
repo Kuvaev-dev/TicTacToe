@@ -33,14 +33,16 @@
             Margin="10"
             Width="200"
             VerticalAlignment="Center"
-            HorizontalAlignment="Center"/>
+            HorizontalAlignment="Center"
+            Placeholder="{StaticResource StringUsername}"/>
         <customControls:CustomPasswordBox 
             Grid.Row="3"
             x:Name="PasswordB" 
             Margin="10" 
             Width="200"
             VerticalAlignment="Center"
-            HorizontalAlignment="Center"/>
+            HorizontalAlignment="Center"
+            PlaceholderText="{StaticResource StringPassword}"/>
         <customControls:CustomButton 
             Grid.Row="4" 
             Content="{StaticResource StringContinue}" 

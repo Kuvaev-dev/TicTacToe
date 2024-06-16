@@ -8,13 +8,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Resources\GameLogo.jpg" />
+    <None Remove="Resources\GameLogo.ico" />
     <None Remove="Resources\GameName.png" />
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Resources\GameLogo.jpg" />
-    <EmbeddedResource Include="Resources\GameName.png" />
+    <Resource Include="Resources\GameLogo.ico" />
+    <Resource Include="Resources\GameName.png" />
   </ItemGroup>
 
   <ItemGroup>

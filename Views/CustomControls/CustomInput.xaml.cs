@@ -21,17 +21,14 @@ namespace TicTacToe.Views.CustomControls
             get { return (string)GetValue(TextProperty); }
             set { SetValue(TextProperty, value); }
         }
-    }
 
-    public class CustomValidationRule : ValidationRule
-    {
-        public override ValidationResult Validate(object value, System.Globalization.CultureInfo cultureInfo)
+        public static readonly DependencyProperty PlaceholderProperty =
+            DependencyProperty.Register("Placeholder", typeof(string), typeof(CustomInput), new PropertyMetadata(string.Empty));
+
+        public string Placeholder
         {
-            if (string.IsNullOrWhiteSpace(value?.ToString()))
-            {
-                return new ValidationResult(false, "Поле не может быть пустым");
-            }
-            return ValidationResult.ValidResult;
+            get { return (string)GetValue(PlaceholderProperty); }
+            set { SetValue(PlaceholderProperty, value); }
         }
     }
 }

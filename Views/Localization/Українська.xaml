@@ -2,7 +2,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:system="clr-namespace:System;assembly=mscorlib">
     <system:String x:Key="StringStartGame">ПОЧАТИ ГРУ</system:String>
-    <system:String x:Key="StringCurrentPlayer">Поточний гравець:</system:String>
+    <system:String x:Key="StringCurrentPlayer">Поточний гравець</system:String>
     <system:String x:Key="StringPlayer">Гравець</system:String>
 
     <system:String x:Key="StringComputer">Комп'ютер</system:String>
@@ -25,6 +25,7 @@
     <system:String x:Key="StringLogout">ВИЙТИ</system:String>
 
     <system:String x:Key="StringUsername">Ім'я користувача</system:String>
+    <system:String x:Key="StringPassword">Пароль</system:String>
     <system:String x:Key="StringWins">Перемоги</system:String>
     <system:String x:Key="StringLosses">Поразки</system:String>
     <system:String x:Key="StringDraws">Нічиї</system:String>

@@ -2,7 +2,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:system="clr-namespace:System;assembly=mscorlib">
     <system:String x:Key="StringStartGame">START GAME</system:String>
-    <system:String x:Key="StringCurrentPlayer">Current player:</system:String>
+    <system:String x:Key="StringCurrentPlayer">Current player</system:String>
     <system:String x:Key="StringPlayer">Player</system:String>
     
     <system:String x:Key="StringComputer">Computer</system:String>
@@ -25,6 +25,7 @@
     <system:String x:Key="StringLogout">LOGOUT</system:String>
     
     <system:String x:Key="StringUsername">Username</system:String>
+    <system:String x:Key="StringPassword">Password</system:String>
     <system:String x:Key="StringWins">Wins</system:String>
     <system:String x:Key="StringLosses">Losses</system:String>
     <system:String x:Key="StringDraws">Draws</system:String>

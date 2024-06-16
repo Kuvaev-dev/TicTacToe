@@ -32,32 +32,45 @@
                     Margin="10"
                     Width="150"
                     Height="30"/>
-            <TextBlock Text="{StaticResource StringCurrentPlayer}" 
-                       VerticalAlignment="Center" 
-                       Margin="10"
-                       Foreground="{StaticResource ForegroundBrush}"/>
-            <TextBlock Name="CurrentPlayerTextBlock" 
-                       VerticalAlignment="Center"/>
             <StackPanel Orientation="Vertical" 
-                        Margin="10">
+                        Margin="10"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Left">
+                <TextBlock Text="{StaticResource StringCurrentPlayer}" 
+                       Foreground="{StaticResource ForegroundBrush}"
+                       FontWeight="Bold"/>
+                <TextBlock Name="CurrentPlayerTextBlock"/>
+            </StackPanel>
+            <StackPanel Orientation="Vertical" 
+                        Margin="10"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Left">
                 <TextBlock Text="{StaticResource StringPlayer}"
-                           Foreground="{StaticResource ForegroundBrush}"/>
+                           Foreground="{StaticResource ForegroundBrush}"
+                           FontWeight="Bold"
+                           />
                 <TextBlock Name="PlayerScoreTextBlock" 
                            Text="0"
                            Foreground="{StaticResource ForegroundBrush}"/>
             </StackPanel>
             <StackPanel Orientation="Vertical" 
-                        Margin="10">
+                        Margin="10"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Left">
                 <TextBlock Text="{StaticResource StringComputer}"
-                           Foreground="{StaticResource ForegroundBrush}"/>
+                           Foreground="{StaticResource ForegroundBrush}"
+                           FontWeight="Bold"/>
                 <TextBlock Name="ComputerScoreTextBlock" 
                            Text="0"
                            Foreground="{StaticResource ForegroundBrush}"/>
             </StackPanel>
-            <customControls:CustomComboBox x:Name="BotLevelComboBox" 
+            <customControls:CustomComboBox 
+                      x:Name="BotLevelComboBox" 
                       Width="150"
                       Height="30"
-                      Margin="10">
+                      Margin="10"
+                      VerticalAlignment="Center"
+                      HorizontalAlignment="Left">
                 <ComboBoxItem Content="{StaticResource StringBeginner}"/>
                 <ComboBoxItem Content="{StaticResource StringDefense}"/>
                 <ComboBoxItem Content="{StaticResource StringOffense}"/>
@@ -69,6 +82,8 @@
                 Content="{StaticResource StringHint}" 
                 Margin="10"
                 Height="30"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Left"
                 Foreground="{StaticResource ForegroundBrush}"/>
         </StackPanel>
         <UniformGrid Grid.Row="2" 
@@ -78,6 +93,8 @@
                      Margin="10"
                      Width="350"
                      Height="350"
+                     VerticalAlignment="Center"
+                     HorizontalAlignment="Center"
                      >
             <Button Name="Cell00" Click="Cell_Click" FontSize="32" Background="{StaticResource ForegroundBrush}"/>
             <Button Name="Cell01" Click="Cell_Click" FontSize="32" Background="{StaticResource ForegroundBrush}"/>
@@ -92,7 +109,8 @@
         <StackPanel Orientation="Horizontal" 
                     Grid.Row="3" 
                     Width="Auto"
-                    HorizontalAlignment="Center">
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
             <customControls:CustomButton 
                 Content="{StaticResource StringProfile}" 
                 Click="GoToProfileButton_Click" 

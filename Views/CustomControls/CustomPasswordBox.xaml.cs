@@ -1,10 +1,8 @@
-﻿using System.Windows.Controls;
+﻿using System.Windows;
+using System.Windows.Controls;
 
 namespace TicTacToe.Views.CustomControls
 {
-    /// <summary>
-    /// Логика взаимодействия для CustomPasswordBox.xaml
-    /// </summary>
     public partial class CustomPasswordBox : UserControl
     {
         public CustomPasswordBox()
@@ -14,14 +12,20 @@ namespace TicTacToe.Views.CustomControls
 
         public string Password
         {
-            get { return PART_PasswordBox.Password; }
-            set { PART_PasswordBox.Password = value; }
+            get { return (string)GetValue(PasswordProperty); }
+            set { SetValue(PasswordProperty, value); }
         }
 
-        public void SetError(string errorMessage)
+        public static readonly DependencyProperty PasswordProperty =
+            DependencyProperty.Register("Password", typeof(string), typeof(CustomPasswordBox), new PropertyMetadata(""));
+
+        public string PlaceholderText
         {
-            PART_ErrorText.Text = errorMessage;
-            PART_ErrorText.Visibility = string.IsNullOrEmpty(errorMessage) ? System.Windows.Visibility.Collapsed : System.Windows.Visibility.Visible;
+            get { return (string)GetValue(PlaceholderTextProperty); }
+            set { SetValue(PlaceholderTextProperty, value); }
         }
+
+        public static readonly DependencyProperty PlaceholderTextProperty =
+            DependencyProperty.Register("PlaceholderText", typeof(string), typeof(CustomPasswordBox), new PropertyMetadata("Enter your password"));
     }
 }
