@@ -4,13 +4,13 @@
              xmlns:vmlocator="clr-namespace:TicTacToe.ViewModels.Base"
              StartupUri="Views/MainWindow.xaml">
     <Application.Resources>
-        <vmlocator:ViewModelLocator x:Key="Locator" />
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/TicTacToe;component/Views/Themes/MainTheme.xaml"/>
                 <ResourceDictionary Source="/TicTacToe;component/Views/Localization/English.xaml"/>
                 <ResourceDictionary Source="/TicTacToe;component/Views/Localization/Українська.xaml"/>
             </ResourceDictionary.MergedDictionaries>
+            <vmlocator:ViewModelLocator x:Key="Locator" />
         </ResourceDictionary>
     </Application.Resources>
 </Application>
