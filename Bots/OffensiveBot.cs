@@ -13,7 +13,6 @@
         public (int row, int col) GetNextMove(char[,] board)
         {
             // Логика выбора выигрышного хода, если доступен
-            // Это простой пример, может быть расширен
             for (int row = 0; row < 3; row++)
             {
                 for (int col = 0; col < 3; col++)
