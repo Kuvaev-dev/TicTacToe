@@ -1,7 +1,6 @@
 ﻿<Button x:Class="TicTacToe.Views.CustomControls.CustomButton"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        >
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <Button.Style>
         <Style TargetType="Button">
             <Setter Property="Foreground" Value="{StaticResource ForegroundBrush}"/>
@@ -12,15 +11,19 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border CornerRadius="10"
+                        <Border x:Name="border"
+                                CornerRadius="10"
                                 Background="{StaticResource ButtonBackgroundBrush}"
                                 BorderBrush="{TemplateBinding BorderBrush}"
                                 BorderThickness="{TemplateBinding BorderThickness}">
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <ContentPresenter x:Name="contentPresenter"
+                                              HorizontalAlignment="Center" 
+                                              VerticalAlignment="Center"
+                                              RecognizesAccessKey="True"/>
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" Value="{StaticResource HoverBrush}"/>
+                                <Setter TargetName="border" Property="Background" Value="{StaticResource HoverBrush}"/>
                                 <Setter Property="Foreground" Value="{StaticResource HoverTextBrush}"/>
                             </Trigger>
                         </ControlTemplate.Triggers>

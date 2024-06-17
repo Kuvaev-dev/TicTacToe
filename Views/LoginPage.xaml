@@ -34,10 +34,10 @@
             Width="200"
             VerticalAlignment="Center"
             HorizontalAlignment="Center"
-            Placeholder="Ім'я користувача"/>
+            Placeholder="{StaticResource StringUsername}"/>
         <customControls:CustomPasswordBox 
             Grid.Row="3"
-            x:Name="PasswordB" 
+            x:Name="PasswordB"
             Margin="10" 
             Width="200"
             VerticalAlignment="Center"
