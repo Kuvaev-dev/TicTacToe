@@ -40,6 +40,9 @@ namespace TicTacToe.Views
                 var password = PasswordB.Password;
                 var player = _playerService.Login(username, password);
                 MainWindow.SetLoggedInPlayerId(player.Id); // Встановлення ID поточного залогіненого користувача
+                // Очищаємо історію навігації на сторінці входу
+                var navigationService = NavigationService;
+                while (navigationService.RemoveBackEntry() != null) { }
                 _mainViewModel.NavigateTo(new GamePage(_mainViewModel));
             }
             catch (Exception ex)

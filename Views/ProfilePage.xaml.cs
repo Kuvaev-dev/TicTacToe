@@ -97,9 +97,14 @@ namespace TicTacToe.Views
         {
             var mainWindow = (MainWindow)Application.Current.MainWindow;
             var navigationService = mainWindow.MainFrame.NavigationService;
+
+            // Очищуємо всю історію навігації, включаючи поточну сторінку
             while (navigationService.RemoveBackEntry() != null) { }
 
+            // Скидаємо ідентифікатор ввійшовшого гравця
             MainWindow.SetLoggedInPlayerId(0);
+
+            // Переходимо на сторінку входу
             _mainViewModel.NavigateTo(new LoginPage(_mainViewModel));
         }
     }
