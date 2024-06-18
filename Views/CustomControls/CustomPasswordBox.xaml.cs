@@ -8,6 +8,7 @@ namespace TicTacToe.Views.CustomControls
         public CustomPasswordBox()
         {
             InitializeComponent();
+            PART_PasswordBox.PasswordChanged += OnPasswordChanged;
         }
 
         public string Password
@@ -17,7 +18,32 @@ namespace TicTacToe.Views.CustomControls
         }
 
         public static readonly DependencyProperty PasswordProperty =
-            DependencyProperty.Register("Password", typeof(string), typeof(CustomPasswordBox), new PropertyMetadata(""));
+            DependencyProperty.Register("Password", typeof(string), typeof(CustomPasswordBox), new PropertyMetadata("", OnPasswordPropertyChanged));
+
+        private static void OnPasswordPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var control = (CustomPasswordBox)d;
+            if (control.PART_PasswordBox.Password != (string)e.NewValue)
+            {
+                control.PART_PasswordBox.Password = (string)e.NewValue;
+            }
+            control.UpdatePlaceholderVisibility();
+        }
+
+        private void OnPasswordChanged(object sender, RoutedEventArgs e)
+        {
+            Password = PART_PasswordBox.Password;
+            UpdatePlaceholderVisibility();
+        }
+
+        private void UpdatePlaceholderVisibility()
+        {
+            var placeholder = PART_PasswordBox.Template.FindName("PART_Placeholder", PART_PasswordBox) as TextBlock;
+            if (placeholder != null)
+            {
+                placeholder.Visibility = string.IsNullOrEmpty(PART_PasswordBox.Password) ? Visibility.Visible : Visibility.Collapsed;
+            }
+        }
 
         public string PlaceholderText
         {

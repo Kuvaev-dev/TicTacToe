@@ -29,7 +29,7 @@ namespace TicTacToe.ViewModels
         /// </summary>
         public MainViewModel()
         {
-            CurrentPage = new GamePage(this);
+            CurrentPage = new LoginPage(this);
         }
 
         /// <summary>
