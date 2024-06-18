@@ -80,9 +80,9 @@ namespace TicTacToe.Views
             {
                 var playerId = MainWindow.GetLoggedInPlayerId();
                 _playerService.LogicalDeletePlayer(playerId);
-                MessageBox.Show("Акаунт успішно видалено!", "Інформація", MessageBoxButton.OK, MessageBoxImage.Error);
-                MainWindow.SetLoggedInPlayerId(0);
-                _mainViewModel.NavigateTo(new LoginPage(_mainViewModel));
+                MessageBox.Show("Акаунт успішно видалено!", "Інформація", MessageBoxButton.OK, MessageBoxImage.Information);
+                // Виходимо з системи та очищуємо навігацію
+                Logout();
             }
             catch (Exception ex)
             {
@@ -94,6 +94,12 @@ namespace TicTacToe.Views
         /// Обробник натискання кнопки виходу з системи.
         /// </summary>
         private void LogoutButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Виходимо з системи та очищуємо навігацію
+            Logout();
+        }
+
+        private void Logout()
         {
             var mainWindow = (MainWindow)Application.Current.MainWindow;
             var navigationService = mainWindow.MainFrame.NavigationService;

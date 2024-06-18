@@ -16,13 +16,13 @@ namespace TicTacToe.Views.CustomControls
         /// <summary>
         /// Залежність властивості Text, яка представляє текст, введений в текстовому полі.
         /// </summary>
-        public static readonly DependencyProperty TextProperty =
+        public static new readonly DependencyProperty TextProperty =
             DependencyProperty.Register("Text", typeof(string), typeof(CustomInput), new FrameworkPropertyMetadata(string.Empty, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
 
         /// <summary>
         /// Отримує або задає текст, що введений в текстовому полі.
         /// </summary>
-        public string Text
+        public new string Text
         {
             get { return (string)GetValue(TextProperty); }
             set { SetValue(TextProperty, value); }

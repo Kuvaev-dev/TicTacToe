@@ -36,7 +36,7 @@ namespace TicTacToe.Services
         public void StartNewGame(string botLevel)
         {
             _board = new char[3, 3];
-            _currentPlayer = new Random().Next(0, 2) == 0 ? 'X' : 'O';
+            _currentPlayer = 'X'; // Гравець завжди починає гру з хрестика
 
             _bot = botLevel switch
             {
@@ -62,29 +62,72 @@ namespace TicTacToe.Services
         /// <returns>True, якщо хід виконаний успішно, інакше false.</returns>
         public bool MakeMove(int row, int col)
         {
-            if (_board[row, col] == '\0')
+            if (row < 0 || row >= 3 || col < 0 || col >= 3 || _board[row, col] != '\0')
             {
-                _board[row, col] = _currentPlayer;
-                if (CheckWinner())
-                {
-                    UpdateGameStats(_currentPlayer == 'X' ? "Player" : "Bot");
-                    return true;
-                }
-                _currentPlayer = _currentPlayer == 'X' ? 'O' : 'X';
+                // Перевірка коректності ходу
+                return false;
+            }
 
-                if (_currentPlayer == 'O')
+            _board[row, col] = _currentPlayer;
+
+            if (CheckWinner())
+            {
+                UpdateGameStats(_currentPlayer == 'X' ? "Player" : "Bot");
+                return true;
+            }
+
+            if (IsBoardFull())
+            {
+                UpdateGameStats("Draw");
+                return true;
+            }
+
+            _currentPlayer = _currentPlayer == 'X' ? 'O' : 'X';
+
+            if (_currentPlayer == 'O')
+            {
+                var move = _bot.GetNextMove(_board);
+
+                // Перевірка координат на коректність ходу
+                if (move.row >= 0 && move.row < 3 && move.col >= 0 && move.col < 3 && _board[move.row, move.col] == '\0')
                 {
-                    var move = _bot.GetNextMove(_board);
                     _board[move.row, move.col] = 'O';
                     if (CheckWinner())
                     {
                         UpdateGameStats("Bot");
                         return true;
                     }
+                    if (IsBoardFull())
+                    {
+                        UpdateGameStats("Draw");
+                        return true;
+                    }
+                    _currentPlayer = 'X';
+                }
+                else
+                {
                     _currentPlayer = 'X';
                 }
             }
+
             return false;
+        }
+
+        /// <summary>
+        /// Перевіряє, чи повністю заповнене ігрове поле.
+        /// </summary>
+        /// <returns>True, якщо поле повністю заповнене, інакше False.</returns>
+        private bool IsBoardFull()
+        {
+            for (int row = 0; row < 3; row++)
+            {
+                for (int col = 0; col < 3; col++)
+                {
+                    if (_board[row, col] == '\0')
+                        return false;
+                }
+            }
+            return true;
         }
 
         /// <summary>
@@ -122,7 +165,7 @@ namespace TicTacToe.Services
         /// <summary>
         /// Оновлює статистику гравця і бота після завершення гри.
         /// </summary>
-        /// <param name="winner">Переможець ("Player" або "Bot").</param>
+        /// <param name="winner">Переможець ("Player", "Bot" або "Draw").</param>
         private void UpdateGameStats(string winner)
         {
             var playerId = MainWindow.GetLoggedInPlayerId();
@@ -141,7 +184,7 @@ namespace TicTacToe.Services
             {
                 player.Losses++;
             }
-            else
+            else if (winner == "Draw")
             {
                 player.Draws++;
             }

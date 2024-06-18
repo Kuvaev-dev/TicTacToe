@@ -8,7 +8,7 @@
     <Color x:Key="BorderColor">White</Color>
     <Color x:Key="ForegroundColor">White</Color>
     <Color x:Key="ErrorColor">Red</Color>
-    <Color x:Key="AlternatingRowColor">#66AAAAAA</Color>
+    <Color x:Key="AlternatingRowColor">#97dbbc</Color>
 
     <!-- Определение кистей -->
     <LinearGradientBrush x:Key="ButtonBackgroundBrush" StartPoint="0,0" EndPoint="1,1">

@@ -8,7 +8,7 @@ namespace TicTacToe.Bots
     /// </summary>
     public class SimpleBot : IBot
     {
-        private Random _random = new Random();
+        private readonly Random _random = new();
 
         /// <summary>
         /// Отримує наступний хід для бота.

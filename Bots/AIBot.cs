@@ -50,8 +50,14 @@ namespace TicTacToe.Bots
                     {
                         // Виконання ходу
                         board[row, col] = currentPlayer;
+
+                        // Перевірка доступних клітин
+                        if (row < 0 || row >= 3 || col < 0 || col >= 3)
+                            continue;
+
                         int score = Minimax(board, currentPlayer == Bot ? Player : Bot, depth + 1).Score;
                         moves.Add((score, (row, col)));
+
                         // Скасування ходу
                         board[row, col] = '\0';
                     }
@@ -75,7 +81,7 @@ namespace TicTacToe.Bots
         /// <param name="board">Поточний стан ігрового поля.</param>
         /// <param name="player">Поточний гравець ('X' або 'O').</param>
         /// <returns>True, якщо гравець виграв, інакше False.</returns>
-        private bool CheckWinner(char[,] board, char player)
+        private static bool CheckWinner(char[,] board, char player)
         {
             // Перевірка рядків, стовпців і діагоналей на переможний хід
             for (int i = 0; i < 3; i++)
@@ -93,7 +99,7 @@ namespace TicTacToe.Bots
         /// </summary>
         /// <param name="board">Поточний стан ігрового поля.</param>
         /// <returns>True, якщо поле повністю заповнене, інакше False.</returns>
-        private bool IsBoardFull(char[,] board)
+        private static bool IsBoardFull(char[,] board)
         {
             for (int row = 0; row < 3; row++)
             {

@@ -14,6 +14,7 @@ namespace TicTacToe.Views
     public partial class RatingPage : Page
     {
         private readonly PlayerService _playerService;
+        private readonly MainViewModel _mainViewModel;
 
         public RatingPage(MainViewModel mainViewModel)
         {
@@ -21,6 +22,7 @@ namespace TicTacToe.Views
             var connectionString = ConfigurationManager.ConnectionStrings["MyConnectionString"].ConnectionString;
             var playerRepository = new PlayerRepository(connectionString);
             _playerService = new PlayerService(playerRepository);
+            _mainViewModel = mainViewModel;
             Loaded += RatingPage_Loaded;
         }
 

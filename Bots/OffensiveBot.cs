@@ -39,7 +39,7 @@
         /// <param name="board">Поточний стан ігрового поля.</param>
         /// <param name="player">Поточний гравець ('X' або 'O').</param>
         /// <returns>True, якщо хід є виграшним, інакше False.</returns>
-        private bool IsWinningMove(char[,] board, char player)
+        private static bool IsWinningMove(char[,] board, char player)
         {
             // Перевірка рядків, стовпців і діагоналей на виграшний хід
             for (int i = 0; i < 3; i++)

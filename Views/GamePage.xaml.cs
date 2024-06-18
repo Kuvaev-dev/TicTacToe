@@ -76,10 +76,9 @@ namespace TicTacToe.Views
 
             if (_gameService.MakeMove(row, col))
             {
-                MessageBox.Show($"Переможець: {_gameService.GetCurrentPlayer()}!");
+                var winner = _gameService.GetCurrentPlayer() == 'X' ? "Гравець" : "Комп'ютер";
+                MessageBox.Show($"Переможець: {winner}!", "Інформація", MessageBoxButton.OK, MessageBoxImage.Information);
                 UpdateScores();
-                BotLevelComboBox.IsEnabled = true;
-                HintCheckBox.IsEnabled = true;
                 _isGameStarted = false;
             }
             else
@@ -98,8 +97,8 @@ namespace TicTacToe.Views
         /// </summary>
         private void ShowHint()
         {
-            var hint = _gameService.GetHint();
-            var hintButton = (Button)FindName($"Cell{hint.row}{hint.col}");
+            var (row, col) = _gameService.GetHint();
+            var hintButton = (Button)FindName($"Cell{row}{col}");
             if (hintButton != null)
             {
                 hintButton.Background = Brushes.LightGray;
@@ -149,6 +148,8 @@ namespace TicTacToe.Views
             var player = _playerService.GetPlayerById(playerId);
             PlayerScoreTextBlock.Text = player.Wins.ToString();
             ComputerScoreTextBlock.Text = player.Losses.ToString();
+            BotLevelComboBox.IsEnabled = true;
+            HintCheckBox.IsEnabled = true;
         }
 
         /// <summary>

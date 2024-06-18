@@ -97,15 +97,15 @@
                      VerticalAlignment="Center"
                      HorizontalAlignment="Center"
                      >
-            <Button Name="Cell00" Click="Cell_Click" FontSize="32" Background="{StaticResource ForegroundBrush}"/>
-            <Button Name="Cell01" Click="Cell_Click" FontSize="32" Background="{StaticResource ForegroundBrush}"/>
-            <Button Name="Cell02" Click="Cell_Click" FontSize="32" Background="{StaticResource ForegroundBrush}"/>
-            <Button Name="Cell10" Click="Cell_Click" FontSize="32" Background="{StaticResource ForegroundBrush}"/>
-            <Button Name="Cell11" Click="Cell_Click" FontSize="32" Background="{StaticResource ForegroundBrush}"/>
-            <Button Name="Cell12" Click="Cell_Click" FontSize="32" Background="{StaticResource ForegroundBrush}"/>
-            <Button Name="Cell20" Click="Cell_Click" FontSize="32" Background="{StaticResource ForegroundBrush}"/>
-            <Button Name="Cell21" Click="Cell_Click" FontSize="32" Background="{StaticResource ForegroundBrush}"/>
-            <Button Name="Cell22" Click="Cell_Click" FontSize="32" Background="{StaticResource ForegroundBrush}"/>
+            <Button Name="Cell00" Click="Cell_Click" FontSize="60" Background="{StaticResource ForegroundBrush}"/>
+            <Button Name="Cell01" Click="Cell_Click" FontSize="60" Background="{StaticResource ForegroundBrush}"/>
+            <Button Name="Cell02" Click="Cell_Click" FontSize="60" Background="{StaticResource ForegroundBrush}"/>
+            <Button Name="Cell10" Click="Cell_Click" FontSize="60" Background="{StaticResource ForegroundBrush}"/>
+            <Button Name="Cell11" Click="Cell_Click" FontSize="60" Background="{StaticResource ForegroundBrush}"/>
+            <Button Name="Cell12" Click="Cell_Click" FontSize="60" Background="{StaticResource ForegroundBrush}"/>
+            <Button Name="Cell20" Click="Cell_Click" FontSize="60" Background="{StaticResource ForegroundBrush}"/>
+            <Button Name="Cell21" Click="Cell_Click" FontSize="60" Background="{StaticResource ForegroundBrush}"/>
+            <Button Name="Cell22" Click="Cell_Click" FontSize="60" Background="{StaticResource ForegroundBrush}"/>
         </UniformGrid>
         <StackPanel Orientation="Horizontal" 
                     Grid.Row="3" 

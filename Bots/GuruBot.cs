@@ -18,14 +18,14 @@
 
             // Спочатку намагаємося виграти
             var move = offensiveBot.GetNextMove(board);
-            if (move != (-1, -1))
+            if (move != (-1, -1) && board[move.row, move.col] == '\0')
             {
                 return move;
             }
 
             // Потім намагаємося заблокувати противника
             move = defensiveBot.GetNextMove(board);
-            if (move != (-1, -1))
+            if (move != (-1, -1) && board[move.row, move.col] == '\0')
             {
                 return move;
             }
