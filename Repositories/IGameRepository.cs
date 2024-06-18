@@ -4,21 +4,21 @@ using TicTacToe.Models;
 namespace TicTacToe.Repositories
 {
     /// <summary>
-    /// Интерфейс для работы с данными об играх в базе данных.
+    /// Інтерфейс для роботи з даними про ігри в базі даних.
     /// </summary>
     public interface IGameRepository
     {
         /// <summary>
-        /// Добавляет новую игру в базу данных.
+        /// Додає нову гру в базу даних.
         /// </summary>
-        /// <param name="game">Информация о добавляемой игре.</param>
+        /// <param name="game">Інформація про додавану гру.</param>
         void AddGame(Game game);
 
         /// <summary>
-        /// Получает список игр, сыгранных игроком с указанным идентификатором.
+        /// Отримує список ігор, зіграних гравцем з вказаним ідентифікатором.
         /// </summary>
-        /// <param name="playerId">Идентификатор игрока.</param>
-        /// <returns>Список объектов Game, представляющих игры игрока.</returns>
+        /// <param name="playerId">Ідентифікатор гравця.</param>
+        /// <returns>Список об'єктів Game, які представляють ігри гравця.</returns>
         IEnumerable<Game> GetGamesByPlayer(int playerId);
     }
 }

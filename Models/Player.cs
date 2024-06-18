@@ -5,20 +5,23 @@ using System.Text.RegularExpressions;
 namespace TicTacToe.Models
 {
     /// <summary>
-    /// Модель игрока в игре крестики-нолики.
+    /// Модель гравця в грі хрестики-нулики.
     /// </summary>
     public class Player : IDataErrorInfo
     {
+        /// <summary>
+        /// Regex для валідації імені користувача
+        /// </summary>
         private const string UsernameRegexPattern = @"^[a-zA-Z0-9_]+$";
 
         /// <summary>
-        /// Уникальный идентификатор игрока.
+        /// Унікальний ідентифікатор гравця.
         /// </summary>
         public int Id { get; set; }
 
         private string _username;
         /// <summary>
-        /// Имя пользователя игрока.
+        /// Ім'я користувача гравця.
         /// </summary>
         public string Username
         {
@@ -31,41 +34,41 @@ namespace TicTacToe.Models
         }
 
         /// <summary>
-        /// Пароль игрока.
+        /// Пароль гравця.
         /// </summary>
         public string Password { get; set; }
 
         /// <summary>
-        /// Флаг, указывающий, удален ли игрок (логическое удаление).
+        /// Прапор, що вказує, чи видалено гравця (логічне видалення).
         /// </summary>
         public bool IsDeleted { get; set; }
 
         /// <summary>
-        /// Количество сыгранных игр игроком.
+        /// Кількість зіграних ігор гравцем.
         /// </summary>
         public int GamesPlayed { get; set; }
 
         /// <summary>
-        /// Количество побед игрока.
+        /// Кількість перемог гравця.
         /// </summary>
         public int Wins { get; set; }
 
         /// <summary>
-        /// Количество поражений игрока.
+        /// Кількість поразок гравця.
         /// </summary>
         public int Losses { get; set; }
 
         /// <summary>
-        /// Количество ничьих игрока.
+        /// Кількість нічиїх гравця.
         /// </summary>
         public int Draws { get; set; }
 
         /// <summary>
-        /// Дата и время последнего входа в систему игрока.
+        /// Дата та час останнього входу в систему гравця.
         /// </summary>
         public DateTime? LastLogin { get; set; }
 
-        // Реализация IDataErrorInfo для валидации
+        // Реалізація IDataErrorInfo для валідації
 
         public string Error => null;
 
@@ -79,23 +82,23 @@ namespace TicTacToe.Models
                 {
                     case nameof(Username):
                         if (string.IsNullOrEmpty(Username))
-                            error = "Имя пользователя не может быть пустым.";
+                            error = "Ім'я користувача не може бути порожнім.";
                         break;
                     case nameof(Password):
                         if (string.IsNullOrEmpty(Password))
-                            error = "Пароль не может быть пустым.";
+                            error = "Пароль не може бути порожнім.";
                         break;
                     case nameof(Wins):
                         if (Wins < 0)
-                            error = "Количество побед не может быть меньше нуля.";
+                            error = "Кількість перемог не може бути меншою за нуль.";
                         break;
                     case nameof(Losses):
                         if (Losses < 0)
-                            error = "Количество поражений не может быть меньше нуля.";
+                            error = "Кількість поразок не може бути меншою за нуль.";
                         break;
                     case nameof(Draws):
                         if (Draws < 0)
-                            error = "Количество ничьих не может быть меньше нуля.";
+                            error = "Кількість нічиїх не може бути меншою за нуль.";
                         break;
                 }
 
@@ -103,6 +106,9 @@ namespace TicTacToe.Models
             }
         }
 
+        /// <summary>
+        /// Метод валідації імені користувача.
+        /// </summary>
         private void ValidateUsername()
         {
             if (string.IsNullOrEmpty(Username))
@@ -110,7 +116,7 @@ namespace TicTacToe.Models
 
             if (!Regex.IsMatch(Username, UsernameRegexPattern))
             {
-                throw new ArgumentException("Имя пользователя содержит недопустимые символы.");
+                throw new ArgumentException("Ім'я користувача містить недопустимі символи.");
             }
         }
     }

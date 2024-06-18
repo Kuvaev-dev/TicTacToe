@@ -4,7 +4,7 @@ using System.Linq;
 namespace TicTacToe.Bots
 {
     /// <summary>
-    /// Представляет ИИ бота для игры в крестики-нолики, использующего алгоритм Minimax.
+    /// Представляє ІІ бота для гри в хрестики-нулики, що використовує алгоритм Minimax.
     /// </summary>
     public class AIBot : IBot
     {
@@ -12,10 +12,10 @@ namespace TicTacToe.Bots
         private const char Bot = 'O';
 
         /// <summary>
-        /// Получает следующий ход для бота, используя алгоритм Minimax.
+        /// Отримує наступний хід для бота, використовуючи алгоритм Minimax.
         /// </summary>
-        /// <param name="board">Текущее состояние игрового поля.</param>
-        /// <returns>Кортеж, содержащий номер строки и столбца следующего хода.</returns>
+        /// <param name="board">Поточний стан ігрового поля.</param>
+        /// <returns>Кортеж, що містить номер рядка та стовпця наступного ходу.</returns>
         public (int row, int col) GetNextMove(char[,] board)
         {
             var bestMove = Minimax(board, Bot, 0);
@@ -23,42 +23,42 @@ namespace TicTacToe.Bots
         }
 
         /// <summary>
-        /// Алгоритм Minimax для определения наилучшего хода для текущего игрока.
+        /// Алгоритм Minimax для визначення найкращого ходу для поточного гравця.
         /// </summary>
-        /// <param name="board">Текущее состояние игрового поля.</param>
-        /// <param name="currentPlayer">Текущий игрок ('X' или 'O').</param>
-        /// <param name="depth">Глубина рекурсии.</param>
-        /// <returns>Кортеж, содержащий оценку состояния поля и номер строки и столбца наилучшего хода.</returns>
+        /// <param name="board">Поточний стан ігрового поля.</param>
+        /// <param name="currentPlayer">Поточний гравець ('X' або 'O').</param>
+        /// <param name="depth">Глибина рекурсії.</param>
+        /// <returns>Кортеж, що містить оцінку стану поля та номер рядка і стовпця найкращого ходу.</returns>
         private (int Score, (int row, int col) Move) Minimax(char[,] board, char currentPlayer, int depth)
         {
-            // Проверка на победителя
+            // Перевірка на переможця
             if (CheckWinner(board, Player))
-                return (-10 + depth, (-1, -1)); // Игрок выигрывает, штраф за более глубокие ходы
+                return (-10 + depth, (-1, -1)); // Гравець виграє, штраф за більш глибокі ходи
             if (CheckWinner(board, Bot))
-                return (10 - depth, (-1, -1)); // Бот выигрывает, награда за более быстрые выигрыши
+                return (10 - depth, (-1, -1)); // Бот виграє, нагорода за швидкіші перемоги
             if (IsBoardFull(board))
-                return (0, (-1, -1)); // Ничья
+                return (0, (-1, -1)); // Нічия
 
             var moves = new List<(int Score, (int row, int col) Move)>();
 
-            // Проход по всем клеткам для поиска доступных ходов
+            // Проходження по всіх клітинках для пошуку доступних ходів
             for (int row = 0; row < 3; row++)
             {
                 for (int col = 0; col < 3; col++)
                 {
                     if (board[row, col] == '\0')
                     {
-                        // Выполнение хода
+                        // Виконання ходу
                         board[row, col] = currentPlayer;
                         int score = Minimax(board, currentPlayer == Bot ? Player : Bot, depth + 1).Score;
                         moves.Add((score, (row, col)));
-                        // Отмена хода
+                        // Скасування ходу
                         board[row, col] = '\0';
                     }
                 }
             }
 
-            // Возвращение наилучшего хода для текущего игрока
+            // Повернення найкращого ходу для поточного гравця
             if (currentPlayer == Bot)
             {
                 return moves.OrderByDescending(m => m.Score).First();
@@ -70,14 +70,14 @@ namespace TicTacToe.Bots
         }
 
         /// <summary>
-        /// Проверяет, является ли текущий игрок победителем.
+        /// Перевіряє, чи є поточний гравець переможцем.
         /// </summary>
-        /// <param name="board">Текущее состояние игрового поля.</param>
-        /// <param name="player">Текущий игрок ('X' или 'O').</param>
-        /// <returns>True, если игрок победил, иначе False.</returns>
+        /// <param name="board">Поточний стан ігрового поля.</param>
+        /// <param name="player">Поточний гравець ('X' або 'O').</param>
+        /// <returns>True, якщо гравець виграв, інакше False.</returns>
         private bool CheckWinner(char[,] board, char player)
         {
-            // Проверка строк, столбцов и диагоналей на победный ход
+            // Перевірка рядків, стовпців і діагоналей на переможний хід
             for (int i = 0; i < 3; i++)
             {
                 if (board[i, 0] == player && board[i, 1] == player && board[i, 2] == player) return true;
@@ -89,10 +89,10 @@ namespace TicTacToe.Bots
         }
 
         /// <summary>
-        /// Проверяет, полностью ли заполнено игровое поле.
+        /// Перевіряє, чи повністю заповнене ігрове поле.
         /// </summary>
-        /// <param name="board">Текущее состояние игрового поля.</param>
-        /// <returns>True, если поле полностью заполнено, иначе False.</returns>
+        /// <param name="board">Поточний стан ігрового поля.</param>
+        /// <returns>True, якщо поле повністю заповнене, інакше False.</returns>
         private bool IsBoardFull(char[,] board)
         {
             for (int row = 0; row < 3; row++)

@@ -6,25 +6,25 @@ using TicTacToe.Models;
 namespace TicTacToe.Repositories
 {
     /// <summary>
-    /// Репозиторий для работы с данными об играх в базе данных.
+    /// Репозиторій для роботи з даними про ігри в базі даних.
     /// </summary>
     public class GameRepository : IGameRepository
     {
         private readonly string _connectionString;
 
         /// <summary>
-        /// Инициализирует новый экземпляр класса GameRepository с указанным строковым подключением к базе данных.
+        /// Ініціалізує новий екземпляр класу GameRepository з вказаним рядком підключення до бази даних.
         /// </summary>
-        /// <param name="connectionString">Строковое подключение к базе данных.</param>
+        /// <param name="connectionString">Рядок підключення до бази даних.</param>
         public GameRepository(string connectionString)
         {
             _connectionString = connectionString;
         }
 
         /// <summary>
-        /// Добавляет новую игру в базу данных.
+        /// Додає нову гру в базу даних.
         /// </summary>
-        /// <param name="game">Информация о добавляемой игре.</param>
+        /// <param name="game">Інформація про додавану гру.</param>
         public void AddGame(Game game)
         {
             using (var connection = new SqlConnection(_connectionString))
@@ -40,10 +40,10 @@ namespace TicTacToe.Repositories
         }
 
         /// <summary>
-        /// Получает список игр, сыгранных игроком с указанным идентификатором.
+        /// Отримує список ігор, зіграних гравцем з вказаним ідентифікатором.
         /// </summary>
-        /// <param name="playerId">Идентификатор игрока.</param>
-        /// <returns>Список объектов Game, представляющих игры игрока.</returns>
+        /// <param name="playerId">Ідентифікатор гравця.</param>
+        /// <returns>Список об'єктів Game, які представляють ігри гравця.</returns>
         public IEnumerable<Game> GetGamesByPlayer(int playerId)
         {
             var games = new List<Game>();

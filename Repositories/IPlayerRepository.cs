@@ -4,47 +4,47 @@ using TicTacToe.Models;
 namespace TicTacToe.Repositories
 {
     /// <summary>
-    /// Интерфейс для работы с данными об игроках в базе данных.
+    /// Інтерфейс для роботи з даними про гравців в базі даних.
     /// </summary>
     public interface IPlayerRepository
     {
         /// <summary>
-        /// Добавляет нового игрока в базу данных.
+        /// Додає нового гравця в базу даних.
         /// </summary>
-        /// <param name="player">Информация о добавляемом игроке.</param>
+        /// <param name="player">Інформація про додаваного гравця.</param>
         void AddPlayer(Player player);
 
         /// <summary>
-        /// Обновляет информацию об игроке в базе данных.
+        /// Оновлює інформацію про гравця в базі даних.
         /// </summary>
-        /// <param name="player">Информация об обновляемом игроке.</param>
+        /// <param name="player">Інформація про оновлюваного гравця.</param>
         void UpdatePlayer(Player player);
 
         /// <summary>
-        /// Логически удаляет игрока из базы данных по его идентификатору.
+        /// Логічно видаляє гравця з бази даних за його ідентифікатором.
         /// </summary>
-        /// <param name="playerId">Идентификатор игрока.</param>
+        /// <param name="playerId">Ідентифікатор гравця.</param>
         void DeletePlayer(int playerId);
 
         /// <summary>
-        /// Получает информацию об игроке по его идентификатору.
+        /// Отримує інформацію про гравця за його ідентифікатором.
         /// </summary>
-        /// <param name="playerId">Идентификатор игрока.</param>
-        /// <returns>Объект Player, представляющий найденного игрока.</returns>
+        /// <param name="playerId">Ідентифікатор гравця.</param>
+        /// <returns>Об'єкт Player, який представляє знайденого гравця.</returns>
         Player GetPlayerById(int playerId);
 
         /// <summary>
-        /// Получает информацию об игроке по его имени пользователя.
+        /// Отримує інформацію про гравця за його іменем користувача.
         /// </summary>
-        /// <param name="username">Имя пользователя игрока.</param>
-        /// <returns>Объект Player, представляющий найденного игрока.</returns>
+        /// <param name="username">Ім'я користувача гравця.</param>
+        /// <returns>Об'єкт Player, який представляє знайденого гравця.</returns>
         Player GetPlayerByUsername(string username);
 
         /// <summary>
-        /// Получает список лучших игроков по количеству побед.
+        /// Отримує список кращих гравців за кількістю перемог.
         /// </summary>
-        /// <param name="count">Количество игроков, которые нужно получить.</param>
-        /// <returns>Список объектов Player, представляющих лучших игроков.</returns>
+        /// <param name="count">Кількість гравців, яких потрібно отримати.</param>
+        /// <returns>Список об'єктів Player, які представляють кращих гравців.</returns>
         IEnumerable<Player> GetTopPlayers(int count);
     }
 }

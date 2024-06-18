@@ -4,36 +4,36 @@ using System.ComponentModel;
 namespace TicTacToe.Models
 {
     /// <summary>
-    /// Модель игры в крестики-нолики.
+    /// Модель гри в хрестики-нулики.
     /// </summary>
     public class Game : IDataErrorInfo
     {
         /// <summary>
-        /// Уникальный идентификатор игры.
+        /// Унікальний ідентифікатор гри.
         /// </summary>
         public int Id { get; set; }
 
         /// <summary>
-        /// Идентификатор игрока, который сыграл эту игру.
+        /// Ідентифікатор гравця, який зіграв цю гру.
         /// </summary>
         public int PlayerId { get; set; }
 
         /// <summary>
-        /// Результат игры. 0 - поражение, 1 - ничья, 2 - победа.
+        /// Результат гри. 0 - поразка, 1 - нічия, 2 - перемога.
         /// </summary>
         public int Result { get; set; }
 
         /// <summary>
-        /// Дата и время окончания игры.
+        /// Дата та час завершення гри.
         /// </summary>
         public DateTime Date { get; set; }
 
         /// <summary>
-        /// Ходы, сделанные в игре (возможно, в виде строки или другого формата).
+        /// Ходи, зроблені в грі (можливо, у вигляді рядка або іншого формату).
         /// </summary>
         public string Moves { get; set; }
 
-        // Реализация IDataErrorInfo для валидации
+        // Реалізація IDataErrorInfo для валідації
 
         public string Error => null;
 
@@ -47,15 +47,15 @@ namespace TicTacToe.Models
                 {
                     case nameof(PlayerId):
                         if (PlayerId <= 0)
-                            error = "Идентификатор игрока должен быть больше нуля.";
+                            error = "Ідентифікатор гравця повинен бути більше нуля.";
                         break;
                     case nameof(Result):
                         if (Result < 0 || Result > 2)
-                            error = "Результат игры должен быть 0 (поражение), 1 (ничья) или 2 (победа).";
+                            error = "Результат гри повинен бути 0 (поразка), 1 (нічия) або 2 (перемога).";
                         break;
                     case nameof(Date):
                         if (Date == DateTime.MinValue)
-                            error = "Необходимо указать дату и время окончания игры.";
+                            error = "Необхідно вказати дату та час завершення гри.";
                         break;
                 }
 

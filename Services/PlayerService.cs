@@ -7,7 +7,7 @@ using TicTacToe.Repositories;
 namespace TicTacToe.Services
 {
     /// <summary>
-    /// Сервис, отвечающий за управление игроками.
+    /// Сервіс, що відповідає за управління гравцями.
     /// </summary>
     public class PlayerService
     {
@@ -19,26 +19,26 @@ namespace TicTacToe.Services
         }
 
         /// <summary>
-        /// Регистрирует нового игрока.
+        /// Реєструє нового гравця.
         /// </summary>
-        /// <param name="username">Имя пользователя.</param>
-        /// <param name="password">Пароль пользователя.</param>
+        /// <param name="username">Ім'я користувача.</param>
+        /// <param name="password">Пароль користувача.</param>
         public void RegisterPlayer(string username, string password)
         {
-            // Проверка на пустые строки
+            // Перевірка на порожні рядки
             if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
-                throw new ArgumentException("Username and password cannot be empty.");
+                throw new ArgumentException("Ім'я користувача та пароль не можуть бути порожніми.");
 
-            // Проверка на длину пароля
+            // Перевірка на довжину пароля
             if (password.Length < 6)
-                throw new ArgumentException("Password must be at least 6 characters long.");
+                throw new ArgumentException("Пароль повинен містити принаймні 6 символів.");
 
-            // Проверка на существование пользователя с таким именем
+            // Перевірка на існування користувача з таким іменем
             var existingPlayer = _playerRepository.GetPlayerByUsername(username);
             if (existingPlayer != null)
-                throw new ArgumentException("Username already exists.");
+                throw new ArgumentException("Ім'я користувача вже існує.");
 
-            // Создание нового игрока
+            // Створення нового гравця
             var player = new Player
             {
                 Username = username,
@@ -51,113 +51,123 @@ namespace TicTacToe.Services
                 LastLogin = DateTime.Now
             };
 
-            // Добавление игрока в репозиторий
+            // Додавання гравця до репозиторію
             _playerRepository.AddPlayer(player);
         }
 
         /// <summary>
-        /// Обновляет профиль игрока.
+        /// Оновлює профіль гравця.
         /// </summary>
-        /// <param name="playerId">Идентификатор игрока.</param>
-        /// <param name="newUsername">Новое имя пользователя.</param>
-        /// <param name="newPassword">Новый пароль пользователя.</param>
+        /// <param name="playerId">Ідентифікатор гравця.</param>
+        /// <param name="newUsername">Нове ім'я користувача.</param>
+        /// <param name="newPassword">Новий пароль користувача.</param>
         public void UpdateProfile(int playerId, string newUsername, string newPassword)
         {
-            // Получение информации об игроке по идентификатору
+            // Отримання інформації про гравця за ідентифікатором
             var player = _playerRepository.GetPlayerById(playerId);
             if (player == null || player.IsDeleted)
-                throw new ArgumentException("Player not found or is deleted.");
+                throw new ArgumentException("Гравця не знайдено або видалено.");
 
-            // Проверка и обновление имени пользователя
+            // Перевірка та оновлення імені користувача
             if (!string.IsNullOrWhiteSpace(newUsername))
             {
                 var existingPlayer = _playerRepository.GetPlayerByUsername(newUsername);
                 if (existingPlayer != null && existingPlayer.Id != playerId)
-                    throw new ArgumentException("Username already exists.");
+                    throw new ArgumentException("Ім'я користувача вже існує.");
 
                 player.Username = newUsername;
             }
 
-            // Проверка и обновление пароля пользователя
+            // Перевірка та оновлення пароля користувача
             if (!string.IsNullOrWhiteSpace(newPassword))
             {
                 if (newPassword.Length < 6)
-                    throw new ArgumentException("Password must be at least 6 characters long.");
+                    throw new ArgumentException("Пароль повинен містити принаймні 6 символів.");
 
                 player.Password = newPassword;
             }
 
-            // Обновление информации об игроке в репозитории
+            // Оновлення інформації про гравця в репозиторії
             _playerRepository.UpdatePlayer(player);
         }
 
         /// <summary>
-        /// Логически удаляет игрока.
+        /// Логічно видаляє гравця.
         /// </summary>
-        /// <param name="playerId">Идентификатор игрока.</param>
+        /// <param name="playerId">Ідентифікатор гравця.</param>
         public void LogicalDeletePlayer(int playerId)
         {
-            // Получение информации об игроке по идентификатору
+            // Отримання інформації про гравця за ідентифікатором
             var player = _playerRepository.GetPlayerById(playerId);
             if (player == null || player.IsDeleted)
-                throw new ArgumentException("Player not found or is already deleted.");
+                throw new ArgumentException("Гравця не знайдено або вже видалено.");
 
-            // Логическое удаление игрока
+            // Логічне видалення гравця
             _playerRepository.DeletePlayer(playerId);
         }
 
         /// <summary>
-        /// Аутентификация игрока.
+        /// Аутентифікація гравця.
         /// </summary>
-        /// <param name="username">Имя пользователя.</param>
-        /// <param name="password">Пароль пользователя.</param>
-        /// <returns>Информация об аутентифицированном игроке.</returns>
+        /// <param name="username">Ім'я користувача.</param>
+        /// <param name="password">Пароль користувача.</param>
+        /// <returns>Інформація про аутентифікованого гравця.</returns>
         public Player Login(string username, string password)
         {
-            // Получение информации об игроке по имени пользователя
+            // Отримання інформації про гравця за ім'ям користувача
             var player = _playerRepository.GetPlayerByUsername(username);
             if (player == null || player.IsDeleted || player.Password != password)
-                throw new ArgumentException("Invalid username or password.");
+                throw new ArgumentException("Неправильне ім'я користувача або пароль.");
 
-            // Обновление времени последнего входа и информации об игроке в репозитории
+            // Оновлення часу останнього входу та інформації про гравця в репозиторії
             player.LastLogin = DateTime.Now;
             _playerRepository.UpdatePlayer(player);
             return player;
         }
 
+        /// <summary>
+        /// Отримує інформацію про гравця за ідентифікатором.
+        /// </summary>
+        /// <param name="playerId">Ідентифікатор гравця.</param>
+        /// <returns>Інформація про гравця.</returns>
         public Player GetPlayerById(int playerId)
         {
             var player = _playerRepository.GetPlayerById(playerId);
             if (player == null || player.IsDeleted)
-                throw new ArgumentException("Player not found or is deleted.");
+                throw new ArgumentException("Гравця не знайдено або видалено.");
 
             return player;
         }
 
         /// <summary>
-        /// Получает информацию об игроке по имени пользователя.
+        /// Отримує інформацію про гравця за ім'ям користувача.
         /// </summary>
-        /// <param name="username">Имя пользователя.</param>
-        /// <returns>Информация об игроке.</returns>
+        /// <param name="username">Ім'я користувача.</param>
+        /// <returns>Інформація про гравця.</returns>
         public Player GetPlayerByUsername(string username)
         {
-            // Получение информации об игроке по имени пользователя
+            // Отримання інформації про гравця за ім'ям користувача
             var player = _playerRepository.GetPlayerByUsername(username);
             if (player == null || player.IsDeleted)
-                throw new ArgumentException("Invalid username.");
+                throw new ArgumentException("Неправильне ім'я користувача.");
 
-            // Обновление времени последнего входа и информации об игроке в репозитории
+            // Оновлення часу останнього входу та інформації про гравця в репозиторії
             player.LastLogin = DateTime.Now;
             _playerRepository.UpdatePlayer(player);
             return player;
         }
 
+        /// <summary>
+        /// Отримує список топ-N гравців за кількістю перемог.
+        /// </summary>
+        /// <param name="count">Кількість гравців, яких потрібно повернути.</param>
+        /// <returns>Список топ-N гравців.</returns>
         public List<Player> GetTopPlayers(int count)
         {
-            // Получаем список всех игроков
+            // Отримання списку всіх гравців
             var allPlayers = _playerRepository.GetTopPlayers(count);
 
-            // Сортируем игроков по количеству побед в убывающем порядке и выбираем первые count игроков
+            // Сортування гравців за кількістю перемог у спадаючому порядку та вибір перших count гравців
             var topPlayers = allPlayers.OrderByDescending(player => player.Wins).Take(count).ToList();
 
             return topPlayers;

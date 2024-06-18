@@ -9,7 +9,7 @@ using TicTacToe.ViewModels;
 namespace TicTacToe.Views
 {
     /// <summary>
-    /// Логика взаимодействия для RegisterPage.xaml
+    /// Логіка взаємодії для RegisterPage.xaml
     /// </summary>
     public partial class RegisterPage : Page
     {
@@ -17,9 +17,9 @@ namespace TicTacToe.Views
         private readonly MainViewModel _mainViewModel;
 
         /// <summary>
-        /// Создает новый экземпляр страницы регистрации.
+        /// Створює новий екземпляр сторінки реєстрації.
         /// </summary>
-        /// <param name="mainViewModel">Модель представления главного окна.</param>
+        /// <param name="mainViewModel">Модель представлення головного вікна.</param>
         public RegisterPage(MainViewModel mainViewModel)
         {
             InitializeComponent();
@@ -30,7 +30,7 @@ namespace TicTacToe.Views
         }
 
         /// <summary>
-        /// Обрабатывает нажатие кнопки регистрации.
+        /// Обробляє натискання кнопки реєстрації.
         /// </summary>
         private void RegisterButton_Click(object sender, RoutedEventArgs e)
         {
@@ -49,7 +49,7 @@ namespace TicTacToe.Views
         }
 
         /// <summary>
-        /// Обрабатывает нажатие кнопки перехода к странице входа.
+        /// Обробляє натискання кнопки переходу на сторінку входу.
         /// </summary>
         private void GoToLoginButton_Click(object sender, RoutedEventArgs e)
         {

@@ -3,6 +3,9 @@ using System.Windows.Controls;
 
 namespace TicTacToe.Views.CustomControls
 {
+    /// <summary>
+    /// Логіка взаємодії для CustomPasswordBox.xaml
+    /// </summary>
     public partial class CustomPasswordBox : UserControl
     {
         public CustomPasswordBox()
@@ -11,6 +14,9 @@ namespace TicTacToe.Views.CustomControls
             PART_PasswordBox.PasswordChanged += OnPasswordChanged;
         }
 
+        /// <summary>
+        /// Властивість для отримання або задання пароля.
+        /// </summary>
         public string Password
         {
             get { return (string)GetValue(PasswordProperty); }
@@ -45,6 +51,9 @@ namespace TicTacToe.Views.CustomControls
             }
         }
 
+        /// <summary>
+        /// Властивість для отримання або задання тексту-заповнювача для поля пароля.
+        /// </summary>
         public string PlaceholderText
         {
             get { return (string)GetValue(PlaceholderTextProperty); }

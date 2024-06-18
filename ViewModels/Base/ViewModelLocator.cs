@@ -1,17 +1,17 @@
 ﻿namespace TicTacToe.ViewModels.Base
 {
     /// <summary>
-    /// Локатор ViewModel, который предоставляет доступ к экземплярам ViewModel в приложении.
+    /// Локатор ViewModel, який надає доступ до екземплярів ViewModel у додатку.
     /// </summary>
     public class ViewModelLocator
     {
         /// <summary>
-        /// Главная ViewModel, управляющая главным окном приложения.
+        /// Головна ViewModel, що управляє головним вікном додатка.
         /// </summary>
         public MainViewModel Main { get; }
 
         /// <summary>
-        /// Создает новый экземпляр ViewModelLocator с главной ViewModel.
+        /// Ініціалізує новий екземпляр ViewModelLocator з головною ViewModel.
         /// </summary>
         public ViewModelLocator()
         {

@@ -9,7 +9,7 @@ using TicTacToe.ViewModels;
 namespace TicTacToe.Views
 {
     /// <summary>
-    /// Логика взаимодействия для LoginPage.xaml
+    /// Логіка взаємодії для LoginPage.xaml
     /// </summary>
     public partial class LoginPage : Page
     {
@@ -17,9 +17,9 @@ namespace TicTacToe.Views
         private readonly MainViewModel _mainViewModel;
 
         /// <summary>
-        /// Создает новый экземпляр LoginPage.
+        /// Створює новий екземпляр LoginPage.
         /// </summary>
-        /// <param name="mainViewModel">Главная ViewModel.</param>
+        /// <param name="mainViewModel">Головна ViewModel.</param>
         public LoginPage(MainViewModel mainViewModel)
         {
             InitializeComponent();
@@ -30,7 +30,7 @@ namespace TicTacToe.Views
         }
 
         /// <summary>
-        /// Обработчик нажатия кнопки входа в систему.
+        /// Обробник натискання кнопки входу в систему.
         /// </summary>
         private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
@@ -39,7 +39,7 @@ namespace TicTacToe.Views
                 var username = UsernameTextBox.Text;
                 var password = PasswordB.Password;
                 var player = _playerService.Login(username, password);
-                MainWindow.SetLoggedInPlayerId(player.Id); // Установка текущего залогиненного пользователя
+                MainWindow.SetLoggedInPlayerId(player.Id); // Встановлення ID поточного залогіненого користувача
                 _mainViewModel.NavigateTo(new GamePage(_mainViewModel));
             }
             catch (Exception ex)
@@ -49,7 +49,7 @@ namespace TicTacToe.Views
         }
 
         /// <summary>
-        /// Обработчик нажатия кнопки перехода на страницу регистрации.
+        /// Обробник натискання кнопки переходу на сторінку реєстрації.
         /// </summary>
         private void GoToRegisterButton_Click(object sender, RoutedEventArgs e)
         {

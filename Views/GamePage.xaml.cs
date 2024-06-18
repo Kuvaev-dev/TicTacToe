@@ -9,7 +9,7 @@ using TicTacToe.ViewModels;
 namespace TicTacToe.Views
 {
     /// <summary>
-    /// Логика взаимодействия для GamePage.xaml
+    /// Логіка взаємодії для GamePage.xaml
     /// </summary>
     public partial class GamePage : Page
     {
@@ -19,9 +19,9 @@ namespace TicTacToe.Views
         private bool _isGameStarted;
 
         /// <summary>
-        /// Создает новый экземпляр GamePage.
+        /// Створює новий екземпляр GamePage.
         /// </summary>
-        /// <param name="mainViewModel">Главная ViewModel.</param>
+        /// <param name="mainViewModel">Головна ViewModel.</param>
         public GamePage(MainViewModel mainViewModel)
         {
             InitializeComponent();
@@ -37,14 +37,14 @@ namespace TicTacToe.Views
         }
 
         /// <summary>
-        /// Обработчик события для кнопки "Начать игру".
-        /// Проверяет, выбран ли уровень бота перед началом игры.
+        /// Обробник події для кнопки "Почати гру".
+        /// Перевіряє, чи вибрано рівень бота перед початком гри.
         /// </summary>
         private void StartGameButton_Click(object sender, RoutedEventArgs e)
         {
             if (BotLevelComboBox.SelectedItem == null)
             {
-                MessageBox.Show("Будь-ласка, оберіть складність бота перед початком гри.", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Будь ласка, оберіть складність бота перед початком гри.", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
@@ -58,14 +58,14 @@ namespace TicTacToe.Views
         }
 
         /// <summary>
-        /// Обработчик события для клика по клетке игры.
-        /// Проверяет, начата ли игра перед тем, как позволить ход.
+        /// Обробник події для кліку по клітинці гри.
+        /// Перевіряє, чи почата гра перед дозволом ходу.
         /// </summary>
         private void Cell_Click(object sender, RoutedEventArgs e)
         {
             if (!_isGameStarted)
             {
-                MessageBox.Show("Будь-ласка, почніть гру перед тим, як робити ходи.", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Будь ласка, почніть гру перед тим, як робити ходи.", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
@@ -94,7 +94,7 @@ namespace TicTacToe.Views
         }
 
         /// <summary>
-        /// Показывает подсказку для хода, если включена соответствующая опция.
+        /// Показує підказку для ходу, якщо включена відповідна опція.
         /// </summary>
         private void ShowHint()
         {
@@ -107,7 +107,7 @@ namespace TicTacToe.Views
         }
 
         /// <summary>
-        /// Обновляет игровое поле в соответствии с текущим состоянием игры.
+        /// Оновлює ігрове поле відповідно до поточного стану гри.
         /// </summary>
         private void UpdateBoard()
         {
@@ -124,24 +124,24 @@ namespace TicTacToe.Views
 
                     if (cellContent == 'X')
                     {
-                        button.Foreground = Brushes.Blue; // Синий цвет для крестика
+                        button.Foreground = Brushes.Blue; // Синій колір для хрестика
                     }
                     else if (cellContent == 'O')
                     {
-                        button.Foreground = Brushes.Red; // Красный цвет для нолика
+                        button.Foreground = Brushes.Red; // Червоний колір для нолика
                     }
                     else
                     {
-                        button.Foreground = Brushes.Black; // Цвет по умолчанию
+                        button.Foreground = Brushes.Black; // Колір за замовчуванням
                     }
 
-                    button.Background = Brushes.White; // Сбрасываем цвет фона
+                    button.Background = Brushes.White; // Скидаємо колір фону
                 }
             }
         }
 
         /// <summary>
-        /// Обновляет результаты игрока после завершения игры.
+        /// Оновлює результати гравця після завершення гри.
         /// </summary>
         private void UpdateScores()
         {
@@ -152,7 +152,7 @@ namespace TicTacToe.Views
         }
 
         /// <summary>
-        /// Обновляет информацию об игроке.
+        /// Оновлює інформацію про гравця.
         /// </summary>
         private void UpdatePlayerInfo()
         {
@@ -164,7 +164,7 @@ namespace TicTacToe.Views
         }
 
         /// <summary>
-        /// Переход на страницу профиля игрока.
+        /// Перехід на сторінку профілю гравця.
         /// </summary>
         private void GoToProfileButton_Click(object sender, RoutedEventArgs e)
         {
@@ -172,7 +172,7 @@ namespace TicTacToe.Views
         }
 
         /// <summary>
-        /// Переход на страницу рейтинга игроков.
+        /// Перехід на сторінку рейтингу гравців.
         /// </summary>
         private void RatingButton_Click(object sender, RoutedEventArgs e)
         {

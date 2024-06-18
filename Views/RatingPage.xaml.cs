@@ -8,6 +8,9 @@ using TicTacToe.ViewModels;
 
 namespace TicTacToe.Views
 {
+    /// <summary>
+    /// Логіка взаємодії для RatingPage.xaml
+    /// </summary>
     public partial class RatingPage : Page
     {
         private readonly PlayerService _playerService;
@@ -25,8 +28,8 @@ namespace TicTacToe.Views
         {
             try
             {
-                var topPlayers = _playerService.GetTopPlayers(5); // Получение топ-5 игроков
-                RatingDataGrid.ItemsSource = topPlayers; // Привязка к элементу управления для отображения рейтинга
+                var topPlayers = _playerService.GetTopPlayers(5); // Отримання топ-5 гравців
+                RatingDataGrid.ItemsSource = topPlayers; // Прив'язка до елементу управління для відображення рейтингу
             }
             catch (Exception ex)
             {

@@ -9,7 +9,7 @@ using TicTacToe.ViewModels;
 namespace TicTacToe.Views
 {
     /// <summary>
-    /// Логика взаимодействия для ProfilePage.xaml
+    /// Логіка взаємодії для ProfilePage.xaml
     /// </summary>
     public partial class ProfilePage : Page
     {
@@ -17,9 +17,9 @@ namespace TicTacToe.Views
         private readonly MainViewModel _mainViewModel;
 
         /// <summary>
-        /// Создает новый экземпляр ProfilePage.
+        /// Створює новий екземпляр ProfilePage.
         /// </summary>
-        /// <param name="mainViewModel">Главная ViewModel.</param>
+        /// <param name="mainViewModel">Головна ViewModel.</param>
         public ProfilePage(MainViewModel mainViewModel)
         {
             InitializeComponent();
@@ -31,7 +31,7 @@ namespace TicTacToe.Views
         }
 
         /// <summary>
-        /// Загружает данные игрока и отображает их на странице профиля.
+        /// Завантажує дані гравця і відображає їх на сторінці профілю.
         /// </summary>
         private void LoadPlayerData()
         {
@@ -53,7 +53,7 @@ namespace TicTacToe.Views
         }
 
         /// <summary>
-        /// Обработчик нажатия кнопки обновления профиля.
+        /// Обробник натискання кнопки оновлення профілю.
         /// </summary>
         private void UpdateProfileButton_Click(object sender, RoutedEventArgs e)
         {
@@ -72,7 +72,7 @@ namespace TicTacToe.Views
         }
 
         /// <summary>
-        /// Обработчик нажатия кнопки удаления аккаунта.
+        /// Обробник натискання кнопки видалення акаунта.
         /// </summary>
         private void DeleteAccountButton_Click(object sender, RoutedEventArgs e)
         {
@@ -91,7 +91,7 @@ namespace TicTacToe.Views
         }
 
         /// <summary>
-        /// Обработчик нажатия кнопки выхода из системы.
+        /// Обробник натискання кнопки виходу з системи.
         /// </summary>
         private void LogoutButton_Click(object sender, RoutedEventArgs e)
         {

@@ -5,14 +5,14 @@ using TicTacToe.Views;
 namespace TicTacToe.ViewModels
 {
     /// <summary>
-    /// ViewModel, управляющая главным окном приложения.
+    /// ViewModel, що управляє головним вікном додатка.
     /// </summary>
     public class MainViewModel : ViewModelBase
     {
         private Page _currentPage;
 
         /// <summary>
-        /// Текущая страница в главном окне приложения.
+        /// Поточна сторінка в головному вікні додатка.
         /// </summary>
         public Page CurrentPage
         {
@@ -25,17 +25,18 @@ namespace TicTacToe.ViewModels
         }
 
         /// <summary>
-        /// Создает экземпляр MainViewModel с начальной страницей входа.
+        /// Створює екземпляр MainViewModel зі стартовою сторінкою входу.
         /// </summary>
         public MainViewModel()
         {
+            // Встановлюємо початкову сторінку входу
             CurrentPage = new LoginPage(this);
         }
 
         /// <summary>
-        /// Перенаправляет на указанную страницу.
+        /// Навігація на вказану сторінку.
         /// </summary>
-        /// <param name="page">Страница для навигации.</param>
+        /// <param name="page">Сторінка для навігації.</param>
         public void NavigateTo(Page page)
         {
             CurrentPage = page;

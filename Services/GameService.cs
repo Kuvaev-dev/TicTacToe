@@ -6,7 +6,7 @@ using TicTacToe.Views;
 namespace TicTacToe.Services
 {
     /// <summary>
-    /// Сервис для управления игровым процессом и взаимодействия с игроками и ботами.
+    /// Сервіс для керування грою та взаємодії з гравцями та ботами.
     /// </summary>
     public class GameService
     {
@@ -17,22 +17,22 @@ namespace TicTacToe.Services
         private IBot _bot;
 
         /// <summary>
-        /// Инициализирует новый экземпляр класса GameService с указанными репозиториями.
+        /// Ініціалізує новий екземпляр класу GameService з вказаними репозиторіями.
         /// </summary>
-        /// <param name="gameRepository">Репозиторий для работы с данными об играх.</param>
-        /// <param name="playerRepository">Репозиторий для работы с данными об игроках.</param>
+        /// <param name="gameRepository">Репозиторій для роботи з даними про ігри.</param>
+        /// <param name="playerRepository">Репозиторій для роботи з даними про гравців.</param>
         public GameService(IGameRepository gameRepository, IPlayerRepository playerRepository)
         {
             _gameRepository = gameRepository;
             _playerRepository = playerRepository;
             _board = new char[3, 3];
-            _currentPlayer = 'X'; // 'X' для игрока, 'O' для бота
+            _currentPlayer = 'X'; // 'X' для гравця, 'O' для бота
         }
 
         /// <summary>
-        /// Начинает новую игру с заданным уровнем сложности бота.
+        /// Розпочинає нову гру з вказаним рівнем складності бота.
         /// </summary>
-        /// <param name="botLevel">Уровень сложности бота.</param>
+        /// <param name="botLevel">Рівень складності бота.</param>
         public void StartNewGame(string botLevel)
         {
             _board = new char[3, 3];
@@ -40,26 +40,26 @@ namespace TicTacToe.Services
 
             _bot = botLevel switch
             {
-                "НОВИЧОК" => new SimpleBot(),
-                "ЗАЩИТА" => new DefensiveBot(),
-                "НАПАДЕНИЕ" => new OffensiveBot(),
-                "ГУРУ" => new GuruBot(),
-                "ИИ" => new AIBot(),
+                "Новачок" => new SimpleBot(),
+                "Захист" => new DefensiveBot(),
+                "Напад" => new OffensiveBot(),
+                "Гуру" => new GuruBot(),
+                "ШІ" => new AIBot(),
                 _ => new SimpleBot(),
             };
         }
 
         /// <summary>
-        /// Возвращает текущего игрока (X - игрок, O - бот).
+        /// Повертає поточного гравця (X - гравець, O - бот).
         /// </summary>
         public char GetCurrentPlayer() => _currentPlayer;
 
         /// <summary>
-        /// Выполняет ход в указанную ячейку игрового поля.
+        /// Виконує хід у вказану клітинку ігрового поля.
         /// </summary>
-        /// <param name="row">Номер строки.</param>
-        /// <param name="col">Номер столбца.</param>
-        /// <returns>True, если ход выполнен успешно, иначе false.</returns>
+        /// <param name="row">Номер рядка.</param>
+        /// <param name="col">Номер стовпця.</param>
+        /// <returns>True, якщо хід виконаний успішно, інакше false.</returns>
         public bool MakeMove(int row, int col)
         {
             if (_board[row, col] == '\0')
@@ -88,21 +88,21 @@ namespace TicTacToe.Services
         }
 
         /// <summary>
-        /// Возвращает подсказку для следующего хода бота.
+        /// Повертає підказку для наступного ходу бота.
         /// </summary>
-        /// <returns>Координаты ячейки для следующего хода.</returns>
+        /// <returns>Координати клітинки для наступного ходу.</returns>
         public (int row, int col) GetHint()
         {
             return _bot.GetNextMove(_board);
         }
 
         /// <summary>
-        /// Проверяет, есть ли победитель в текущем состоянии игрового поля.
+        /// Перевіряє, чи є переможець в поточному стані ігрового поля.
         /// </summary>
-        /// <returns>True, если есть победитель, иначе false.</returns>
+        /// <returns>True, якщо є переможець, інакше false.</returns>
         public bool CheckWinner()
         {
-            // Проверка строк, столбцов и диагоналей
+            // Перевірка рядків, стовпців і діагоналей
             for (int i = 0; i < 3; i++)
             {
                 if (_board[i, 0] != '\0' && _board[i, 0] == _board[i, 1] && _board[i, 1] == _board[i, 2])
@@ -120,9 +120,9 @@ namespace TicTacToe.Services
         }
 
         /// <summary>
-        /// Обновляет статистику игрока и бота после завершения игры.
+        /// Оновлює статистику гравця і бота після завершення гри.
         /// </summary>
-        /// <param name="winner">Победитель ("Player" или "Bot").</param>
+        /// <param name="winner">Переможець ("Player" або "Bot").</param>
         private void UpdateGameStats(string winner)
         {
             var playerId = MainWindow.GetLoggedInPlayerId();
@@ -151,9 +151,9 @@ namespace TicTacToe.Services
         }
 
         /// <summary>
-        /// Возвращает текущее состояние игрового поля.
+        /// Повертає поточний стан ігрового поля.
         /// </summary>
-        /// <returns>Массив символов, представляющий игровое поле.</returns>
+        /// <returns>Масив символів, що представляє ігрове поле.</returns>
         public char[,] GetBoard() => _board;
     }
 }

@@ -4,33 +4,36 @@ using TicTacToe.ViewModels;
 namespace TicTacToe.Views
 {
     /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
+    /// Логіка взаємодії для MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
         /// <summary>
-        /// Возвращает или устанавливает идентификатор вошедшего в систему игрока.
+        /// Властивість, яка повертає або встановлює ідентифікатор ввійшовшого в систему гравця.
         /// </summary>
         public static int LoggedInPlayerId { get; private set; }
 
+        /// <summary>
+        /// Конструктор головного вікна.
+        /// </summary>
         public MainWindow()
         {
             InitializeComponent();
         }
 
         /// <summary>
-        /// Устанавливает идентификатор вошедшего в систему игрока.
+        /// Встановлює ідентифікатор ввійшовшого в систему гравця.
         /// </summary>
-        /// <param name="playerId">Идентификатор игрока.</param>
+        /// <param name="playerId">Ідентифікатор гравця.</param>
         public static void SetLoggedInPlayerId(int playerId)
         {
             LoggedInPlayerId = playerId;
         }
 
         /// <summary>
-        /// Возвращает идентификатор вошедшего в систему игрока.
+        /// Повертає ідентифікатор ввійшовшого в систему гравця.
         /// </summary>
-        /// <returns>Идентификатор игрока.</returns>
+        /// <returns>Ідентифікатор гравця.</returns>
         public static int GetLoggedInPlayerId()
         {
             return LoggedInPlayerId;
