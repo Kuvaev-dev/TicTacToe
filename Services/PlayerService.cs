@@ -125,6 +125,15 @@ namespace TicTacToe.Services
             return player;
         }
 
+        public Player GetPlayerById(int playerId)
+        {
+            var player = _playerRepository.GetPlayerById(playerId);
+            if (player == null || player.IsDeleted)
+                throw new ArgumentException("Player not found or is deleted.");
+
+            return player;
+        }
+
         /// <summary>
         /// Получает информацию об игроке по имени пользователя.
         /// </summary>

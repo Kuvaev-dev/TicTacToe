@@ -17,9 +17,9 @@ namespace TicTacToe.Views
         private readonly MainViewModel _mainViewModel;
 
         /// <summary>
-        /// Создает новый экземпляр страницы профиля.
+        /// Создает новый экземпляр ProfilePage.
         /// </summary>
-        /// <param name="mainViewModel">Модель представления главного окна.</param>
+        /// <param name="mainViewModel">Главная ViewModel.</param>
         public ProfilePage(MainViewModel mainViewModel)
         {
             InitializeComponent();
@@ -27,10 +27,33 @@ namespace TicTacToe.Views
             var playerRepository = new PlayerRepository(connectionString);
             _playerService = new PlayerService(playerRepository);
             _mainViewModel = mainViewModel;
+            LoadPlayerData();
         }
 
         /// <summary>
-        /// Обрабатывает нажатие кнопки обновления профиля.
+        /// Загружает данные игрока и отображает их на странице профиля.
+        /// </summary>
+        private void LoadPlayerData()
+        {
+            try
+            {
+                var playerId = MainWindow.GetLoggedInPlayerId();
+                var player = _playerService.GetPlayerById(playerId);
+
+                PlayerWinsTextBlock.Text = player.Wins.ToString();
+                PlayerLossesTextBlock.Text = player.Losses.ToString();
+                PlayerDrawsTextBlock.Text = player.Draws.ToString();
+                NewUsernameTextBox.Text = player.Username.ToString();
+                NewPasswordBox.Password = player.Password.ToString();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Помилка завантаження даних гравця: {ex.Message}", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        /// <summary>
+        /// Обработчик нажатия кнопки обновления профиля.
         /// </summary>
         private void UpdateProfileButton_Click(object sender, RoutedEventArgs e)
         {
@@ -40,16 +63,16 @@ namespace TicTacToe.Views
                 var newUsername = NewUsernameTextBox.Text;
                 var newPassword = NewPasswordBox.Password;
                 _playerService.UpdateProfile(playerId, newUsername, newPassword);
-                MessageBox.Show("Профиль успешно обновлен!");
+                MessageBox.Show("Профіль успішно оновлено!", "Інформація", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Ошибка: {ex.Message}");
+                MessageBox.Show($"{ex.Message}", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
         /// <summary>
-        /// Обрабатывает нажатие кнопки удаления аккаунта.
+        /// Обработчик нажатия кнопки удаления аккаунта.
         /// </summary>
         private void DeleteAccountButton_Click(object sender, RoutedEventArgs e)
         {
@@ -57,21 +80,25 @@ namespace TicTacToe.Views
             {
                 var playerId = MainWindow.GetLoggedInPlayerId();
                 _playerService.LogicalDeletePlayer(playerId);
-                MessageBox.Show("Аккаунт успешно удален!");
+                MessageBox.Show("Акаунт успішно видалено!", "Інформація", MessageBoxButton.OK, MessageBoxImage.Error);
                 MainWindow.SetLoggedInPlayerId(0);
                 _mainViewModel.NavigateTo(new LoginPage(_mainViewModel));
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Ошибка: {ex.Message}");
+                MessageBox.Show($"{ex.Message}", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
         /// <summary>
-        /// Обрабатывает нажатие кнопки выхода из аккаунта.
+        /// Обработчик нажатия кнопки выхода из системы.
         /// </summary>
         private void LogoutButton_Click(object sender, RoutedEventArgs e)
         {
+            var mainWindow = (MainWindow)Application.Current.MainWindow;
+            var navigationService = mainWindow.MainFrame.NavigationService;
+            while (navigationService.RemoveBackEntry() != null) { }
+
             MainWindow.SetLoggedInPlayerId(0);
             _mainViewModel.NavigateTo(new LoginPage(_mainViewModel));
         }

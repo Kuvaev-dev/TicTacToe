@@ -39,12 +39,12 @@ namespace TicTacToe.Views
                 var username = UsernameTextBox.Text;
                 var password = PasswordB.Password;
                 _playerService.RegisterPlayer(username, password);
-                MessageBox.Show("Регистрация успешна!");
+                MessageBox.Show("Реєстрація успішна!", "Інформація", MessageBoxButton.OK, MessageBoxImage.Information);
                 _mainViewModel.NavigateTo(new LoginPage(_mainViewModel));
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Ошибка: {ex.Message}");
+                MessageBox.Show($"{ex.Message}", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 

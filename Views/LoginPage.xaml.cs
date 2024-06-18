@@ -17,7 +17,7 @@ namespace TicTacToe.Views
         private readonly MainViewModel _mainViewModel;
 
         /// <summary>
-        /// Создает новый экземпляр GamePage.
+        /// Создает новый экземпляр LoginPage.
         /// </summary>
         /// <param name="mainViewModel">Главная ViewModel.</param>
         public LoginPage(MainViewModel mainViewModel)
@@ -29,6 +29,9 @@ namespace TicTacToe.Views
             _mainViewModel = mainViewModel;
         }
 
+        /// <summary>
+        /// Обработчик нажатия кнопки входа в систему.
+        /// </summary>
         private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -41,10 +44,13 @@ namespace TicTacToe.Views
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error: {ex.Message}");
+                MessageBox.Show($"{ex.Message}", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
+        /// <summary>
+        /// Обработчик нажатия кнопки перехода на страницу регистрации.
+        /// </summary>
         private void GoToRegisterButton_Click(object sender, RoutedEventArgs e)
         {
             _mainViewModel.NavigateTo(new RegisterPage(_mainViewModel));

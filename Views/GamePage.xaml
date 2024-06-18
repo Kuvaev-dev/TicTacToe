@@ -39,7 +39,8 @@
                 <TextBlock Text="{StaticResource StringCurrentPlayer}" 
                        Foreground="{StaticResource ForegroundBrush}"
                        FontWeight="Bold"/>
-                <TextBlock Name="CurrentPlayerTextBlock"/>
+                <TextBlock x:Name="CurrentPlayerTextBlock"
+                           Foreground="{StaticResource ForegroundBrush}"/>
             </StackPanel>
             <StackPanel Orientation="Vertical" 
                         Margin="10"

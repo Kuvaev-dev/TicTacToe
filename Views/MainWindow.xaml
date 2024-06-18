@@ -10,5 +10,5 @@
         WindowStartupLocation="CenterScreen"
         Icon="/TicTacToe;component/Resources/GameLogo.ico"
         DataContext="{Binding Main, Source={StaticResource Locator}}">
-    <Frame Content="{Binding CurrentPage}"/>
+    <Frame x:Name="MainFrame" Content="{Binding CurrentPage}"/>
 </Window>

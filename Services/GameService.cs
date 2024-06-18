@@ -1,6 +1,7 @@
 ﻿using System;
 using TicTacToe.Bots;
 using TicTacToe.Repositories;
+using TicTacToe.Views;
 
 namespace TicTacToe.Services
 {
@@ -77,7 +78,7 @@ namespace TicTacToe.Services
                     _board[move.row, move.col] = 'O';
                     if (CheckWinner())
                     {
-                        UpdateGameStats(_currentPlayer == 'X' ? "Player" : "Bot");
+                        UpdateGameStats("Bot");
                         return true;
                     }
                     _currentPlayer = 'X';
@@ -124,21 +125,29 @@ namespace TicTacToe.Services
         /// <param name="winner">Победитель ("Player" или "Bot").</param>
         private void UpdateGameStats(string winner)
         {
-            // Обновление статистики игрока и бота в базе данных
+            var playerId = MainWindow.GetLoggedInPlayerId();
+            var player = _playerRepository.GetPlayerById(playerId);
+
+            if (player == null)
+            {
+                throw new ArgumentException("Player not found.");
+            }
+
             if (winner == "Player")
             {
-                var player = _playerRepository.GetPlayerById(1); // Пример ID игрока
                 player.Wins++;
-                player.GamesPlayed++;
-                _playerRepository.UpdatePlayer(player);
             }
             else if (winner == "Bot")
             {
-                var botPlayer = _playerRepository.GetPlayerById(2); // Пример ID бота
-                botPlayer.Wins++;
-                botPlayer.GamesPlayed++;
-                _playerRepository.UpdatePlayer(botPlayer);
+                player.Losses++;
             }
+            else
+            {
+                player.Draws++;
+            }
+
+            player.GamesPlayed++;
+            _playerRepository.UpdatePlayer(player);
         }
 
         /// <summary>

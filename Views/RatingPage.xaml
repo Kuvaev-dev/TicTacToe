@@ -34,8 +34,7 @@
                   Foreground="{StaticResource HoverTextBrush}"
                   Background="{StaticResource ButtonBackgroundBrush}"
                   Margin="10"
-                  Grid.Row="2"
-                  Width="275">
+                  Grid.Row="2">
             <DataGrid.CellStyle>
                 <Style TargetType="DataGridCell">
                     <Setter Property="Background" Value="Transparent"/>

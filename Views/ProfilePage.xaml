@@ -55,7 +55,8 @@
                        Grid.Column="0"
                        Foreground="{StaticResource ForegroundBrush}"
                        HorizontalAlignment="Center"
-                       VerticalAlignment="Center"/>
+                       VerticalAlignment="Center"
+                       x:Name="PlayerWinsTextBlock"/>
             <TextBlock Text="{StaticResource StringLosses}"
                        Grid.Row="0"
                        Grid.Column="1"
@@ -68,7 +69,8 @@
                        Grid.Column="1"
                        Foreground="{StaticResource ForegroundBrush}"
                        HorizontalAlignment="Center"
-                       VerticalAlignment="Center"/>
+                       VerticalAlignment="Center"
+                       x:Name="PlayerLossesTextBlock"/>
             <TextBlock Text="{StaticResource StringDraws}"
                        Grid.Row="0"
                        Grid.Column="2"
@@ -81,7 +83,8 @@
                        Grid.Column="2"
                        Foreground="{StaticResource ForegroundBrush}"
                        HorizontalAlignment="Center"
-                       VerticalAlignment="Center"/>
+                       VerticalAlignment="Center"
+                       x:Name="PlayerDrawsTextBlock"/>
         </Grid>
         <customControls:CustomInput 
             Grid.Row="3"
