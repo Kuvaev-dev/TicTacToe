@@ -3,14 +3,16 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:customControls="clr-namespace:TicTacToe.Views.CustomControls"
       mc:Ignorable="d"
       Title="Рейтинг"
-      Background="{StaticResource ButtonBackgroundBrush}">
+      Background="{DynamicResource ButtonBackgroundBrush}">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
             <RowDefinition Height="50"/>
             <RowDefinition/>
+            <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
         <Image Source="/TicTacToe;component/Resources/GameName.png"
                HorizontalAlignment="Center"
@@ -18,21 +20,21 @@
                Width="150"
                Grid.Row="0"
                Margin="10"/>
-        <TextBlock Text="{StaticResource StringRating}"
+        <TextBlock Text="{DynamicResource StringRating}"
                    Grid.Row="1"
                    FontSize="14"
                    Margin="10"
                    HorizontalAlignment="Center"
                    VerticalAlignment="Center"
-                   Foreground="{StaticResource ForegroundBrush}"/>
+                   Foreground="{DynamicResource ForegroundBrush}"/>
         <DataGrid x:Name="RatingDataGrid" 
                   AutoGenerateColumns="False" 
                   HorizontalAlignment="Stretch" 
                   VerticalAlignment="Stretch"
-                  RowBackground="{StaticResource ForegroundBrush}"
-                  AlternatingRowBackground="{StaticResource AlternatingRowBrush}"
-                  Foreground="{StaticResource HoverTextBrush}"
-                  Background="{StaticResource ButtonBackgroundBrush}"
+                  RowBackground="{DynamicResource ForegroundBrush}"
+                  AlternatingRowBackground="{DynamicResource AlternatingRowBrush}"
+                  Foreground="{DynamicResource HoverTextBrush}"
+                  Background="{DynamicResource ButtonBackgroundBrush}"
                   Margin="10"
                   Grid.Row="2">
             <DataGrid.CellStyle>
@@ -47,5 +49,19 @@
                 <DataGridTextColumn Header="{DynamicResource StringDraws}" Binding="{Binding Draws}"/>
             </DataGrid.Columns>
         </DataGrid>
+        <customControls:CustomComboBox 
+                x:Name="LanguagesComboBox" 
+                Grid.Row="3"
+                Width="150"
+                Height="30"
+                Margin="10"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center"
+                SelectionChanged="LanguagesComboBox_SelectionChanged">
+            <customControls:CustomComboBox.Items>
+                <ComboBoxItem Content="Українська"/>
+                <ComboBoxItem Content="English"/>
+            </customControls:CustomComboBox.Items>
+        </customControls:CustomComboBox>
     </Grid>
 </Page>

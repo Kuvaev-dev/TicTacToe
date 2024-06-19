@@ -7,7 +7,7 @@
       mc:Ignorable="d" 
       d:DesignHeight="550" d:DesignWidth="800"
       Title="Крестики-нолики"
-      Background="{StaticResource ButtonBackgroundBrush}">
+      Background="{DynamicResource ButtonBackgroundBrush}">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -27,7 +27,7 @@
                     Grid.Row="1">
             <customControls:CustomButton 
                     x:Name="StartGameButton" 
-                    Content="{StaticResource StringStartGame}" 
+                    Content="{DynamicResource StringStartGame}" 
                     Click="StartGameButton_Click" 
                     Margin="10"
                     Width="150"
@@ -36,34 +36,34 @@
                         Margin="10"
                         VerticalAlignment="Center"
                         HorizontalAlignment="Left">
-                <TextBlock Text="{StaticResource StringCurrentPlayer}" 
-                       Foreground="{StaticResource ForegroundBrush}"
+                <TextBlock Text="{DynamicResource StringCurrentPlayer}" 
+                       Foreground="{DynamicResource ForegroundBrush}"
                        FontWeight="Bold"/>
                 <TextBlock x:Name="CurrentPlayerTextBlock"
-                           Foreground="{StaticResource ForegroundBrush}"/>
+                           Foreground="{DynamicResource ForegroundBrush}"/>
             </StackPanel>
             <StackPanel Orientation="Vertical" 
                         Margin="10"
                         VerticalAlignment="Center"
                         HorizontalAlignment="Left">
-                <TextBlock Text="{StaticResource StringPlayer}"
-                           Foreground="{StaticResource ForegroundBrush}"
+                <TextBlock Text="{DynamicResource StringPlayer}"
+                           Foreground="{DynamicResource ForegroundBrush}"
                            FontWeight="Bold"
                            />
                 <TextBlock Name="PlayerScoreTextBlock" 
                            Text="0"
-                           Foreground="{StaticResource ForegroundBrush}"/>
+                           Foreground="{DynamicResource ForegroundBrush}"/>
             </StackPanel>
             <StackPanel Orientation="Vertical" 
                         Margin="10"
                         VerticalAlignment="Center"
                         HorizontalAlignment="Left">
-                <TextBlock Text="{StaticResource StringComputer}"
-                           Foreground="{StaticResource ForegroundBrush}"
+                <TextBlock Text="{DynamicResource StringComputer}"
+                           Foreground="{DynamicResource ForegroundBrush}"
                            FontWeight="Bold"/>
                 <TextBlock Name="ComputerScoreTextBlock" 
                            Text="0"
-                           Foreground="{StaticResource ForegroundBrush}"/>
+                           Foreground="{DynamicResource ForegroundBrush}"/>
             </StackPanel>
             <customControls:CustomComboBox 
                       x:Name="BotLevelComboBox" 
@@ -72,20 +72,20 @@
                       Margin="10"
                       VerticalAlignment="Center"
                       HorizontalAlignment="Left">
-                <ComboBoxItem Content="{StaticResource StringBeginner}"/>
-                <ComboBoxItem Content="{StaticResource StringDefense}"/>
-                <ComboBoxItem Content="{StaticResource StringOffense}"/>
-                <ComboBoxItem Content="{StaticResource StringGuru}"/>
-                <ComboBoxItem Content="{StaticResource StringAI}"/>
+                <ComboBoxItem Content="{DynamicResource StringBeginner}"/>
+                <ComboBoxItem Content="{DynamicResource StringDefense}"/>
+                <ComboBoxItem Content="{DynamicResource StringOffense}"/>
+                <ComboBoxItem Content="{DynamicResource StringGuru}"/>
+                <ComboBoxItem Content="{DynamicResource StringAI}"/>
             </customControls:CustomComboBox>
             <customControls:CustomCheckBox 
                 x:Name="HintCheckBox" 
-                Content="{StaticResource StringHint}" 
+                Content="{DynamicResource StringHint}" 
                 Margin="10"
                 Height="30"
                 VerticalAlignment="Center"
                 HorizontalAlignment="Left"
-                Foreground="{StaticResource ForegroundBrush}"/>
+                Foreground="{DynamicResource ForegroundBrush}"/>
         </StackPanel>
         <UniformGrid Grid.Row="2" 
                      Rows="3" 
@@ -97,15 +97,15 @@
                      VerticalAlignment="Center"
                      HorizontalAlignment="Center"
                      >
-            <Button Name="Cell00" Click="Cell_Click" FontSize="60" Background="{StaticResource ForegroundBrush}"/>
-            <Button Name="Cell01" Click="Cell_Click" FontSize="60" Background="{StaticResource ForegroundBrush}"/>
-            <Button Name="Cell02" Click="Cell_Click" FontSize="60" Background="{StaticResource ForegroundBrush}"/>
-            <Button Name="Cell10" Click="Cell_Click" FontSize="60" Background="{StaticResource ForegroundBrush}"/>
-            <Button Name="Cell11" Click="Cell_Click" FontSize="60" Background="{StaticResource ForegroundBrush}"/>
-            <Button Name="Cell12" Click="Cell_Click" FontSize="60" Background="{StaticResource ForegroundBrush}"/>
-            <Button Name="Cell20" Click="Cell_Click" FontSize="60" Background="{StaticResource ForegroundBrush}"/>
-            <Button Name="Cell21" Click="Cell_Click" FontSize="60" Background="{StaticResource ForegroundBrush}"/>
-            <Button Name="Cell22" Click="Cell_Click" FontSize="60" Background="{StaticResource ForegroundBrush}"/>
+            <Button Name="Cell00" Click="Cell_Click" FontSize="60" Background="{DynamicResource ForegroundBrush}"/>
+            <Button Name="Cell01" Click="Cell_Click" FontSize="60" Background="{DynamicResource ForegroundBrush}"/>
+            <Button Name="Cell02" Click="Cell_Click" FontSize="60" Background="{DynamicResource ForegroundBrush}"/>
+            <Button Name="Cell10" Click="Cell_Click" FontSize="60" Background="{DynamicResource ForegroundBrush}"/>
+            <Button Name="Cell11" Click="Cell_Click" FontSize="60" Background="{DynamicResource ForegroundBrush}"/>
+            <Button Name="Cell12" Click="Cell_Click" FontSize="60" Background="{DynamicResource ForegroundBrush}"/>
+            <Button Name="Cell20" Click="Cell_Click" FontSize="60" Background="{DynamicResource ForegroundBrush}"/>
+            <Button Name="Cell21" Click="Cell_Click" FontSize="60" Background="{DynamicResource ForegroundBrush}"/>
+            <Button Name="Cell22" Click="Cell_Click" FontSize="60" Background="{DynamicResource ForegroundBrush}"/>
         </UniformGrid>
         <StackPanel Orientation="Horizontal" 
                     Grid.Row="3" 
@@ -113,17 +113,30 @@
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center">
             <customControls:CustomButton 
-                Content="{StaticResource StringProfile}" 
+                Content="{DynamicResource StringProfile}" 
                 Click="GoToProfileButton_Click" 
                 Margin="10"
                 Width="150"
                 Height="30"/>
             <customControls:CustomButton 
-                Content="{StaticResource StringRating}" 
+                Content="{DynamicResource StringRating}" 
                 Click="RatingButton_Click"
                 Margin="10"
                 Width="150"
                 Height="30"/>
+            <customControls:CustomComboBox 
+                x:Name="LanguagesComboBox" 
+                Width="150"
+                Height="30"
+                Margin="10"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Left"
+                SelectionChanged="LanguagesComboBox_SelectionChanged">      
+                <customControls:CustomComboBox.Items>
+                    <ComboBoxItem Content="Українська"/>
+                    <ComboBoxItem Content="English"/>
+                </customControls:CustomComboBox.Items>
+            </customControls:CustomComboBox>
         </StackPanel>
     </Grid>
 </Page>

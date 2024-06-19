@@ -5,6 +5,7 @@ using System.Windows.Controls;
 using TicTacToe.Repositories;
 using TicTacToe.Services;
 using TicTacToe.ViewModels;
+using TicTacToe.Views.Utils;
 
 namespace TicTacToe.Views
 {
@@ -99,6 +100,9 @@ namespace TicTacToe.Views
             Logout();
         }
 
+        /// <summary>
+        /// Вихід з акаунту
+        /// </summary>
         private void Logout()
         {
             var mainWindow = (MainWindow)Application.Current.MainWindow;
@@ -112,6 +116,14 @@ namespace TicTacToe.Views
 
             // Переходимо на сторінку входу
             _mainViewModel.NavigateTo(new LoginPage(_mainViewModel));
+        }
+
+        /// <summary>
+        /// Зміна мови додатку.
+        /// </summary>
+        private void LanguagesComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ComboBoxUtils.HandleSelectionChanged(sender, e, "/Views/Localization/");
         }
     }
 }

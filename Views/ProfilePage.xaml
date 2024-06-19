@@ -6,10 +6,11 @@
       xmlns:customControls="clr-namespace:TicTacToe.Views.CustomControls"
       mc:Ignorable="d"
       Title="ProfilePage"
-      Background="{StaticResource ButtonBackgroundBrush}">
+      Background="{DynamicResource ButtonBackgroundBrush}">
     <Grid HorizontalAlignment="Center"
           VerticalAlignment="Center">
         <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
             <RowDefinition Height="50"/>
             <RowDefinition Height="50"/>
             <RowDefinition Height="50"/>
@@ -24,12 +25,12 @@
                VerticalAlignment="Center"
                Width="150"
                Grid.Row="0"/>
-        <TextBlock Text="{StaticResource StringProfile}"
+        <TextBlock Text="{DynamicResource StringProfile}"
                    Grid.Row="1"
                    FontSize="14"
                    HorizontalAlignment="Center"
                    VerticalAlignment="Center"
-                   Foreground="{StaticResource ForegroundBrush}"/>
+                   Foreground="{DynamicResource ForegroundBrush}"/>
         <Grid Grid.Row="2"
               Width="200"
               HorizontalAlignment="Center"
@@ -43,45 +44,45 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <TextBlock Text="{StaticResource StringWins}"
+            <TextBlock Text="{DynamicResource StringWins}"
                        Grid.Row="0"
                        Grid.Column="0"
-                       Foreground="{StaticResource ForegroundBrush}"
+                       Foreground="{DynamicResource ForegroundBrush}"
                        HorizontalAlignment="Center"
                        VerticalAlignment="Center"
                        FontWeight="Bold"/>
             <TextBlock Text="0"
                        Grid.Row="1"
                        Grid.Column="0"
-                       Foreground="{StaticResource ForegroundBrush}"
+                       Foreground="{DynamicResource ForegroundBrush}"
                        HorizontalAlignment="Center"
                        VerticalAlignment="Center"
                        x:Name="PlayerWinsTextBlock"/>
-            <TextBlock Text="{StaticResource StringLosses}"
+            <TextBlock Text="{DynamicResource StringLosses}"
                        Grid.Row="0"
                        Grid.Column="1"
-                       Foreground="{StaticResource ForegroundBrush}"
+                       Foreground="{DynamicResource ForegroundBrush}"
                        HorizontalAlignment="Center"
                        VerticalAlignment="Center"
                        FontWeight="Bold"/>
             <TextBlock Text="0"
                        Grid.Row="1"
                        Grid.Column="1"
-                       Foreground="{StaticResource ForegroundBrush}"
+                       Foreground="{DynamicResource ForegroundBrush}"
                        HorizontalAlignment="Center"
                        VerticalAlignment="Center"
                        x:Name="PlayerLossesTextBlock"/>
-            <TextBlock Text="{StaticResource StringDraws}"
+            <TextBlock Text="{DynamicResource StringDraws}"
                        Grid.Row="0"
                        Grid.Column="2"
-                       Foreground="{StaticResource ForegroundBrush}"
+                       Foreground="{DynamicResource ForegroundBrush}"
                        HorizontalAlignment="Center"
                        VerticalAlignment="Center"
                        FontWeight="Bold"/>
             <TextBlock Text="0"
                        Grid.Row="1"
                        Grid.Column="2"
-                       Foreground="{StaticResource ForegroundBrush}"
+                       Foreground="{DynamicResource ForegroundBrush}"
                        HorizontalAlignment="Center"
                        VerticalAlignment="Center"
                        x:Name="PlayerDrawsTextBlock"/>
@@ -93,7 +94,7 @@
             Width="200"
             VerticalAlignment="Center"
             HorizontalAlignment="Center"
-            Placeholder="{StaticResource StringUsername}"/>
+            Placeholder="{DynamicResource StringUsername}"/>
         <customControls:CustomPasswordBox 
             Grid.Row="4"
             x:Name="NewPasswordBox" 
@@ -101,24 +102,38 @@
             Width="200"
             VerticalAlignment="Center"
             HorizontalAlignment="Center"
-            PlaceholderText="{StaticResource StringPassword}"/>
+            PlaceholderText="{DynamicResource StringPassword}"/>
         <customControls:CustomButton 
             Grid.Row="5" 
-            Content="{StaticResource StringUpdateProfile}" 
+            Content="{DynamicResource StringUpdateProfile}" 
             Click="UpdateProfileButton_Click" 
             Margin="10"
             Width="200"/>
         <customControls:CustomButton  
             Grid.Row="6" 
-            Content="{StaticResource StringDeleteAccount}" 
+            Content="{DynamicResource StringDeleteAccount}" 
             Click="DeleteAccountButton_Click" 
             Margin="10"
             Width="200"/>
         <customControls:CustomButton  
             Grid.Row="7" 
-            Content="{StaticResource StringLogout}"
+            Content="{DynamicResource StringLogout}"
             Click="LogoutButton_Click" 
             Margin="10"
             Width="200"/>
+        <customControls:CustomComboBox 
+                x:Name="LanguagesComboBox" 
+                Width="200"
+                Height="30"
+                Margin="10"
+                Grid.Row="8" 
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center"
+                SelectionChanged="LanguagesComboBox_SelectionChanged">
+            <customControls:CustomComboBox.Items>
+                <ComboBoxItem Content="Українська"/>
+                <ComboBoxItem Content="English"/>
+            </customControls:CustomComboBox.Items>
+        </customControls:CustomComboBox>
     </Grid>
 </Page>

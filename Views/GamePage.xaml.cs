@@ -5,6 +5,7 @@ using System.Windows.Media;
 using TicTacToe.Repositories;
 using TicTacToe.Services;
 using TicTacToe.ViewModels;
+using TicTacToe.Views.Utils;
 
 namespace TicTacToe.Views
 {
@@ -178,6 +179,14 @@ namespace TicTacToe.Views
         private void RatingButton_Click(object sender, RoutedEventArgs e)
         {
             _mainViewModel.NavigateTo(new RatingPage(_mainViewModel));
+        }
+
+        /// <summary>
+        /// Зміна мови додатку.
+        /// </summary>
+        private void LanguagesComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ComboBoxUtils.HandleSelectionChanged(sender, e, "/Views/Localization/");
         }
     }
 }

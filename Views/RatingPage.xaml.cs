@@ -5,6 +5,7 @@ using System.Windows.Controls;
 using TicTacToe.Repositories;
 using TicTacToe.Services;
 using TicTacToe.ViewModels;
+using TicTacToe.Views.Utils;
 
 namespace TicTacToe.Views
 {
@@ -37,6 +38,14 @@ namespace TicTacToe.Views
             {
                 MessageBox.Show($"{ex.Message}", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
+
+        /// <summary>
+        /// Зміна мови додатку.
+        /// </summary>
+        private void LanguagesComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ComboBoxUtils.HandleSelectionChanged(sender, e, "/Views/Localization/");
         }
     }
 }

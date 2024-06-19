@@ -6,10 +6,11 @@
       xmlns:customControls="clr-namespace:TicTacToe.Views.CustomControls"
       mc:Ignorable="d"
       Title="RegisterPage"
-      Background="{StaticResource ButtonBackgroundBrush}">
+      Background="{DynamicResource ButtonBackgroundBrush}">
     <Grid HorizontalAlignment="Center"
           VerticalAlignment="Center">
         <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
             <RowDefinition Height="50"/>
             <RowDefinition Height="50"/>
             <RowDefinition Height="50"/>
@@ -22,12 +23,12 @@
                VerticalAlignment="Center"
                Width="150"
                Grid.Row="0"/>
-        <TextBlock Text="{StaticResource StringSignUp}"
+        <TextBlock Text="{DynamicResource StringSignUp}"
                    Grid.Row="1"
                    FontSize="14"
                    HorizontalAlignment="Center"
                    VerticalAlignment="Center"
-                   Foreground="{StaticResource ForegroundBrush}"/>
+                   Foreground="{DynamicResource ForegroundBrush}"/>
         <customControls:CustomInput 
             Grid.Row="2"
             x:Name="UsernameTextBox" 
@@ -35,7 +36,7 @@
             Width="200"
             VerticalAlignment="Center"
             HorizontalAlignment="Center"
-            Placeholder="{StaticResource StringUsername}"/>
+            Placeholder="{DynamicResource StringUsername}"/>
         <customControls:CustomPasswordBox 
             Grid.Row="3"
             x:Name="PasswordB" 
@@ -43,10 +44,10 @@
             Width="200"
             VerticalAlignment="Center"
             HorizontalAlignment="Center"
-            PlaceholderText="{StaticResource StringPassword}"/>
+            PlaceholderText="{DynamicResource StringPassword}"/>
         <customControls:CustomButton 
             Grid.Row="4" 
-            Content="{StaticResource StringContinue}" 
+            Content="{DynamicResource StringContinue}" 
             Click="RegisterButton_Click" 
             Margin="10"
             Width="150"
@@ -55,12 +56,26 @@
             VerticalAlignment="Center"/>
         <customControls:CustomButton
             Grid.Row="5" 
-            Content="{StaticResource StringSignIn}" 
+            Content="{DynamicResource StringSignIn}" 
             Click="GoToLoginButton_Click" 
             Margin="10"
             Width="150"
             Height="30"
             HorizontalAlignment="Center"
             VerticalAlignment="Center"/>
+        <customControls:CustomComboBox 
+                x:Name="LanguagesComboBox" 
+                Width="150"
+                Height="30"
+                Margin="10"
+                Grid.Row="6"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center"
+                SelectionChanged="LanguagesComboBox_SelectionChanged">
+            <customControls:CustomComboBox.Items>
+                <ComboBoxItem Content="Українська"/>
+                <ComboBoxItem Content="English"/>
+            </customControls:CustomComboBox.Items>
+        </customControls:CustomComboBox>
     </Grid>
 </Page>
