@@ -19,7 +19,7 @@ namespace TicTacToe.Views.Utils
 
                 if (!string.IsNullOrEmpty(languagesResourcePath))
                 {
-                    // Remove existing language resources
+                    // Видалення оточного словника ресурсів
                     var existingLanguageResources = resources.MergedDictionaries
                         .Where(d => d.Source != null && d.Source.ToString().Contains(languagesResourcePath))
                         .ToList();
@@ -28,12 +28,12 @@ namespace TicTacToe.Views.Utils
                         resources.MergedDictionaries.Remove(existingLanguageResource);
                     }
 
-                    // Determine the culture and new resource path
+                    // Встановлення нової культури та словника ресурсів
                     var cultureName = selectedLanguage == "Українська" ? "uk-UA" : "en-US";
 
                     var newLanguageResourcePath = $"{languagesResourcePath}{selectedLanguage}.xaml";
 
-                    // Load new language resources
+                    // Завантаження нового словника ресурсів
                     var newLanguageResource = new ResourceDictionary
                     {
                         Source = new Uri(newLanguageResourcePath, UriKind.RelativeOrAbsolute)
