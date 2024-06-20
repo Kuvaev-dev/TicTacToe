@@ -6,7 +6,7 @@
       xmlns:customControls="clr-namespace:TicTacToe.Views.CustomControls"
       mc:Ignorable="d" 
       d:DesignHeight="550" d:DesignWidth="800"
-      Title="Крестики-нолики"
+      Title="Хрестики-нулики"
       Background="{DynamicResource ButtonBackgroundBrush}">
     <Grid>
         <Grid.RowDefinitions>
