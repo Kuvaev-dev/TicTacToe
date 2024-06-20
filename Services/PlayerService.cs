@@ -27,7 +27,7 @@ namespace TicTacToe.Services
         {
             // Перевірка на порожні рядки
             if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
-                throw new ArgumentException("Ім'я користувача та пароль не можуть бути порожніми.");
+                throw new ArgumentException("Ім'я користувача або пароль не можуть бути порожніми.");
 
             // Перевірка на довжину пароля
             if (password.Length < 6)
@@ -67,6 +67,10 @@ namespace TicTacToe.Services
             var player = _playerRepository.GetPlayerById(playerId);
             if (player == null || player.IsDeleted)
                 throw new ArgumentException("Гравця не знайдено або видалено.");
+
+            // Перевірка на порожні рядки
+            if (string.IsNullOrWhiteSpace(newUsername) || string.IsNullOrWhiteSpace(newPassword))
+                throw new ArgumentException("Ім'я користувача або пароль не можуть бути порожніми.");
 
             // Перевірка та оновлення імені користувача
             if (!string.IsNullOrWhiteSpace(newUsername))
@@ -116,7 +120,13 @@ namespace TicTacToe.Services
         {
             // Отримання інформації про гравця за ім'ям користувача
             var player = _playerRepository.GetPlayerByUsername(username);
-            if (player == null || player.IsDeleted || player.Password != password)
+
+            // Перевірка на порожні рядки
+            if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
+                throw new ArgumentException("Ім'я користувача або пароль не можуть бути порожніми.");
+
+            // Перевірка на коректність даних
+            if (player == null || player.IsDeleted || player.Username != username || player.Password != password)
                 throw new ArgumentException("Неправильне ім'я користувача або пароль.");
 
             // Оновлення часу останнього входу та інформації про гравця в репозиторії

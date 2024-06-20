@@ -44,8 +44,8 @@ namespace TicTacToe.Views
                 PlayerWinsTextBlock.Text = player.Wins.ToString();
                 PlayerLossesTextBlock.Text = player.Losses.ToString();
                 PlayerDrawsTextBlock.Text = player.Draws.ToString();
-                NewUsernameTextBox.Text = player.Username.ToString();
-                NewPasswordBox.Password = player.Password.ToString();
+                NewUsernameTextBox.Text = player.Username;
+                NewPasswordBox.Password = player.Password;
             }
             catch (Exception ex)
             {
@@ -69,6 +69,7 @@ namespace TicTacToe.Views
             catch (Exception ex)
             {
                 MessageBox.Show($"{ex.Message}", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                LoadPlayerData();
             }
         }
 
