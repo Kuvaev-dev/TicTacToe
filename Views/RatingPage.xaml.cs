@@ -46,6 +46,11 @@ namespace TicTacToe.Views
         private void LanguagesComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ComboBoxUtils.HandleSelectionChanged(sender, e, "/Views/Localization/");
+            RatingDataGrid.Items.Refresh();
+            RatingDataGrid.Columns[0].Header = Application.Current.Resources["StringUsername"];
+            RatingDataGrid.Columns[1].Header = Application.Current.Resources["StringWins"];
+            RatingDataGrid.Columns[2].Header = Application.Current.Resources["StringLosses"];
+            RatingDataGrid.Columns[3].Header = Application.Current.Resources["StringDraws"];
         }
     }
 }
