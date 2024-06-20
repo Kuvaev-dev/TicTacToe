@@ -78,7 +78,14 @@ namespace TicTacToe.Views
             if (_gameService.MakeMove(row, col))
             {
                 var winner = _gameService.GetCurrentPlayer() == 'X' ? "Гравець" : "Комп'ютер";
-                MessageBox.Show($"Переможець: {winner}!", "Інформація", MessageBoxButton.OK, MessageBoxImage.Information);
+                if (_gameService.IsBoardFull() && !_gameService.CheckWinner())
+                {
+                    MessageBox.Show("Гра завершилася нічиєю!", "Інформація", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                else
+                {
+                    MessageBox.Show($"Переможець: {winner}!", "Інформація", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
                 UpdateScores();
                 _isGameStarted = false;
             }

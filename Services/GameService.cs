@@ -117,7 +117,7 @@ namespace TicTacToe.Services
         /// Перевіряє, чи повністю заповнене ігрове поле.
         /// </summary>
         /// <returns>True, якщо поле повністю заповнене, інакше False.</returns>
-        private bool IsBoardFull()
+        public bool IsBoardFull()
         {
             for (int row = 0; row < 3; row++)
             {
