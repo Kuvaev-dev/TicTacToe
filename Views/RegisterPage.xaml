@@ -64,18 +64,16 @@
             HorizontalAlignment="Center"
             VerticalAlignment="Center"/>
         <customControls:CustomComboBox 
-                x:Name="LanguagesComboBox" 
-                Width="150"
-                Height="30"
-                Margin="10"
-                Grid.Row="6"
-                VerticalAlignment="Center"
-                HorizontalAlignment="Center"
-                SelectionChanged="LanguagesComboBox_SelectionChanged">
-            <customControls:CustomComboBox.Items>
-                <ComboBoxItem Content="Українська"/>
-                <ComboBoxItem Content="English"/>
-            </customControls:CustomComboBox.Items>
+            x:Name="LanguagesComboBox" 
+            Width="150"
+            Height="30"
+            Margin="10"
+            Grid.Row="6"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Center"
+            SelectionChanged="LanguagesComboBox_SelectionChanged"
+            ItemsSource="{Binding Source={x:Static Application.Current}, Path=AvailableLanguages}"
+            Loaded="LanguagesComboBox_Loaded">
         </customControls:CustomComboBox>
     </Grid>
 </Page>

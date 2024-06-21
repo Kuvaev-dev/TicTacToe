@@ -28,6 +28,7 @@ namespace TicTacToe.Views
             var playerRepository = new PlayerRepository(connectionString);
             _playerService = new PlayerService(playerRepository);
             _mainViewModel = mainViewModel;
+            DataContext = Application.Current;
         }
 
         /// <summary>
@@ -48,7 +49,7 @@ namespace TicTacToe.Views
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"{ex.Message}", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show($"{ex.Message}", (string)Application.Current.FindResource("StringError"), MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -63,6 +64,11 @@ namespace TicTacToe.Views
         /// <summary>
         /// Зміна мови додатку.
         /// </summary>
+        private void LanguagesComboBox_Loaded(object sender, RoutedEventArgs e)
+        {
+            ComboBoxUtils.LoadSelectedLanguage(sender, e);
+        }
+
         private void LanguagesComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ComboBoxUtils.HandleSelectionChanged(sender, e, "/Views/Localization/");

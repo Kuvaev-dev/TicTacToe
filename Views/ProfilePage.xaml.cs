@@ -5,6 +5,7 @@ using System.Windows.Controls;
 using TicTacToe.Repositories;
 using TicTacToe.Services;
 using TicTacToe.ViewModels;
+using TicTacToe.Views.CustomControls;
 using TicTacToe.Views.Utils;
 
 namespace TicTacToe.Views
@@ -28,6 +29,8 @@ namespace TicTacToe.Views
             var playerRepository = new PlayerRepository(connectionString);
             _playerService = new PlayerService(playerRepository);
             _mainViewModel = mainViewModel;
+            DataContext = Application.Current;
+
             LoadPlayerData();
         }
 
@@ -49,7 +52,9 @@ namespace TicTacToe.Views
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Помилка завантаження даних гравця: {ex.Message}", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show($"{(string)Application.Current.FindResource("StringPlayerDataLoadingError")}: {ex.Message}",
+                    (string)Application.Current.FindResource("StringError"), 
+                    MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -64,11 +69,13 @@ namespace TicTacToe.Views
                 var newUsername = NewUsernameTextBox.Text;
                 var newPassword = NewPasswordBox.Password;
                 _playerService.UpdateProfile(playerId, newUsername, newPassword);
-                MessageBox.Show("Профіль успішно оновлено!", "Інформація", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show((string)Application.Current.FindResource("StringProfileUpdationSuccessMessage"),
+                    (string)Application.Current.FindResource("StringInformation"), 
+                    MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"{ex.Message}", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show($"{ex.Message}", (string)Application.Current.FindResource("StringError"), MessageBoxButton.OK, MessageBoxImage.Error);
                 LoadPlayerData();
             }
         }
@@ -82,13 +89,15 @@ namespace TicTacToe.Views
             {
                 var playerId = MainWindow.GetLoggedInPlayerId();
                 _playerService.LogicalDeletePlayer(playerId);
-                MessageBox.Show("Акаунт успішно видалено!", "Інформація", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show((string)Application.Current.FindResource("StringAccountDeletionSuccessMessage"),
+                    (string)Application.Current.FindResource("StringInformation"), 
+                    MessageBoxButton.OK, MessageBoxImage.Information);
                 // Виходимо з системи та очищуємо навігацію
                 Logout();
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"{ex.Message}", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show($"{ex.Message}", (string)Application.Current.FindResource("StringError"), MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -122,6 +131,11 @@ namespace TicTacToe.Views
         /// <summary>
         /// Зміна мови додатку.
         /// </summary>
+        private void LanguagesComboBox_Loaded(object sender, RoutedEventArgs e)
+        {
+            ComboBoxUtils.LoadSelectedLanguage(sender, e);
+        }
+
         private void LanguagesComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ComboBoxUtils.HandleSelectionChanged(sender, e, "/Views/Localization/");

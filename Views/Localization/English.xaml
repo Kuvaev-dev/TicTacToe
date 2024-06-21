@@ -33,4 +33,34 @@
     <system:String x:Key="StringRegister">REGISTRATION</system:String>
     <system:String x:Key="StringContinue">CONTINUE</system:String>
     <system:String x:Key="StringEnter">SIGN IN</system:String>
+
+    <system:String x:Key="StringError">Error</system:String>
+    
+    <system:String x:Key="StringBotSelectionError">Please select bot difficulty before starting the game.</system:String>
+    <system:String x:Key="StringStartGameError">Please start the game before making moves.</system:String>
+    <system:String x:Key="StringPlayerDataLoadingError">Error loading user data</system:String>
+    <system:String x:Key="StringPlayerNotFoundError">No player found.</system:String>
+    <system:String x:Key="StringUsernamePasswordEmptyError">Username or password cannot be empty.</system:String>
+    <system:String x:Key="StringPasswordLengthError">Password must contain at least 6 characters.</system:String>
+    <system:String x:Key="StringUsernameExistError">Username already exists.</system:String>
+    <system:String x:Key="StringUserNotFoundOrIsDeletedError">Player not found or deleted.</system:String>
+    <system:String x:Key="StringWrongUsernameOrPaswordError">Incorrect username or password.</system:String>
+    <system:String x:Key="StringWrongUsernameError">Invalid username.</system:String>
+
+    <system:String x:Key="StringGamePlayerIdError">Player ID must be greater than zero.</system:String>
+    <system:String x:Key="StringGameResultError">The result of the game must be 0 (loss), 1 (draw) or 2 (win).</system:String>
+    <system:String x:Key="StringGameDateError">The date and time of the end of the game must be specified.</system:String>
+
+    <system:String x:Key="StringPlayerWinsError">The number of wins cannot be less than zero.</system:String>
+    <system:String x:Key="StringPlayerLossesError">The number of losses cannot be less than zero.</system:String>
+    <system:String x:Key="StringPlayerDrawsError">The number of draws cannot be less than zero.</system:String>
+    <system:String x:Key="StringPlayerValidateUsernameError">Username contains invalid characters.</system:String>
+
+    <system:String x:Key="StringInformation">Information</system:String>
+    
+    <system:String x:Key="StringDrawMessage">The game ended in a draw!</system:String>
+    <system:String x:Key="StringWinnerMessage">Winner</system:String>
+    <system:String x:Key="StringProfileUpdationSuccessMessage">Profile successfully updated!</system:String>
+    <system:String x:Key="StringAccountDeletionSuccessMessage">Account deleted successfully!</system:String>
+    <system:String x:Key="StringRegistrationSuccessMessage">Registration is successful!</system:String>
 </ResourceDictionary>
