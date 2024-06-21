@@ -33,7 +33,6 @@ namespace TicTacToe.Views.Utils
                 case "English":
                     resourceDictionary.Source = new Uri(resourcePath + "English.xaml", UriKind.Relative);
                     break;
-                    // Додайте кейси для інших мов, якщо необхідно
             }
 
             // Оновлення обраної мови в класі App
@@ -55,8 +54,17 @@ namespace TicTacToe.Views.Utils
             if (comboBox == null)
                 return;
 
-            // Ініціалізація вибраного елемента до поточної обраної мови додатку
-            comboBox.SelectedItem = ((App)Application.Current).SelectedLanguage;
+            // Ініціалізація вибраного елемента до поточної обраної мови додатку,
+            // або першого елемента, якщо поточна мова ще не встановлена
+            if (string.IsNullOrEmpty(((App)Application.Current).SelectedLanguage))
+            {
+                comboBox.SelectedItem = comboBox.Items[0]; // вибір першого елемента
+                ((App)Application.Current).SelectedLanguage = comboBox.SelectedItem.ToString();
+            }
+            else
+            {
+                comboBox.SelectedItem = ((App)Application.Current).SelectedLanguage;
+            }
 
             // Підписка на подію зміни мови для оновлення ComboBox при її зміні
             ((App)Application.Current).LanguageChanged += () =>

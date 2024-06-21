@@ -9,7 +9,7 @@ namespace TicTacToe
     /// </summary>
     public partial class App : Application
     {
-        private string _selectedLanguage = "Українська";
+        private string _selectedLanguage;
 
         /// <summary>
         /// Обрана мова додатку.
