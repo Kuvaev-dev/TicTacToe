@@ -5,6 +5,7 @@ using System.Windows.Media;
 using TicTacToe.Repositories;
 using TicTacToe.Services;
 using TicTacToe.ViewModels;
+using TicTacToe.Views.CustomControls;
 using TicTacToe.Views.Utils;
 
 namespace TicTacToe.Views
@@ -33,6 +34,7 @@ namespace TicTacToe.Views
             _playerService = new PlayerService(playerRepository);
             _mainViewModel = mainViewModel;
             _isGameStarted = false;
+            DataContext = Application.Current;
 
             UpdatePlayerInfo();
         }
@@ -45,7 +47,9 @@ namespace TicTacToe.Views
         {
             if (BotLevelComboBox.SelectedItem == null)
             {
-                MessageBox.Show("Будь ласка, оберіть складність бота перед початком гри.", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show((string)Application.Current.FindResource("StringBotSelectionError"),
+                    (string)Application.Current.FindResource("StringError"),
+                    MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
@@ -66,7 +70,9 @@ namespace TicTacToe.Views
         {
             if (!_isGameStarted)
             {
-                MessageBox.Show("Будь ласка, почніть гру перед тим, як робити ходи.", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show((string)Application.Current.FindResource("StringStartGameError"),
+                    (string)Application.Current.FindResource("StringError"),
+                    MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
@@ -80,11 +86,15 @@ namespace TicTacToe.Views
                 var winner = _gameService.GetCurrentPlayer() == 'X' ? "Гравець" : "Комп'ютер";
                 if (_gameService.IsBoardFull() && !_gameService.CheckWinner())
                 {
-                    MessageBox.Show("Гра завершилася нічиєю!", "Інформація", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show((string)Application.Current.FindResource("StringDrawMessage"),
+                        (string)Application.Current.FindResource("StringInformation"), 
+                        MessageBoxButton.OK, MessageBoxImage.Information);
                 }
                 else
                 {
-                    MessageBox.Show($"Переможець: {winner}!", "Інформація", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show($"{(string)Application.Current.FindResource("StringWinnerMessage")}: {winner}!",
+                        (string)Application.Current.FindResource("StringInformation"), 
+                        MessageBoxButton.OK, MessageBoxImage.Information);
                 }
                 UpdateScores();
                 _isGameStarted = false;
@@ -191,6 +201,11 @@ namespace TicTacToe.Views
         /// <summary>
         /// Зміна мови додатку.
         /// </summary>
+        private void LanguagesComboBox_Loaded(object sender, RoutedEventArgs e)
+        {
+            ComboBoxUtils.LoadSelectedLanguage(sender, e);
+        }
+
         private void LanguagesComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ComboBoxUtils.HandleSelectionChanged(sender, e, "/Views/Localization/");

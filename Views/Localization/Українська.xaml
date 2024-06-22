@@ -33,4 +33,34 @@
     <system:String x:Key="StringRegister">РЕЄСТРАЦІЯ</system:String>
     <system:String x:Key="StringContinue">ПРОДОВЖИТИ</system:String>
     <system:String x:Key="StringEnter">УВІЙТИ</system:String>
+
+    <system:String x:Key="StringError">Помилка</system:String>
+    
+    <system:String x:Key="StringBotSelectionError">Будь ласка, оберіть складність бота перед початком гри.</system:String>
+    <system:String x:Key="StringStartGameError">Будь ласка, почніть гру перед тим, як робити ходи.</system:String>
+    <system:String x:Key="StringPlayerDataLoadingError">Помилка завантаження даних користувача</system:String>
+    <system:String x:Key="StringPlayerNotFoundError">Гравця не знайдено.</system:String>
+    <system:String x:Key="StringUsernamePasswordEmptyError">Ім'я користувача або пароль не можуть бути порожніми.</system:String>
+    <system:String x:Key="StringPasswordLengthError">Пароль повинен містити принаймні 6 символів.</system:String>
+    <system:String x:Key="StringUsernameExistError">Ім'я користувача вже існує.</system:String>
+    <system:String x:Key="StringUserNotFoundOrIsDeletedError">Гравця не знайдено або видалено.</system:String>
+    <system:String x:Key="StringWrongUsernameOrPaswordError">Неправильне ім'я користувача або пароль.</system:String>
+    <system:String x:Key="StringWrongUsernameError">Неправильне ім'я користувача.</system:String>
+
+    <system:String x:Key="StringGamePlayerIdError">Ідентифікатор гравця повинен бути більше нуля.</system:String>
+    <system:String x:Key="StringGameResultError">Результат гри повинен бути 0 (поразка), 1 (нічия) або 2 (перемога).</system:String>
+    <system:String x:Key="StringGameDateError">Необхідно вказати дату та час завершення гри.</system:String>
+
+    <system:String x:Key="StringPlayerWinsError">Кількість перемог не може бути меншою за нуль.</system:String>
+    <system:String x:Key="StringPlayerLossesError">Кількість поразок не може бути меншою за нуль.</system:String>
+    <system:String x:Key="StringPlayerDrawsError">Кількість нічиїх не може бути меншою за нуль.</system:String>
+    <system:String x:Key="StringPlayerValidateUsernameError">Ім'я користувача містить недопустимі символи.</system:String>
+
+    <system:String x:Key="StringInformation">Інформація</system:String>
+    
+    <system:String x:Key="StringDrawMessage">Гра завершилася нічиєю!</system:String>
+    <system:String x:Key="StringWinnerMessage">Переможець</system:String>
+    <system:String x:Key="StringProfileUpdationSuccessMessage">Профіль успішно оновлено!</system:String>
+    <system:String x:Key="StringAccountDeletionSuccessMessage">Акаунт успішно видалено!</system:String>
+    <system:String x:Key="StringRegistrationSuccessMessage">Реєстрація успішна!</system:String>
 </ResourceDictionary>

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows;
 using TicTacToe.Models;
 using TicTacToe.Repositories;
 
@@ -27,16 +28,16 @@ namespace TicTacToe.Services
         {
             // Перевірка на порожні рядки
             if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
-                throw new ArgumentException("Ім'я користувача або пароль не можуть бути порожніми.");
+                throw new ArgumentException((string)Application.Current.FindResource("StringUsernamePasswordEmptyError"));
 
             // Перевірка на довжину пароля
             if (password.Length < 6)
-                throw new ArgumentException("Пароль повинен містити принаймні 6 символів.");
+                throw new ArgumentException((string)Application.Current.FindResource("StringPasswordLengthError"));
 
             // Перевірка на існування користувача з таким іменем
             var existingPlayer = _playerRepository.GetPlayerByUsername(username);
             if (existingPlayer != null)
-                throw new ArgumentException("Ім'я користувача вже існує.");
+                throw new ArgumentException((string)Application.Current.FindResource("StringUsernameExistError"));
 
             // Створення нового гравця
             var player = new Player
@@ -66,18 +67,18 @@ namespace TicTacToe.Services
             // Отримання інформації про гравця за ідентифікатором
             var player = _playerRepository.GetPlayerById(playerId);
             if (player == null || player.IsDeleted)
-                throw new ArgumentException("Гравця не знайдено або видалено.");
+                throw new ArgumentException((string)Application.Current.FindResource("StringUserNotFoundOrIsDeletedError"));
 
             // Перевірка на порожні рядки
             if (string.IsNullOrWhiteSpace(newUsername) || string.IsNullOrWhiteSpace(newPassword))
-                throw new ArgumentException("Ім'я користувача або пароль не можуть бути порожніми.");
+                throw new ArgumentException((string)Application.Current.FindResource("StringUsernamePasswordEmptyError"));
 
             // Перевірка та оновлення імені користувача
             if (!string.IsNullOrWhiteSpace(newUsername))
             {
                 var existingPlayer = _playerRepository.GetPlayerByUsername(newUsername);
                 if (existingPlayer != null && existingPlayer.Id != playerId)
-                    throw new ArgumentException("Ім'я користувача вже існує.");
+                    throw new ArgumentException((string)Application.Current.FindResource("StringUsernameExistError"));
 
                 player.Username = newUsername;
             }
@@ -86,7 +87,7 @@ namespace TicTacToe.Services
             if (!string.IsNullOrWhiteSpace(newPassword))
             {
                 if (newPassword.Length < 6)
-                    throw new ArgumentException("Пароль повинен містити принаймні 6 символів.");
+                    throw new ArgumentException((string)Application.Current.FindResource("StringPasswordLengthError"));
 
                 player.Password = newPassword;
             }
@@ -104,7 +105,7 @@ namespace TicTacToe.Services
             // Отримання інформації про гравця за ідентифікатором
             var player = _playerRepository.GetPlayerById(playerId);
             if (player == null || player.IsDeleted)
-                throw new ArgumentException("Гравця не знайдено або вже видалено.");
+                throw new ArgumentException((string)Application.Current.FindResource("StringUserNotFoundOrIsDeletedError"));
 
             // Логічне видалення гравця
             _playerRepository.DeletePlayer(playerId);
@@ -123,11 +124,11 @@ namespace TicTacToe.Services
 
             // Перевірка на порожні рядки
             if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
-                throw new ArgumentException("Ім'я користувача або пароль не можуть бути порожніми.");
+                throw new ArgumentException((string)Application.Current.FindResource("StringUsernamePasswordEmptyError"));
 
             // Перевірка на коректність даних
             if (player == null || player.IsDeleted || player.Username != username || player.Password != password)
-                throw new ArgumentException("Неправильне ім'я користувача або пароль.");
+                throw new ArgumentException((string)Application.Current.FindResource("StringWrongUsernameOrPaswordError"));
 
             // Оновлення часу останнього входу та інформації про гравця в репозиторії
             player.LastLogin = DateTime.Now;
@@ -144,7 +145,7 @@ namespace TicTacToe.Services
         {
             var player = _playerRepository.GetPlayerById(playerId);
             if (player == null || player.IsDeleted)
-                throw new ArgumentException("Гравця не знайдено або видалено.");
+                throw new ArgumentException((string)Application.Current.FindResource("StringUserNotFoundOrIsDeletedError"));
 
             return player;
         }
@@ -159,7 +160,7 @@ namespace TicTacToe.Services
             // Отримання інформації про гравця за ім'ям користувача
             var player = _playerRepository.GetPlayerByUsername(username);
             if (player == null || player.IsDeleted)
-                throw new ArgumentException("Неправильне ім'я користувача.");
+                throw new ArgumentException((string)Application.Current.FindResource("StringWrongUsernameError"));
 
             // Оновлення часу останнього входу та інформації про гравця в репозиторії
             player.LastLogin = DateTime.Now;

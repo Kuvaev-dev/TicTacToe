@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows;
 using TicTacToe.Bots;
 using TicTacToe.Repositories;
 using TicTacToe.Views;
@@ -173,7 +174,7 @@ namespace TicTacToe.Services
 
             if (player == null)
             {
-                throw new ArgumentException("Player not found.");
+                throw new ArgumentException((string)Application.Current.FindResource("StringPlayerNotFoundError"));
             }
 
             if (winner == "Player")

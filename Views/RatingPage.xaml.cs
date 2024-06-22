@@ -24,6 +24,7 @@ namespace TicTacToe.Views
             var playerRepository = new PlayerRepository(connectionString);
             _playerService = new PlayerService(playerRepository);
             _mainViewModel = mainViewModel;
+            DataContext = Application.Current;
             Loaded += RatingPage_Loaded;
         }
 
@@ -36,7 +37,7 @@ namespace TicTacToe.Views
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"{ex.Message}", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show($"{ex.Message}", (string)Application.Current.FindResource("StringError"), MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -51,6 +52,11 @@ namespace TicTacToe.Views
             RatingDataGrid.Columns[1].Header = Application.Current.Resources["StringWins"];
             RatingDataGrid.Columns[2].Header = Application.Current.Resources["StringLosses"];
             RatingDataGrid.Columns[3].Header = Application.Current.Resources["StringDraws"];
+        }
+
+        private void LanguagesComboBox_Loaded(object sender, RoutedEventArgs e)
+        {
+            ComboBoxUtils.LoadSelectedLanguage(sender, e);
         }
     }
 }

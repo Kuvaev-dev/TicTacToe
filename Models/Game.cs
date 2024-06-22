@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Windows;
 
 namespace TicTacToe.Models
 {
@@ -47,15 +48,15 @@ namespace TicTacToe.Models
                 {
                     case nameof(PlayerId):
                         if (PlayerId <= 0)
-                            error = "Ідентифікатор гравця повинен бути більше нуля.";
+                            error = (string)Application.Current.FindResource("StringGamePlayerIdError");
                         break;
                     case nameof(Result):
                         if (Result < 0 || Result > 2)
-                            error = "Результат гри повинен бути 0 (поразка), 1 (нічия) або 2 (перемога).";
+                            error = (string)Application.Current.FindResource("StringGameResultError");
                         break;
                     case nameof(Date):
                         if (Date == DateTime.MinValue)
-                            error = "Необхідно вказати дату та час завершення гри.";
+                            error = (string)Application.Current.FindResource("StringGameDateError");
                         break;
                 }
 

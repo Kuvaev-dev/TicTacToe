@@ -130,12 +130,10 @@
                 Height="30"
                 Margin="10"
                 VerticalAlignment="Center"
-                HorizontalAlignment="Left"
-                SelectionChanged="LanguagesComboBox_SelectionChanged">      
-                <customControls:CustomComboBox.Items>
-                    <ComboBoxItem Content="Українська"/>
-                    <ComboBoxItem Content="English"/>
-                </customControls:CustomComboBox.Items>
+                HorizontalAlignment="Center"
+                SelectionChanged="LanguagesComboBox_SelectionChanged"
+                ItemsSource="{Binding Source={x:Static Application.Current}, Path=AvailableLanguages}"
+                Loaded="LanguagesComboBox_Loaded">
             </customControls:CustomComboBox>
         </StackPanel>
     </Grid>

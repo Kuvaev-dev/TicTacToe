@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Text.RegularExpressions;
+using System.Windows;
 
 namespace TicTacToe.Models
 {
@@ -80,25 +81,17 @@ namespace TicTacToe.Models
 
                 switch (columnName)
                 {
-                    case nameof(Username):
-                        if (string.IsNullOrEmpty(Username))
-                            error = "Ім'я користувача не може бути порожнім.";
-                        break;
-                    case nameof(Password):
-                        if (string.IsNullOrEmpty(Password))
-                            error = "Пароль не може бути порожнім.";
-                        break;
                     case nameof(Wins):
                         if (Wins < 0)
-                            error = "Кількість перемог не може бути меншою за нуль.";
+                            error = (string)Application.Current.FindResource("StringPlayerWinsError");
                         break;
                     case nameof(Losses):
                         if (Losses < 0)
-                            error = "Кількість поразок не може бути меншою за нуль.";
+                            error = (string)Application.Current.FindResource("StringPlayerLossesError");
                         break;
                     case nameof(Draws):
                         if (Draws < 0)
-                            error = "Кількість нічиїх не може бути меншою за нуль.";
+                            error = (string)Application.Current.FindResource("StringPlayerDrawsError");
                         break;
                 }
 
@@ -116,7 +109,7 @@ namespace TicTacToe.Models
 
             if (!Regex.IsMatch(Username, UsernameRegexPattern))
             {
-                throw new ArgumentException("Ім'я користувача містить недопустимі символи.");
+                throw new ArgumentException((string)Application.Current.FindResource("StringPlayerValidateUsernameError"));
             }
         }
     }
