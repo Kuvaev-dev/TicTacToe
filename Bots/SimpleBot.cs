@@ -8,33 +8,32 @@ namespace TicTacToe.Bots
     /// </summary>
     public class SimpleBot : IBot
     {
-        private readonly Random _random = new();
+        private static readonly Random Random = new Random();
 
         /// <summary>
-        /// Отримує наступний хід для бота.
+        /// Отримує випадковий наступний хід для бота.
         /// </summary>
         /// <param name="board">Поточний стан ігрового поля.</param>
         /// <returns>Кортеж, що містить номер рядка та стовпця наступного ходу.</returns>
         public (int row, int col) GetNextMove(char[,] board)
         {
-            List<(int row, int col)> availableMoves = new List<(int row, int col)>();
+            List<(int row, int col)> emptyCells = new List<(int row, int col)>();
 
-            // Визначаємо доступні ходи на пустих клітинках
             for (int row = 0; row < 3; row++)
             {
                 for (int col = 0; col < 3; col++)
                 {
-                    if (board[row, col] == '\0') // Перевіряємо, чи пуста клітинка
+                    if (board[row, col] == '\0')
                     {
-                        availableMoves.Add((row, col)); // Додаємо координати клітинки до списку доступних ходів
+                        emptyCells.Add((row, col));
                     }
                 }
             }
 
-            if (availableMoves.Count > 0) // Якщо є доступні ходи
+            if (emptyCells.Count > 0)
             {
-                int index = _random.Next(availableMoves.Count); // Обираємо випадковий індекс зі списку доступних ходів
-                return availableMoves[index]; // Повертаємо обрані координати ходу
+                int index = Random.Next(emptyCells.Count);
+                return emptyCells[index];
             }
 
             return (-1, -1); // Якщо немає доступних ходів

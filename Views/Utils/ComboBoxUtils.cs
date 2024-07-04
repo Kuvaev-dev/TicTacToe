@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using TicTacToe.Views.CustomControls;
@@ -6,39 +7,39 @@ using TicTacToe.Views.CustomControls;
 namespace TicTacToe.Views.Utils
 {
     /// <summary>
-    /// Утилітарний клас для роботи з ComboBox у контексті зміни мови додатку.
+    /// Утиліти для роботи з ComboBox у контексті зміни мови додатку.
     /// </summary>
     public static class ComboBoxUtils
     {
+        private static readonly Dictionary<string, string> LanguageResourcePaths = new()
+        {
+            { "Українська", "/Views/Localization/Українська.xaml" },
+            { "English", "/Views/Localization/English.xaml" }
+        };
+
         /// <summary>
         /// Обробник зміни вибору елемента в ComboBox.
         /// </summary>
         /// <param name="sender">Об'єкт, що викликав подію.</param>
         /// <param name="e">Аргументи події зміни вибору.</param>
-        /// <param name="resourcePath">Шлях до ресурсів мови.</param>
-        public static void HandleSelectionChanged(object sender, SelectionChangedEventArgs e, string resourcePath)
+        public static void HandleSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var comboBox = sender as CustomComboBox;
             if (comboBox == null || comboBox.SelectedItem == null)
                 return;
 
             var selectedLanguage = comboBox.SelectedItem.ToString();
-            var resourceDictionary = new ResourceDictionary();
 
-            switch (selectedLanguage)
+            if (!LanguageResourcePaths.TryGetValue(selectedLanguage, out var resourcePath))
+                return;
+
+            var resourceDictionary = new ResourceDictionary
             {
-                case "Українська":
-                    resourceDictionary.Source = new Uri(resourcePath + "Українська.xaml", UriKind.Relative);
-                    break;
-                case "English":
-                    resourceDictionary.Source = new Uri(resourcePath + "English.xaml", UriKind.Relative);
-                    break;
-            }
+                Source = new Uri(resourcePath, UriKind.Relative)
+            };
 
-            // Оновлення обраної мови в класі App
             ((App)Application.Current).SelectedLanguage = selectedLanguage;
 
-            // Видалення існуючих мовних словників та додавання нового
             LanguageResourceUtils.RemoveLanguageDictionaries();
             LanguageResourceUtils.AddLanguageDictionary(resourceDictionary);
         }
@@ -54,24 +55,22 @@ namespace TicTacToe.Views.Utils
             if (comboBox == null)
                 return;
 
-            // Ініціалізація вибраного елемента до поточної обраної мови додатку,
-            // або першого елемента, якщо поточна мова ще не встановлена
-            if (string.IsNullOrEmpty(((App)Application.Current).SelectedLanguage))
+            var app = (App)Application.Current;
+            if (string.IsNullOrEmpty(app.SelectedLanguage))
             {
-                comboBox.SelectedItem = comboBox.Items[0]; // вибір першого елемента
-                ((App)Application.Current).SelectedLanguage = comboBox.SelectedItem.ToString();
+                comboBox.SelectedItem = comboBox.Items[0];
+                app.SelectedLanguage = comboBox.SelectedItem.ToString();
             }
             else
             {
-                comboBox.SelectedItem = ((App)Application.Current).SelectedLanguage;
+                comboBox.SelectedItem = app.SelectedLanguage;
             }
 
-            // Підписка на подію зміни мови для оновлення ComboBox при її зміні
-            ((App)Application.Current).LanguageChanged += () =>
+            app.LanguageChanged += () =>
             {
-                if (comboBox.SelectedItem?.ToString() != ((App)Application.Current).SelectedLanguage)
+                if (comboBox.SelectedItem?.ToString() != app.SelectedLanguage)
                 {
-                    comboBox.SelectedItem = ((App)Application.Current).SelectedLanguage;
+                    comboBox.SelectedItem = app.SelectedLanguage;
                 }
             };
         }
