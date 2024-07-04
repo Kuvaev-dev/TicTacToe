@@ -4,16 +4,16 @@ using System.Windows;
 namespace TicTacToe.Views.Utils
 {
     /// <summary>
-    /// Утиліти для роботи з мовними словниками ресурсів додатку.
+    /// Утиліти для керування мовними словниками ресурсів у додатку.
     /// </summary>
     public static class LanguageResourceUtils
     {
         private const string LanguageTag = "LanguageDictionary";
 
         /// <summary>
-        /// Додає новий словник ресурсів мови до загального словника ресурсів додатку.
+        /// Додає новий мовний словник ресурсів до злитих словників додатку.
         /// </summary>
-        /// <param name="resourceDictionary">Словник ресурсів мови для додавання.</param>
+        /// <param name="resourceDictionary">Словник ресурсів для додавання.</param>
         public static void AddLanguageDictionary(ResourceDictionary resourceDictionary)
         {
             resourceDictionary[LanguageTag] = true;
@@ -21,11 +21,10 @@ namespace TicTacToe.Views.Utils
         }
 
         /// <summary>
-        /// Видаляє всі мовні словники з загального словника ресурсів додатку.
+        /// Видаляє всі мовні словники ресурсів із злитих словників додатку.
         /// </summary>
         public static void RemoveLanguageDictionaries()
         {
-            // Знаходимо всі мовні словники за тегом і видаляємо їх з загального словника ресурсів
             var languageDictionaries = Application.Current.Resources.MergedDictionaries
                 .Where(d => d.Contains(LanguageTag) && (bool)d[LanguageTag])
                 .ToList();

@@ -71,7 +71,7 @@ namespace TicTacToe.Views
 
         private void LanguagesComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            ComboBoxUtils.HandleSelectionChanged(sender, e, "/Views/Localization/");
+            ComboBoxUtils.HandleSelectionChanged(sender, e);
         }
     }
 }

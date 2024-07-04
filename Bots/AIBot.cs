@@ -1,35 +1,22 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System;
 
 namespace TicTacToe.Bots
 {
     /// <summary>
-    /// Представляє ІІ бота для гри в хрестики-нулики, що використовує алгоритм Minimax.
+    /// Представляє ІІ бота для гри в хрестики-нулики, що використовує алгоритм Minimax з альфа-бета відсіканням.
     /// </summary>
-    public class AIBot : IBot
+    public class AIBot : BotBase
     {
-        private const char Player = 'X';
-        private const char Bot = 'O';
-
         /// <summary>
-        /// Отримує наступний хід для бота, використовуючи алгоритм Minimax.
-        /// </summary>
-        /// <param name="board">Поточний стан ігрового поля.</param>
-        /// <returns>Кортеж, що містить номер рядка та стовпця наступного ходу.</returns>
-        public (int row, int col) GetNextMove(char[,] board)
-        {
-            var bestMove = Minimax(board, Bot, 0);
-            return bestMove.Move;
-        }
-
-        /// <summary>
-        /// Алгоритм Minimax для визначення найкращого ходу для поточного гравця.
+        /// Алгоритм Minimax з альфа-бета відсіканням для визначення найкращого ходу для поточного гравця.
         /// </summary>
         /// <param name="board">Поточний стан ігрового поля.</param>
         /// <param name="currentPlayer">Поточний гравець ('X' або 'O').</param>
         /// <param name="depth">Глибина рекурсії.</param>
+        /// <param name="alpha">Найкраща оцінка для гравця 'X' (мінімізатора) на поточному рівні рекурсії або вище.</param>
+        /// <param name="beta">Найкраща оцінка для гравця 'O' (максимізатора) на поточному рівні рекурсії або вище.</param>
         /// <returns>Кортеж, що містить оцінку стану поля та номер рядка і стовпця найкращого ходу.</returns>
-        private (int Score, (int row, int col) Move) Minimax(char[,] board, char currentPlayer, int depth)
+        protected (int Score, (int row, int col) Move) Minimax(char[,] board, char currentPlayer, int depth, int alpha, int beta)
         {
             // Перевірка на переможця
             if (CheckWinner(board, Player))
@@ -39,77 +26,62 @@ namespace TicTacToe.Bots
             if (IsBoardFull(board))
                 return (0, (-1, -1)); // Нічия
 
-            var moves = new List<(int Score, (int row, int col) Move)>();
+            var bestMove = (-1, -1);
+            int bestScore = (currentPlayer == Bot) ? int.MinValue : int.MaxValue;
 
-            // Проходження по всіх клітинках для пошуку доступних ходів
+            // Перебір кожної клітинки на дошці
             for (int row = 0; row < 3; row++)
             {
                 for (int col = 0; col < 3; col++)
                 {
-                    if (board[row, col] == '\0')
+                    if (board[row, col] == '\0') // Перевірка, чи клітина порожня
                     {
-                        // Виконання ходу
-                        board[row, col] = currentPlayer;
+                        board[row, col] = currentPlayer; // Встановлення поточного гравця на клітинку
+                        int score = Minimax(board, currentPlayer == Bot ? Player : Bot, depth + 1, alpha, beta).Score; // Рекурсивний виклик для наступного гравця
 
-                        // Перевірка доступних клітин
-                        if (row < 0 || row >= 3 || col < 0 || col >= 3)
-                            continue;
+                        board[row, col] = '\0'; // Скасування ходу (розгляд варіантів)
 
-                        int score = Minimax(board, currentPlayer == Bot ? Player : Bot, depth + 1).Score;
-                        moves.Add((score, (row, col)));
+                        // Вибір найкращого ходу залежно від поточного гравця (максимізатор або мінімізатор)
+                        if (currentPlayer == Bot)
+                        {
+                            if (score > bestScore)
+                            {
+                                bestScore = score;
+                                bestMove = (row, col); // Збереження поточного найкращого ходу
+                            }
+                            alpha = Math.Max(alpha, bestScore); // Оновлення альфа значення для максимізатора
+                        }
+                        else
+                        {
+                            if (score < bestScore)
+                            {
+                                bestScore = score;
+                                bestMove = (row, col); // Збереження поточного найкращого ходу
+                            }
+                            beta = Math.Min(beta, bestScore); // Оновлення бета значення для мінімізатора
+                        }
 
-                        // Скасування ходу
-                        board[row, col] = '\0';
+                        // Відсічення гілок (алфа-бета відсікання)
+                        if (beta <= alpha)
+                        {
+                            break; // Зупинка перебору, якщо гілка відсічена
+                        }
                     }
                 }
             }
 
-            // Повернення найкращого ходу для поточного гравця
-            if (currentPlayer == Bot)
-            {
-                return moves.OrderByDescending(m => m.Score).First();
-            }
-            else
-            {
-                return moves.OrderBy(m => m.Score).First();
-            }
+            return (bestScore, bestMove); // Повернення найкращого результату і ходу
         }
 
         /// <summary>
-        /// Перевіряє, чи є поточний гравець переможцем.
+        /// Отримує наступний хід для бота, використовуючи алгоритм Minimax.
         /// </summary>
         /// <param name="board">Поточний стан ігрового поля.</param>
-        /// <param name="player">Поточний гравець ('X' або 'O').</param>
-        /// <returns>True, якщо гравець виграв, інакше False.</returns>
-        private static bool CheckWinner(char[,] board, char player)
+        /// <returns>Кортеж, що містить номер рядка та стовпця наступного ходу.</returns>
+        public override (int row, int col) GetNextMove(char[,] board)
         {
-            // Перевірка рядків, стовпців і діагоналей на переможний хід
-            for (int i = 0; i < 3; i++)
-            {
-                if (board[i, 0] == player && board[i, 1] == player && board[i, 2] == player) return true;
-                if (board[0, i] == player && board[1, i] == player && board[2, i] == player) return true;
-            }
-            if (board[0, 0] == player && board[1, 1] == player && board[2, 2] == player) return true;
-            if (board[0, 2] == player && board[1, 1] == player && board[2, 0] == player) return true;
-            return false;
-        }
-
-        /// <summary>
-        /// Перевіряє, чи повністю заповнене ігрове поле.
-        /// </summary>
-        /// <param name="board">Поточний стан ігрового поля.</param>
-        /// <returns>True, якщо поле повністю заповнене, інакше False.</returns>
-        private static bool IsBoardFull(char[,] board)
-        {
-            for (int row = 0; row < 3; row++)
-            {
-                for (int col = 0; col < 3; col++)
-                {
-                    if (board[row, col] == '\0')
-                        return false;
-                }
-            }
-            return true;
+            var bestMove = Minimax(board, Bot, 0, int.MinValue, int.MaxValue);
+            return bestMove.Move;
         }
     }
 }
