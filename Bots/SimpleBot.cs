@@ -33,6 +33,7 @@ namespace TicTacToe.Bots
             if (emptyCells.Count > 0)
             {
                 int index = Random.Next(emptyCells.Count);
+
                 return emptyCells[index];
             }
 

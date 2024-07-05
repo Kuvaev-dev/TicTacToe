@@ -53,7 +53,7 @@ namespace TicTacToe.Views
                 return;
             }
 
-            var selectedLevel = ((ComboBoxItem)BotLevelComboBox.SelectedItem).Content.ToString();
+            var selectedLevel = (BotLevelComboBox.SelectedItem as ComboBoxItem).Content.ToString();
             _gameService.StartNewGame(selectedLevel);
             UpdateBoard();
             UpdatePlayerInfo();

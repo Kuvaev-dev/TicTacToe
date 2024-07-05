@@ -34,6 +34,11 @@ namespace TicTacToe.Models
         /// </summary>
         public string Moves { get; set; }
 
+        /// <summary>
+        /// Рівень бота, обраний гравцем
+        /// </summary>
+        public string BotLevel { get; set; }
+
         // Реалізація IDataErrorInfo для валідації
 
         public string Error => null;

@@ -40,10 +40,13 @@ namespace TicTacToe.Views
             {
                 var username = UsernameTextBox.Text;
                 var password = PasswordB.Password;
+
                 _playerService.RegisterPlayer(username, password);
+
                 MessageBox.Show((string)Application.Current.FindResource("StringRegistrationSuccessMessage"),
-                    (string)Application.Current.FindResource("StringInformation"), 
+                    (string)Application.Current.FindResource("StringInformation"),
                     MessageBoxButton.OK, MessageBoxImage.Information);
+
                 _mainViewModel.NavigateTo(new LoginPage(_mainViewModel));
             }
             catch (Exception ex)
