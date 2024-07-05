@@ -29,11 +29,12 @@ namespace TicTacToe.Repositories
         {
             using (var connection = new SqlConnection(_connectionString))
             {
-                var command = new SqlCommand("INSERT INTO Games (PlayerId, Result, Date, Moves) VALUES (@PlayerId, @Result, @Date, @Moves)", connection);
+                var command = new SqlCommand("INSERT INTO Games (PlayerId, Result, Date, Moves, BotLevel) VALUES (@PlayerId, @Result, @Date, @Moves, @BotLevel)", connection);
                 command.Parameters.AddWithValue("@PlayerId", game.PlayerId);
                 command.Parameters.AddWithValue("@Result", game.Result);
                 command.Parameters.AddWithValue("@Date", game.Date);
                 command.Parameters.AddWithValue("@Moves", game.Moves);
+                command.Parameters.AddWithValue("@BotLevel", game.BotLevel);
                 connection.Open();
                 command.ExecuteNonQuery();
             }
@@ -62,7 +63,8 @@ namespace TicTacToe.Repositories
                             PlayerId = (int)reader["PlayerId"],
                             Result = (int)reader["Result"],
                             Date = (DateTime)reader["Date"],
-                            Moves = (string)reader["Moves"]
+                            Moves = (string)reader["Moves"],
+                            BotLevel = (string)reader["BotLevel"]
                         });
                     }
                 }

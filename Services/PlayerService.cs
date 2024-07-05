@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
+using TicTacToe.Helpers;
 using TicTacToe.Models;
 using TicTacToe.Repositories;
 
@@ -39,17 +40,21 @@ namespace TicTacToe.Services
             if (existingPlayer != null)
                 throw new ArgumentException((string)Application.Current.FindResource("StringUsernameExistError"));
 
+            // Хешування пароля та генерація солі
+            var hashedPassword = PasswordHelper.HashPassword(password, out string salt);
+
             // Створення нового гравця
             var player = new Player
             {
                 Username = username,
-                Password = password,
+                Password = hashedPassword,
                 IsDeleted = false,
                 GamesPlayed = 0,
                 Wins = 0,
                 Losses = 0,
                 Draws = 0,
-                LastLogin = DateTime.Now
+                LastLogin = DateTime.Now,
+                Salt = salt
             };
 
             // Додавання гравця до репозиторію
@@ -127,7 +132,11 @@ namespace TicTacToe.Services
                 throw new ArgumentException((string)Application.Current.FindResource("StringUsernamePasswordEmptyError"));
 
             // Перевірка на коректність даних
-            if (player == null || player.IsDeleted || player.Username != username || player.Password != password)
+            if (player == null || player.IsDeleted)
+                throw new ArgumentException((string)Application.Current.FindResource("StringWrongUsernameOrPaswordError"));
+
+            // Перевірка хешованого пароля
+            if (!PasswordHelper.VerifyPassword(password, player.Password, player.Salt))
                 throw new ArgumentException((string)Application.Current.FindResource("StringWrongUsernameOrPaswordError"));
 
             // Оновлення часу останнього входу та інформації про гравця в репозиторії

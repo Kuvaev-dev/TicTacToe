@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows;
 using TicTacToe.Bots;
+using TicTacToe.Models;
 using TicTacToe.Repositories;
 using TicTacToe.Views;
 
@@ -16,6 +18,7 @@ namespace TicTacToe.Services
         private char[,] _board;
         private char _currentPlayer;
         private IBot _bot;
+        private string _selectedBotLevel;
 
         /// <summary>
         /// Ініціалізує новий екземпляр класу GameService з вказаними репозиторіями.
@@ -48,6 +51,8 @@ namespace TicTacToe.Services
                 "ШІ" => new AIBot(),
                 _ => new SimpleBot(),
             };
+
+            _selectedBotLevel = botLevel.ToString();
         }
 
         /// <summary>
@@ -177,6 +182,17 @@ namespace TicTacToe.Services
                 throw new ArgumentException((string)Application.Current.FindResource("StringPlayerNotFoundError"));
             }
 
+            var game = new Game
+            {
+                PlayerId = playerId,
+                Result = winner == "Player" ? 2 : (winner == "Bot" ? 0 : 1),
+                Date = DateTime.Now,
+                Moves = GetMovesAsString(),
+                BotLevel = _selectedBotLevel
+            };
+
+            _gameRepository.AddGame(game);
+
             if (winner == "Player")
             {
                 player.Wins++;
@@ -192,6 +208,26 @@ namespace TicTacToe.Services
 
             player.GamesPlayed++;
             _playerRepository.UpdatePlayer(player);
+        }
+
+        /// <summary>
+        /// Повертає рядкове представлення ходів.
+        /// </summary>
+        /// <returns>Рядок, що містить координати ходів.</returns>
+        public string GetMovesAsString()
+        {
+            var moves = new List<string>();
+            for (int row = 0; row < 3; row++)
+            {
+                for (int col = 0; col < 3; col++)
+                {
+                    if (_board[row, col] != '\0')
+                    {
+                        moves.Add($"{_board[row, col]}{row}{col}");
+                    }
+                }
+            }
+            return string.Join(",", moves);
         }
 
         /// <summary>

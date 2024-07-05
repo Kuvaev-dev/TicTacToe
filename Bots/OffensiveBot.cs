@@ -20,11 +20,14 @@
                     if (board[row, col] == '\0')
                     {
                         board[row, col] = Bot; // Спроба зробити хід
+
                         if (CheckWinner(board, Bot)) // Перевірка, чи є цей хід виграшним
                         {
                             board[row, col] = '\0'; // Скасування ходу
+
                             return (row, col); // Повернення виграшного ходу
                         }
+
                         board[row, col] = '\0'; // Скасування ходу
                     }
                 }

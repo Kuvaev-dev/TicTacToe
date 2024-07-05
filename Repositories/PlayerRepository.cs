@@ -25,9 +25,10 @@ namespace TicTacToe.Repositories
         {
             using (var connection = new SqlConnection(_connectionString))
             {
-                var command = new SqlCommand("INSERT INTO Players (Username, Password, IsDeleted, GamesPlayed, Wins, Losses, Draws, LastLogin) VALUES (@Username, @Password, @IsDeleted, @GamesPlayed, @Wins, @Losses, @Draws, @LastLogin)", connection);
+                var command = new SqlCommand("INSERT INTO Players (Username, Password, Salt, IsDeleted, GamesPlayed, Wins, Losses, Draws, LastLogin) VALUES (@Username, @Password, @Salt, @IsDeleted, @GamesPlayed, @Wins, @Losses, @Draws, @LastLogin)", connection);
                 command.Parameters.AddWithValue("@Username", player.Username);
                 command.Parameters.AddWithValue("@Password", player.Password);
+                command.Parameters.AddWithValue("@Salt", player.Salt);
                 command.Parameters.AddWithValue("@IsDeleted", player.IsDeleted);
                 command.Parameters.AddWithValue("@GamesPlayed", player.GamesPlayed);
                 command.Parameters.AddWithValue("@Wins", player.Wins);
@@ -47,10 +48,11 @@ namespace TicTacToe.Repositories
         {
             using (var connection = new SqlConnection(_connectionString))
             {
-                var command = new SqlCommand("UPDATE Players SET Username = @Username, Password = @Password, IsDeleted = @IsDeleted, GamesPlayed = @GamesPlayed, Wins = @Wins, Losses = @Losses, Draws = @Draws, LastLogin = @LastLogin WHERE Id = @Id", connection);
+                var command = new SqlCommand("UPDATE Players SET Username = @Username, Password = @Password, Salt = @Salt, IsDeleted = @IsDeleted, GamesPlayed = @GamesPlayed, Wins = @Wins, Losses = @Losses, Draws = @Draws, LastLogin = @LastLogin WHERE Id = @Id", connection);
                 command.Parameters.AddWithValue("@Id", player.Id);
                 command.Parameters.AddWithValue("@Username", player.Username);
                 command.Parameters.AddWithValue("@Password", player.Password);
+                command.Parameters.AddWithValue("@Salt", player.Salt);
                 command.Parameters.AddWithValue("@IsDeleted", player.IsDeleted);
                 command.Parameters.AddWithValue("@GamesPlayed", player.GamesPlayed);
                 command.Parameters.AddWithValue("@Wins", player.Wins);
@@ -98,6 +100,7 @@ namespace TicTacToe.Repositories
                             Id = (int)reader["Id"],
                             Username = (string)reader["Username"],
                             Password = (string)reader["Password"],
+                            Salt = (string)reader["Salt"],
                             IsDeleted = (bool)reader["IsDeleted"],
                             GamesPlayed = (int)reader["GamesPlayed"],
                             Wins = (int)reader["Wins"],
@@ -132,6 +135,7 @@ namespace TicTacToe.Repositories
                             Id = (int)reader["Id"],
                             Username = (string)reader["Username"],
                             Password = (string)reader["Password"],
+                            Salt = (string)reader["Salt"],
                             IsDeleted = (bool)reader["IsDeleted"],
                             GamesPlayed = (int)reader["GamesPlayed"],
                             Wins = (int)reader["Wins"],

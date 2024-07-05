@@ -40,6 +40,11 @@ namespace TicTacToe.Models
         public string Password { get; set; }
 
         /// <summary>
+        /// Сіль для хешування пароля.
+        /// </summary>
+        public string Salt { get; set; }
+
+        /// <summary>
         /// Прапор, що вказує, чи видалено гравця (логічне видалення).
         /// </summary>
         public bool IsDeleted { get; set; }
