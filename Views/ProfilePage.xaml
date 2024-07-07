@@ -102,7 +102,7 @@
             Width="200"
             VerticalAlignment="Center"
             HorizontalAlignment="Center"
-            PlaceholderText="{DynamicResource StringPassword}"/>
+            PlaceholderText="{DynamicResource StringNewPassword}"/>
         <customControls:CustomButton 
             Grid.Row="5" 
             Content="{DynamicResource StringUpdateProfile}" 

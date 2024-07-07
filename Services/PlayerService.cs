@@ -94,7 +94,11 @@ namespace TicTacToe.Services
                 if (newPassword.Length < 6)
                     throw new ArgumentException((string)Application.Current.FindResource("StringPasswordLengthError"));
 
-                player.Password = newPassword;
+                // Хешування пароля та генерація солі
+                var hashedPassword = PasswordHelper.HashPassword(newPassword, out string salt);
+
+                player.Password = hashedPassword;
+                player.Salt = salt;
             }
 
             // Оновлення інформації про гравця в репозиторії

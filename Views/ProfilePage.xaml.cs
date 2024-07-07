@@ -2,6 +2,7 @@
 using System.Configuration;
 using System.Windows;
 using System.Windows.Controls;
+using TicTacToe.Helpers;
 using TicTacToe.Repositories;
 using TicTacToe.Services;
 using TicTacToe.ViewModels;
@@ -48,7 +49,6 @@ namespace TicTacToe.Views
                 PlayerLossesTextBlock.Text = player.Losses.ToString();
                 PlayerDrawsTextBlock.Text = player.Draws.ToString();
                 NewUsernameTextBox.Text = player.Username;
-                NewPasswordBox.Password = player.Password;
             }
             catch (Exception ex)
             {
