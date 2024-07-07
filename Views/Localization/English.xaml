@@ -26,6 +26,7 @@
     
     <system:String x:Key="StringUsername">Username</system:String>
     <system:String x:Key="StringPassword">Password</system:String>
+    <system:String x:Key="StringNewPassword">New password</system:String>
     <system:String x:Key="StringWins">Wins</system:String>
     <system:String x:Key="StringLosses">Losses</system:String>
     <system:String x:Key="StringDraws">Draws</system:String>
