@@ -8,7 +8,7 @@ namespace TicTacToe.Bots
     /// </summary>
     public class SimpleBot : IBot
     {
-        private static readonly Random Random = new Random();
+        private static readonly Random Random = new();
 
         /// <summary>
         /// Отримує випадковий наступний хід для бота.
@@ -17,7 +17,7 @@ namespace TicTacToe.Bots
         /// <returns>Кортеж, що містить номер рядка та стовпця наступного ходу.</returns>
         public (int row, int col) GetNextMove(char[,] board)
         {
-            List<(int row, int col)> emptyCells = new List<(int row, int col)>();
+            List<(int row, int col)> emptyCells = new();
 
             for (int row = 0; row < 3; row++)
             {
