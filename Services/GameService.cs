@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Windows;
 using TicTacToe.Bots;
+using TicTacToe.Helpers;
 using TicTacToe.Models;
 using TicTacToe.Repositories;
 using TicTacToe.Views;
@@ -125,15 +126,7 @@ namespace TicTacToe.Services
         /// <returns>True, якщо поле повністю заповнене, інакше False.</returns>
         public bool IsBoardFull()
         {
-            for (int row = 0; row < 3; row++)
-            {
-                for (int col = 0; col < 3; col++)
-                {
-                    if (_board[row, col] == '\0')
-                        return false;
-                }
-            }
-            return true;
+            return BoardHelper.IsBoardFull(_board);
         }
 
         /// <summary>
@@ -151,21 +144,7 @@ namespace TicTacToe.Services
         /// <returns>True, якщо є переможець, інакше false.</returns>
         public bool CheckWinner()
         {
-            // Перевірка рядків, стовпців і діагоналей
-            for (int i = 0; i < 3; i++)
-            {
-                if (_board[i, 0] != '\0' && _board[i, 0] == _board[i, 1] && _board[i, 1] == _board[i, 2])
-                    return true;
-                if (_board[0, i] != '\0' && _board[0, i] == _board[1, i] && _board[1, i] == _board[2, i])
-                    return true;
-            }
-
-            if (_board[0, 0] != '\0' && _board[0, 0] == _board[1, 1] && _board[1, 1] == _board[2, 2])
-                return true;
-            if (_board[0, 2] != '\0' && _board[0, 2] == _board[1, 1] && _board[1, 1] == _board[2, 0])
-                return true;
-
-            return false;
+            return BoardHelper.CheckWinner(_board, _currentPlayer);
         }
 
         /// <summary>
